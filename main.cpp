@@ -1,5 +1,5 @@
 /** doxygen comment **/
-
+/** additional comment **/
 #include <stdio.h>
 
 #include <stdio.h>
