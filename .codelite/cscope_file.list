@@ -1,0 +1,12 @@
+..\main.cpp
+..\morsebeep.cpp
+..\port_audio_std.cpp
+..\my_wxcp_file.wxcp
+..\wxFrameTest\main.cpp
+..\wxFrameTest\MainFrame.cpp
+..\wxFrameTest\wxcrafter.cpp
+..\wxFrameTest\wxcrafter_bitmaps.cpp
+..\wxFrameTest\MainFrame.h
+..\wxFrameTest\wxcrafter.h
+..\wxFrameTest\wxcrafter.wxcp
+..\wxFrameTest\win_resources.rc

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Workspace Name="MorseTesting" Database="">
+  <Project Name="MorseTesting" Path="MorseTesting.project" Active="Yes"/>
+  <Project Name="wxFrameTest" Path="wxFrameTest/wxFrameTest.project" Active="No"/>
+  <BuildMatrix>
+    <WorkspaceConfiguration Name="Debug" Selected="yes">
+      <Project Name="MorseTesting" ConfigName="Debug"/>
+      <Project Name="wxFrameTest" ConfigName="Debug"/>
+    </WorkspaceConfiguration>
+    <WorkspaceConfiguration Name="Release" Selected="no">
+      <Project Name="MorseTesting" ConfigName="Release"/>
+      <Project Name="wxFrameTest" ConfigName="Release"/>
+    </WorkspaceConfiguration>
+  </BuildMatrix>
+</CodeLite_Workspace>

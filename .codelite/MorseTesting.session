@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Session Name="C:\CppCode\Testing\MorseTesting\MorseTesting.workspace">
+  <int Value="2" Name="m_selectedTab"/>
+  <wxString Value="C:\CppCode\Testing\MorseTesting\MorseTesting.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray">
+    <TabInfo>
+      <wxString Value="C:\CppCode\Testing\MorseTesting\main.cpp" Name="FileName"/>
+      <int Value="182" Name="FirstVisibleLine"/>
+      <int Value="201" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\CppCode\Testing\MorseTesting\morsebeep.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="120" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds">
+        <IntVectorItem Value="69"/>
+        <IntVectorItem Value="101"/>
+        <IntVectorItem Value="105"/>
+        <IntVectorItem Value="112"/>
+        <IntVectorItem Value="184"/>
+        <IntVectorItem Value="209"/>
+        <IntVectorItem Value="229"/>
+        <IntVectorItem Value="269"/>
+        <IntVectorItem Value="282"/>
+        <IntVectorItem Value="290"/>
+        <IntVectorItem Value="311"/>
+      </IntVector>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\CppCode\Testing\MorseTesting\port_audio_std.cpp" Name="FileName"/>
+      <int Value="28" Name="FirstVisibleLine"/>
+      <int Value="40" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\CppCode\Testing\MorseTesting\dictionary.py" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="0" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="c:\cpplibs\portaudio\src\common\pa_converters.c" Name="FileName"/>
+      <int Value="674" Name="FirstVisibleLine"/>
+      <int Value="686" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="C:\cppLibs\portaudio\examples\paex_write_sine.c" Name="FileName"/>
+      <int Value="62" Name="FirstVisibleLine"/>
+      <int Value="65" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+  </TabInfoArray>
+  <SerializedObject Name="m_breakpoints">
+    <long Value="2" Name="Count"/>
+    <SerializedObject Name="Breakpoint0">
+      <wxString Value="C:\CppCode\Testing\MorseTesting\main.cpp" Name="file"/>
+      <int Value="200" Name="lineno"/>
+      <wxString Value="" Name="function_name"/>
+      <wxString Value="" Name="memory_address"/>
+      <int Value="1" Name="bp_type"/>
+      <int Value="0" Name="watchpoint_type"/>
+      <wxString Value="" Name="watchpt_data"/>
+      <CData Name="commandlist"/>
+      <bool Value="0" Name="regex"/>
+      <bool Value="0" Name="is_temp"/>
+      <bool Value="1" Name="is_enabled"/>
+      <int Value="0" Name="ignore_number"/>
+      <wxString Value="" Name="conditions"/>
+      <int Value="0" Name="origin"/>
+    </SerializedObject>
+    <SerializedObject Name="Breakpoint1">
+      <wxString Value="C:\CppCode\Testing\MorseTesting\main.cpp" Name="file"/>
+      <int Value="220" Name="lineno"/>
+      <wxString Value="" Name="function_name"/>
+      <wxString Value="" Name="memory_address"/>
+      <int Value="1" Name="bp_type"/>
+      <int Value="0" Name="watchpoint_type"/>
+      <wxString Value="" Name="watchpt_data"/>
+      <CData Name="commandlist"/>
+      <bool Value="0" Name="regex"/>
+      <bool Value="0" Name="is_temp"/>
+      <bool Value="1" Name="is_enabled"/>
+      <int Value="0" Name="ignore_number"/>
+      <wxString Value="" Name="conditions"/>
+      <int Value="0" Name="origin"/>
+    </SerializedObject>
+  </SerializedObject>
+</Session>

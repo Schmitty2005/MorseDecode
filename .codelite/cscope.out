@@ -1,0 +1,2865 @@
+cscope 15 /cygdrive/c/CppCode/Testing/MorseTesting/.codelite               0000016172
+	@..\main.cpp
+
+3 
+	~<¡dio.h
+>
+
+5 
+	~<¡dio.h
+>
+
+6 
+	~<io¡»am
+>
+
+7 
+	~<Ãw
+>
+
+8 
+	~"pÜudio.h
+"
+
+11 
+	~<m©h.h
+>
+
+12 #iâdeà
+pi
+
+
+13 
+	#pi
+ (3.14159265)
+
+	)
+
+18 
+	#NUMBER_CHANNELS
+ (1)
+
+	)
+
+19 
+	#FRAMES_BUFFER
+ (22050)
+
+20 
+	#CHECK_OVERFLOW
+ (0)
+
+	)
+
+21 
+	#CHECK_UNDERFLOW
+ (0)
+
+	)
+
+23 
+	~"mÜ£b“p.ıp
+"
+
+73 
+Ãw¶ayroutše
+();
+
+75 
+	$maš
+(
+¬gc
+, **
+¬gv
+) {
+
+76 cÚ¡ *
+·”rÜ¡ršgch¬
+;
+
+77 
+PaSŒ—m
+ *
+¡»am
+;
+
+78 
+PaE¼Ü
+ 
+”r
+;
+
+79 
+PaHo¡E¼ÜInfo
+ 
+·”r
+;
+
+80 cÚ¡ *
+code
+;
+
+81 
+PaSŒ—mP¬am‘”s
+ 
+ouutP¬am‘”s
+;
+
+83 
+”r
+ = 
+	`Pa_In™Ÿlize
+();
+
+84 ifĞ
+”r
+ !ğ
+·NoE¼Ü
+ ) 
+¡d
+::
+cout
+<<"PortAudio Intizliationƒrror";
+
+88 
+”r
+ = 
+	`Pa_O³nDeçuÉSŒ—m
+ (&
+¡»am
+, 0, 
+NUMBER_CHANNELS
+, 
+·Flßt32
+, 
+SAMPLE_RATE
+, 
+FRAMES_BUFFER
+, 
+NULL
+, NULL);
+
+89 ià(
+”r
+ !ğ
+·NoE¼Ü
+ ) 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØDeviû"<<¡d::
+’dl
+;
+
+91 
+ouutP¬am‘”s
+.
+deviû
+ = 
+	`Pa_G‘DeçuÉOuutDeviû
+();
+
+92 
+ouutP¬am‘”s
+.
+chªÃlCouÁ
+ = 1;
+
+93 
+ouutP¬am‘”s
+.
+§m¶eFÜm©
+ = 
+·Flßt32
+;
+
+94 
+ouutP¬am‘”s
+.
+ho¡ApiS³cificSŒ—mInfo
+ = 
+NULL
+;
+
+97 
+”r
+ = 
+	`Pa_S¹SŒ—m
+ (
+¡»am
+);
+
+98 ià(
+”r
+ !ğ
+·NoE¼Ü
+ ){
+
+99 ifĞ
+¡»am
+ ) {
+
+100 
+	`Pa_AbÜtSŒ—m
+Ğ
+¡»am
+ );
+
+101 
+	`Pa_Clo£SŒ—m
+Ğ
+¡»am
+ );
+
+104 
+code
+ = 
+	`Pa_G‘E¼ÜText
+ (
+”r
+);
+
+106 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØSŒ—m"<<¡d::
+’dl
+;
+
+109 
+	`´štf
+("hello world\n");
+
+124 
+MÜ£b“p
+ 
+	`Ùh”lßd
+(441 , 250);
+
+125 
+Ùh”lßd
+.
+	`‹¡ouut
+();
+
+126 
+Ùh”lßd
+.
+	`wave_ouut
+();
+
+129 
+z
+ = (
+Ùh”lßd
+.
+	`§m¶e_du¿tiÚ
+()/
+FRAMES_BUFFER
+);
+
+130 
+q
+ = 0;
+
+131 
+couÁ”
+ = 0;
+
+133 *
+bufãr_poš‹r
+ = 
+Ãw
+ [
+FRAMES_BUFFER
+];
+
+134 
+bufãr_ÿlc
+ = 0;
+
+135 
+‹¡_v®
+ = (
+Ùh”lßd
+.
+	`§m¶e_du¿tiÚ
+());
+
+136 
+q
+<1){
+
+137  
+i
+=0; i<3; ++i )
+
+140 
+bufãr_ÿlc
+ = (
+Ùh”lßd
+.
+	`§m¶e_du¿tiÚ
+()è- (
+FRAMES_BUFFER
+ * 
+i
+);
+
+141 
+bufãr_poš‹r
+ = 
+Ùh”lßd
+.
+d©a_poš‹r
+ + (
+FRAMES_BUFFER
+ *
+i
+);
+
+142 *
+y
+ = (
+Ùh”lßd
+.
+d™_poš‹r
+);
+
+144 
+”r
+ = 
+	`Pa_Wr™eSŒ—m
+Ğ
+¡»am
+, 
+y
+, 
+FRAMES_BUFFER
+ );
+
+145 ifĞ
+”r
+ && 
+CHECK_UNDERFLOW
+ ) 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØSŒ—m"<<¡d::
+’dl
+;
+
+159 
+q
+++;
+
+160 
+couÁ”
+ = 0;
+
+161 
+couÁ”
+<10000){
+¡d
+::
+cout
+<<"."; counter++;};
+
+165 
+¡d
+::
+cout
+ << "Maš Pau£........." << std::
+’dl
+;
+
+167 
+Ùh”lßd
+.
+	`¶ay_d™
+();
+
+168 
+Ùh”lßd
+.
+	`¶ay_dah
+();
+
+169 
+Ùh”lßd
+.
+	`¶ay_Ë‰”_¥aû
+();
+
+170 
+Ùh”lßd
+.
+	`¶ay_wÜd_¥aû
+();
+
+175 
+MÜ£b“p
+ 
+‹¡¶ay
+;
+
+176 
+‹¡¶ay
+.
+	`¶ay_d™
+();
+
+226 
+	`Ãw¶ayroutše
+ ()
+
+228 
+PaSŒ—m
+ *
+Ãw¡»am
+;
+
+229 
+PaE¼Ü
+ 
+”r
+;
+
+230 
+MÜ£b“p
+ 
+‹¡¶ay
+;
+
+232 
+bufãr_couÁ”
+ = 0;
+
+233 *
+bufãr
+ = 
+Ãw
+ [
+FRAMES_BUFFER
+];
+
+234 *
+¶ay_poš‹r
+ = 
+‹¡¶ay
+.
+d©a_poš‹r
+;
+
+235 
+bufãr
+ = 
+¶ay_poš‹r
+;
+
+236 
+bufãr_couÁ”
+<
+FRAMES_BUFFER
+)
+
+239 
+bufãr
+ = bufã¸+ 
+bufãr_couÁ”
+;
+
+240 
+bufãr
+ = (
+¶ay_poš‹r
+ + 
+bufãr_couÁ”
+);
+
+241 
+bufãr_couÁ”
+ ++;
+
+242 } ; 
+bufãr_couÁ”
+ = 0;
+
+249 
+”r
+ = 
+	`Pa_O³nDeçuÉSŒ—m
+ (&
+Ãw¡»am
+, 0, 
+NUMBER_CHANNELS
+, 
+·Flßt32
+, 
+SAMPLE_RATE
+, 
+FRAMES_BUFFER
+, 
+NULL
+, NULL);
+
+250 ià(
+”r
+ !ğ
+·NoE¼Ü
+ ) 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØDeviû"<<¡d::
+’dl
+;
+
+252 
+”r
+ = 
+	`Pa_Wr™eSŒ—m
+Ğ
+Ãw¡»am
+, 
+bufãr
+, 
+FRAMES_BUFFER
+ );
+
+253 ià(
+”r
+ !ğ
+·NoE¼Ü
+è
+¡d
+::
+cout
+ <<"Th”i ª sŒ—m wr™šgƒ¼Ü!"<<¡d::
+’dl
+;
+
+255 cÚ¡ *
+·”rÜ¡ršgch¬
+;
+
+256 
+·”rÜ¡ršgch¬
+ = 
+	`Pa_G‘E¼ÜText
+(
+”r
+);
+
+257 ifĞ
+”r
+ && 
+CHECK_UNDERFLOW
+ ) 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØSŒ—m"<<¡d::
+’dl
+;
+
+	@..\morsebeep.cpp
+
+11 
+	~<m©h.h
+>
+
+12 #iâdeà
+pi
+
+
+13 
+	#pi
+ (3.14159265)
+
+	)
+
+15 
+	~<io¡»am
+>
+
+16 
+	~"pÜudio.h
+"
+
+17 
+	#MORSE_RAMP_DURATION_DEFAULT_MS
+ (5)
+
+	)
+
+18 
+	#MORSE_SAMPLE_RATE
+ (44100)
+
+	)
+
+19 
+	#MORSE_FREQ_DEFAULT
+ (800)
+
+	)
+
+20 
+	#MORSE_DIT_DURATION_DEFAULT_MS
+ (250)
+
+	)
+
+21 
+	#SAMPLE_RATE
+ (44100)
+
+	)
+
+54 şas 
+	cMÜ£b“p
+
+
+56 
+	m´iv©e
+:
+
+61 
+§m¶e_¿‹
+;
+
+62 
+	mbegš_¿mp_ms
+;
+
+63 
+	m’d_¿mp_ms
+;
+
+64 
+	mdu¿tiÚ_ms
+;
+
+65 
+	mäeq_hz
+;
+
+75 
+	mpublic
+:
+
+76 *
+d™_poš‹r
+;
+
+77 *
+	mdah_poš‹r
+;
+
+78 *
+	mË‰”_¥aû_poš‹r
+;
+
+79 *
+	mwÜd_¥aû_poš‹r
+;
+
+81 *
+	m§m¶e_poš‹r
+;
+
+82 ~
+	$MÜ£b“p
+ ()
+
+84 
+d–‘e
+ [] 
+§m¶e_poš‹r
+ ;
+
+93 
+	$§m¶e_du¿tiÚ
+()
+
+95 
+m_numb”_§m¶es
+;
+
+96 
+m_numb”_§m¶es
+ = (
+this
+->
+§m¶e_¿‹
+*Ñhis->
+du¿tiÚ_ms
+));
+
+97  
+m_numb”_§m¶es
+;
+
+98 
+	}
+}
+
+100 
+	$g’”©e_wave
+()
+
+102 
+x
+=0;
+
+104 
+begš_¿mp_couÁ
+ =(
+this
+->
+§m¶e_¿‹
+ *Ñhis->
+’d_¿mp_ms
+/1000));
+
+105 
+’d_¿mp_couÁ
+ = (
+this
+->
+§m¶e_¿‹
+ *Ñhis->
+’d_¿mp_ms
+/1000));
+
+106 
+adju¡_amp
+ = 0;
+
+107 
+¦iû_v®ue
+ = 0;
+
+110 cÚ¡ 
+sw_du¿tiÚ_Ëngth
+ = (
+this
+->
+§m¶e_¿‹
+*Ñhis->
+du¿tiÚ_ms
+/1000));
+
+111 cÚ¡ 
+d™_du¿tiÚ
+ = (
+this
+->
+§m¶e_¿‹
+ * (this->
+du¿tiÚ_ms
+/1000));
+
+112 cÚ¡ 
+dah_du¿tiÚ
+ = (
+this
+->
+§m¶e_¿‹
+ * (this->
+du¿tiÚ_ms
+/1000)*3);
+
+113 cÚ¡ 
+Ë‰”_¥_du¿tiÚ
+ = (
+this
+->
+§m¶e_¿‹
+ * (this->
+du¿tiÚ_ms
+/1000)*3);
+
+114 cÚ¡ 
+wÜd_¥_du¿tiÚ
+ = (
+this
+->
+§m¶e_¿‹
+ * (this->
+du¿tiÚ_ms
+/1000)*7);
+
+118 
+d™_poš‹r
+ = 
+Ãw
+ [
+d™_du¿tiÚ
+];
+
+119 
+dah_poš‹r
+ = 
+Ãw
+ [
+dah_du¿tiÚ
+];
+
+120 
+Ë‰”_¥aû_poš‹r
+ = 
+Ãw
+ [
+Ë‰”_¥_du¿tiÚ
+];
+
+121 
+wÜd_¥aû_poš‹r
+ = 
+Ãw
+ [
+wÜd_¥_du¿tiÚ
+];
+
+124 
+§m¶e_poš‹r
+ = 
+Ãw
+ [
+sw_du¿tiÚ_Ëngth
++8192];
+
+133 
+§m¶e_poš‹r
+ = 
+d™_poš‹r
+;
+
+135 
+x
+<=
+begš_¿mp_couÁ
+)
+
+138 
+adju¡_amp
+ = ((
+x
+)/
+begš_¿mp_couÁ
+);
+
+139 
+¦iû_v®ue
+ = ((
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+))*
+adju¡_amp
+);
+
+140 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+141 
+x
+++;
+
+145 
+x
+ < ((
+d™_du¿tiÚ
+è- 
+’d_¿mp_couÁ
+))
+
+148 
+¦iû_v®ue
+ = (
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+));
+
+149 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+150 
+x
+++;
+
+154 
+x
+<=
+d™_du¿tiÚ
+)
+
+157 
+adju¡_amp
+ = (((
+sw_du¿tiÚ_Ëngth
+-
+x
+))/
+’d_¿mp_couÁ
+);
+
+158 
+¦iû_v®ue
+ = (
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+))*
+adju¡_amp
+;
+
+159 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+160 
+x
+++;
+
+165 
+x
+<=(
+d™_du¿tiÚ
+)+8192)
+
+167 *
+§m¶e_poš‹r
+++ = 0;
+
+168 
+x
+++;
+
+173 
+§m¶e_poš‹r
+ = 
+dah_poš‹r
+;
+
+174 
+x
+<=
+begš_¿mp_couÁ
+)
+
+177 
+adju¡_amp
+ = ((
+x
+)/
+begš_¿mp_couÁ
+);
+
+178 
+¦iû_v®ue
+ = ((
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+))*
+adju¡_amp
+);
+
+179 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+180 
+x
+++;
+
+184 
+x
+ < ((
+dah_du¿tiÚ
+è- 
+’d_¿mp_couÁ
+))
+
+187 
+¦iû_v®ue
+ = (
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+));
+
+188 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+189 
+x
+++;
+
+193 
+x
+<=
+dah_du¿tiÚ
+)
+
+196 
+adju¡_amp
+ = (((
+sw_du¿tiÚ_Ëngth
+-
+x
+))/
+’d_¿mp_couÁ
+);
+
+197 
+¦iû_v®ue
+ = (
+	`sš
+(
+äeq_hz
+ * (2 * 
+pi
+è* 
+x
+ / 
+§m¶e_¿‹
+))*
+adju¡_amp
+;
+
+198 *
+§m¶e_poš‹r
+++ğ
+¦iû_v®ue
+;
+
+199 
+x
+++;
+
+204 
+x
+<=(
+dah_du¿tiÚ
+)+8192)
+
+206 *
+§m¶e_poš‹r
+++ = 0;
+
+207 
+x
+++;
+
+211 
+§m¶e_poš‹r
+ = 
+Ë‰”_¥aû_poš‹r
+;
+
+212 
+x
+=0;
+
+213 
+x
+<
+Ë‰”_¥_du¿tiÚ
+)
+
+215 *
+§m¶e_poš‹r
+++ = 0;
+
+216 
+x
+++;
+
+220 
+§m¶e_poš‹r
+ = 
+wÜd_¥aû_poš‹r
+;
+
+221 
+x
+=0;
+
+222 
+x
+<
+wÜd_¥_du¿tiÚ
+)
+
+224 *
+§m¶e_poš‹r
+++ = 0;
+
+225 
+x
+++;
+
+229 
+	}
+};
+
+231 *
+	gd©a_poš‹r
+;
+
+234 
+	$MÜ£b“p
+(è: 
+	`§m¶e_¿‹
+(
+MORSE_SAMPLE_RATE
+), 
+	`begš_¿mp_ms
+(
+MORSE_RAMP_DURATION_DEFAULT_MS
+), 
+	`’d_¿mp_ms
+(MORSE_RAMP_DURATION_DEFAULT_MS),
+
+235 
+	`du¿tiÚ_ms
+(
+MORSE_DIT_DURATION_DEFAULT_MS
+), 
+	$äeq_hz
+(
+MORSE_FREQ_DEFAULT
+)
+
+237 
+this
+->
+	`g’”©e_wave
+();
+
+238 
+	}
+};
+
+240 
+	$MÜ£b“p
+ ( 
+äeq_h”tz
+, 
+du¿tiÚ_mlis
+): 
+	`äeq_hz
+(äeq_h”tz), 
+	`du¿tiÚ_ms
+(duration_millis),
+
+241 
+	`begš_¿mp_ms
+ (
+MORSE_RAMP_DURATION_DEFAULT_MS
+), 
+	`’d_¿mp_ms
+(MORSE_RAMP_DURATION_DEFAULT_MS),
+
+242 
+	$§m¶e_¿‹
+(
+MORSE_SAMPLE_RATE
+)
+
+244 
+this
+->
+	`g’”©e_wave
+();
+
+245 
+	}
+};
+
+247 
+	$MÜ£b“p
+ ( 
+du¿tiÚ_mlis
+): 
+	`äeq_hz
+(
+MORSE_FREQ_DEFAULT
+),
+	`du¿tiÚ_ms
+(duration_millis),
+
+248 
+	`begš_¿mp_ms
+(
+MORSE_RAMP_DURATION_DEFAULT_MS
+), 
+	`’d_¿mp_ms
+(MORSE_RAMP_DURATION_DEFAULT_MS), 
+	$§m¶e_¿‹
+(
+MORSE_SAMPLE_RATE
+)
+
+250 
+this
+->
+	`g’”©e_wave
+();
+
+251 
+	}
+};
+
+266 
+	$wave_ouut
+ ()
+
+268 
+wave_§m¶es
+ = (
+du¿tiÚ_ms
+ / 1000)*(
+äeq_hz
+);
+
+269 
+x
+ = 0;
+
+270 
+x
+<=
+wave_§m¶es
+)
+
+272 
+z
+ = *(
+d©a_poš‹r
+ + 
+x
+);
+
+273 
+¡d
+::
+cout
+ <<"S‹°: "<<
+x
+<<" V®u: "<< 
+z
+ << " , ";
+
+274 
+x
+++;
+
+276 
+	}
+}
+
+277 
+	$‹¡ouut
+()
+
+279 
+¡d
+::
+cout
+ <<¡d::
+’dl
+<< "CÏs du¿tiÚ : "<<
+this
+->
+du¿tiÚ_ms
+<<std::endl<<"Class Frequency : "
+
+280 << 
+this
+->
+äeq_hz
+<<
+¡d
+::
+’dl
+;
+
+282 
+¡d
+::
+cout
+ <<"CÏs begš„am°: " << 
+this
+->
+begš_¿mp_ms
+ <<¡d::
+’dl
+ <<
+
+283 "CÏs ’d„am°: " << 
+this
+->
+’d_¿mp_ms
+ << 
+¡d
+::
+’dl
+<< "D©¨poš‹¸add»ss:"<<this->
+d©a_poš‹r
+<< std::endl;
+
+285 
+¡d
+::
+cout
+ << "pause here......\n";
+
+286 
+	}
+}
+
+288 
+	$¶ay_d™
+ ()
+
+290 
+”r
+ = 
+	`Pa_Wr™eSŒ—m
+Ğ
+¡»am
+, 
+this
+->
+d™_poš‹r
+, 
+FRAMES_BUFFER
+ );
+
+291 ià(
+”r
+ !ğ
+·NoE¼Ü
+è
+¡d
+::
+cout
+ <<"Th”i ªƒ¼Ü!"<<¡d::
+’dl
+;
+
+293 
+¡d
+::
+cout
+<<"Thi codwÈ¶ay‡ d™!"<<¡d::
+’dl
+;
+
+295 
+	}
+}
+
+296 
+	$¶ay_dah
+ ()
+
+299 
+¡d
+::
+cout
+<<"Thi codwÈ¶ay‡ dah!"<<¡d::
+’dl
+;
+
+301 
+	}
+}
+
+302 
+	$¶ay_Ë‰”_¥aû
+ ()
+
+305 
+¡d
+::
+cout
+<<"Thi codwÈ¶ay‡…au£ b‘w“ÀË‰”s"<<¡d::
+’dl
+;
+
+307 
+	}
+}
+
+308 
+	$¶ay_wÜd_¥aû
+ ()
+
+311 
+¡d
+::
+cout
+<<"Thi codwÈ¶ay‡ s·û b‘w“ÀwÜds"<<¡d::
+’dl
+;
+
+313 
+	}
+}
+
+315 
+	s§m¶e_šfo
+
+
+317 
+	g¡_§m¶es
+;
+
+318 *
+	g¡_poš‹r
+;
+
+	@..\my_wxcp_file.wxcp
+
+11 "m_u£Enum": 
+çl£
+,
+
+53 "m_v®ue": 
+çl£
+
+
+57 "m_v®ue": 
+çl£
+
+
+61 "m_v®ue": 
+çl£
+
+
+226 "m_v®ue": 
+çl£
+
+
+230 "m_v®ue": 
+çl£
+
+
+234 "m_v®ue": 
+çl£
+
+
+254 "m_v®ue": 
+Œue
+
+
+336 "m_v®ue": 
+çl£
+
+
+340 "m_v®ue": 
+çl£
+
+
+344 "m_v®ue": 
+çl£
+
+
+364 "m_v®ue": 
+Œue
+
+
+412 "m_v®ue": 
+çl£
+
+
+416 "m_v®ue": 
+çl£
+
+
+420 "m_v®ue": 
+çl£
+
+
+440 "m_v®ue": 
+Œue
+
+
+487 "m_v®ue": 
+çl£
+
+
+491 "m_v®ue": 
+çl£
+
+
+495 "m_v®ue": 
+çl£
+
+
+515 "m_v®ue": 
+Œue
+
+
+	@..\port_audio_std.cpp
+
+2 
+	~<¡dio.h
+>
+
+3 
+	~"pÜudio.h
+"
+
+4 
+	~"io¡»am
+"
+
+5 
+	~<Ãw
+>
+
+7 
+	#SAMPLE_RATE
+ (44100)
+
+	)
+
+8 
+	#NUMBER_CHANNELS
+ (1)
+
+	)
+
+9 
+	#FRAMES_BUFFER
+ (800)
+
+	)
+
+10 
+	#CHECK_OVERFLOW
+ (0)
+
+	)
+
+11 
+	#CHECK_UNDERFLOW
+ (0)
+
+	)
+
+13 
+	$¡¬tup
+(){
+
+14 
+PaSŒ—m
+ *
+¡»am
+;
+
+15 
+PaE¼Ü
+ 
+”r
+;
+
+16 
+PaHo¡E¼ÜInfo
+ 
+·”r
+;
+
+17 cÚ¡ *
+code
+;
+
+20 
+”r
+ = 
+	`Pa_In™Ÿlize
+();
+
+21 ifĞ
+”r
+ !ğ
+·NoE¼Ü
+ ) 
+¡d
+::
+cout
+<<"PortAudio Intizliationƒrror";
+
+25 
+”r
+ = 
+	`Pa_O³nDeçuÉSŒ—m
+ (&
+¡»am
+, 0, 
+NUMBER_CHANNELS
+, 
+·Flßt32
+, 
+SAMPLE_RATE
+, 
+FRAMES_BUFFER
+, 
+NULL
+, NULL);
+
+26 ià(
+”r
+ !ğ
+·NoE¼Ü
+ ) 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØDeviû"<<¡d::
+’dl
+;
+
+28 
+”r
+ = 
+	`Pa_S¹SŒ—m
+ (
+¡»am
+);
+
+29 ià(
+”r
+ !ğ
+·NoE¼Ü
+ ){
+
+30 ifĞ
+¡»am
+ ) {
+
+31 
+	`Pa_AbÜtSŒ—m
+Ğ
+¡»am
+ );
+
+32 
+	`Pa_Clo£SŒ—m
+Ğ
+¡»am
+ );
+
+35 
+code
+ = 
+	`Pa_G‘E¼ÜText
+ (
+”r
+);
+
+37 
+¡d
+::
+cout
+ <<"E¼Ü O³nšg AudiØSŒ—m"<<¡d::
+’dl
+;
+
+39 
+	}
+}
+
+	@..\wxFrameTest\MainFrame.cpp
+
+1 
+	~"MašF¿me.h
+"
+
+2 
+	~<wx/aboutdlg.h
+>
+
+4 
+	gMašF¿me
+::
+	$MašF¿me
+(
+wxWšdow
+* 
+·»Á
+)
+
+5 : 
+	$MašF¿meBa£CÏss
+(
+·»Á
+)
+
+7 
+	}
+}
+
+9 
+MašF¿me
+::~
+	$MašF¿me
+()
+
+11 
+	}
+}
+
+13 
+MašF¿me
+::
+	$OnEx™
+(
+wxCommªdEv’t
+& 
+ev’t
+)
+
+15 
+	`wxUnu£dV¬
+(
+ev’t
+);
+
+16 
+	`Clo£
+();
+
+17 
+	}
+}
+
+19 
+	gMašF¿me
+::
+	$OnAbout
+(
+wxCommªdEv’t
+& 
+ev’t
+)
+
+21 
+	`wxUnu£dV¬
+(
+ev’t
+);
+
+22 
+wxAboutDŸlogInfo
+ 
+šfo
+;
+
+23 
+šfo
+.
+	`S‘Cİyright
+(
+	`_
+("My MainFrame"));
+
+24 
+šfo
+.
+	`S‘Liûnû
+(
+	`_
+("GPL v2 or†ater"));
+
+25 
+šfo
+.
+	`S‘DesütiÚ
+(
+	`_
+("Short description goes here"));
+
+26 ::
+	`wxAboutBox
+(
+šfo
+);
+
+27 
+	}
+}
+
+	@..\wxFrameTest\MainFrame.h
+
+1 #iâdeà
+MAINFRAME_H
+
+
+2 
+	#MAINFRAME_H
+
+
+	)
+
+3 
+	~"wxüaá”.h
+"
+
+5 şas 
+	cMašF¿me
+ : 
+public
+ 
+MašF¿meBa£CÏss
+
+
+7 
+public
+:
+
+8 
+MašF¿me
+(
+wxWšdow
+* 
+·»Á
+);
+
+9 
+	mvœtu®
+ ~
+MašF¿me
+();
+
+11 
+OnEx™
+(
+wxCommªdEv’t
+& 
+ev’t
+);
+
+12 
+OnAbout
+(
+wxCommªdEv’t
+& 
+ev’t
+);
+
+	@..\wxFrameTest\main.cpp
+
+1 
+	~<wx/­p.h
+>
+
+2 
+	~<wx/ev’t.h
+>
+
+3 
+	~"MašF¿me.h
+"
+
+4 
+	~<wx/image.h
+>
+
+7 şas 
+	cMašAµ
+ : 
+public
+ 
+wxAµ
+
+
+9 
+public
+:
+
+10 
+	$MašAµ
+() {}
+
+11 
+vœtu®
+ ~
+	$MašAµ
+(è{
+	}
+}
+
+13 
+vœtu®
+ 
+boŞ
+ 
+	$OnIn™
+() {
+
+15 
+wxImage
+::
+	`AddHªdËr
+Ğ
+Ãw
+ 
+wxPNGHªdËr
+ );
+
+16 
+wxImage
+::
+	`AddHªdËr
+Ğ
+Ãw
+ 
+wxJPEGHªdËr
+ );
+
+18 
+MašF¿me
+ *
+mašF¿me
+ = 
+Ãw
+ 
+	`MašF¿me
+(
+NULL
+);
+
+19 
+	`S‘TİWšdow
+(
+mašF¿me
+);
+
+20  
+	`G‘TİWšdow
+()->
+	`Show
+();
+
+21 
+	}
+}
+
+24 
+	$DECLARE_APP
+(
+MašAµ
+)
+
+25 
+	`IMPLEMENT_APP
+(
+MašAµ
+)
+
+	@..\wxFrameTest\win_resources.rc
+
+1 
+	~"wx/msw/wx.rc
+"
+
+	@..\wxFrameTest\wxcrafter.cpp
+
+1 
+	~"wxüaá”.h
+"
+
+5 
+wxC9ED9In™B™m­Resourûs
+();
+
+7 
+boŞ
+ 
+	gbB™m­Lßded
+ = 
+çl£
+;
+
+10 
+	gMašF¿meBa£CÏss
+::
+	$MašF¿meBa£CÏss
+(
+wxWšdow
+* 
+·»Á
+, 
+wxWšdowID
+ 
+id
+, cÚ¡ 
+wxSŒšg
+& 
+t™Ë
+, cÚ¡ 
+wxPošt
+& 
+pos
+, cÚ¡ 
+wxSize
+& 
+size
+, 
+¡yË
+)
+
+11 : 
+	$wxF¿me
+(
+·»Á
+, 
+id
+, 
+t™Ë
+, 
+pos
+, 
+size
+, 
+¡yË
+)
+
+13 iàĞ!
+bB™m­Lßded
+ ) {
+
+15 
+wxXmlResourû
+::
+	`G‘
+()->
+	`AddHªdËr
+(
+Ãw
+ 
+wxB™m­XmlHªdËr
+);
+
+16 
+	`wxC9ED9In™B™m­Resourûs
+();
+
+17 
+bB™m­Lßded
+ = 
+Œue
+;
+
+20 
+wxBoxSiz”
+* 
+boxSiz”1
+ = 
+Ãw
+ 
+	`wxBoxSiz”
+(
+wxVERTICAL
+);
+
+21 
+this
+->
+	`S‘Siz”
+(
+boxSiz”1
+);
+
+23 
+m_mašPª–
+ = 
+Ãw
+ 
+	`wxPª–
+(
+this
+, 
+wxID_ANY
+, 
+wxDeçuÉPos™iÚ
+, 
+	`wxSize
+(500,300), 
+wxTAB_TRAVERSAL
+);
+
+25 
+boxSiz”1
+->
+	`Add
+(
+m_mašPª–
+, 1, 
+wxEXPAND
+, 5);
+
+27 
+wxBoxSiz”
+* 
+boxSiz”5
+ = 
+Ãw
+ 
+	`wxBoxSiz”
+(
+wxVERTICAL
+);
+
+28 
+m_mašPª–
+->
+	`S‘Siz”
+(
+boxSiz”5
+);
+
+30 
+m_m’uB¬
+ = 
+Ãw
+ 
+	`wxM’uB¬
+(0);
+
+31 
+this
+->
+	`S‘M’uB¬
+(
+m_m’uB¬
+);
+
+33 
+m_Çme6
+ = 
+Ãw
+ 
+	`wxM’u
+();
+
+34 
+m_m’uB¬
+->
+	`Aµ’d
+(
+m_Çme6
+, 
+	`_
+("File"));
+
+36 
+m_m’uI‹m7
+ = 
+Ãw
+ 
+	`wxM’uI‹m
+(
+m_Çme6
+, 
+wxID_EXIT
+, 
+	`_
+("Ex™ AÉ-X"), _("Qu™"), 
+wxITEM_NORMAL
+);
+
+37 
+m_Çme6
+->
+	`Aµ’d
+(
+m_m’uI‹m7
+);
+
+39 
+m_Çme8
+ = 
+Ãw
+ 
+	`wxM’u
+();
+
+40 
+m_m’uB¬
+->
+	`Aµ’d
+(
+m_Çme8
+, 
+	`_
+("Help"));
+
+42 
+m_m’uI‹m9
+ = 
+Ãw
+ 
+	`wxM’uI‹m
+(
+m_Çme8
+, 
+wxID_ABOUT
+, 
+	`_
+("About..."), 
+	`wxT
+(""), 
+wxITEM_NORMAL
+);
+
+43 
+m_Çme8
+->
+	`Aµ’d
+(
+m_m’uI‹m9
+);
+
+45 
+m_mašToŞb¬
+ = 
+this
+->
+	`C»©eToŞB¬
+(
+wxTB_FLAT
+, 
+wxID_ANY
+);
+
+46 
+m_mašToŞb¬
+->
+	`S‘ToŞB™m­Size
+(
+	`wxSize
+(16,16));
+
+49 
+	`S‘Size
+(
+	`wxSize
+(500,300));
+
+50 
+	`C’Œe
+();
+
+52 
+this
+->
+	`CÚÃù
+(
+m_m’uI‹m7
+->
+	`G‘Id
+(), 
+wxEVT_COMMAND_MENU_SELECTED
+, 
+	`wxCommªdEv’tHªdËr
+(
+MašF¿meBa£CÏss
+::
+OnEx™
+), 
+NULL
+,his);
+
+53 
+this
+->
+	`CÚÃù
+(
+m_m’uI‹m9
+->
+	`G‘Id
+(), 
+wxEVT_COMMAND_MENU_SELECTED
+, 
+	`wxCommªdEv’tHªdËr
+(
+MašF¿meBa£CÏss
+::
+OnAbout
+), 
+NULL
+,his);
+
+55 
+	}
+}
+
+57 
+	gMašF¿meBa£CÏss
+::~
+	$MašF¿meBa£CÏss
+()
+
+59 
+this
+->
+	`DiscÚÃù
+(
+m_m’uI‹m7
+->
+	`G‘Id
+(), 
+wxEVT_COMMAND_MENU_SELECTED
+, 
+	`wxCommªdEv’tHªdËr
+(
+MašF¿meBa£CÏss
+::
+OnEx™
+), 
+NULL
+,his);
+
+60 
+this
+->
+	`DiscÚÃù
+(
+m_m’uI‹m9
+->
+	`G‘Id
+(), 
+wxEVT_COMMAND_MENU_SELECTED
+, 
+	`wxCommªdEv’tHªdËr
+(
+MašF¿meBa£CÏss
+::
+OnAbout
+), 
+NULL
+,his);
+
+62 
+	}
+}
+
+	@..\wxFrameTest\wxcrafter.h
+
+1 #iâdeà
+WXCRAFTER_H
+
+
+2 
+	#WXCRAFTER_H
+
+
+	)
+
+4 
+	~<wx/£‰šgs.h
+>
+
+5 
+	~<wx/xrc/xmÌes.h
+>
+
+6 
+	~<wx/xrc/xh_bmp.h
+>
+
+7 
+	~<wx/äame.h
+>
+
+8 
+	~<wx/siz”.h
+>
+
+9 
+	~<wx/·Ãl.h
+>
+
+10 
+	~<wx/m’u.h
+>
+
+11 
+	~<wx/toŞb¬.h
+>
+
+13 şas 
+	cMašF¿meBa£CÏss
+ : 
+public
+ 
+wxF¿me
+
+
+15 
+´Ùeùed
+:
+
+16 
+wxPª–
+* 
+m_mašPª–
+;
+
+17 
+wxM’uB¬
+* 
+	mm_m’uB¬
+;
+
+18 
+wxM’u
+* 
+	mm_Çme6
+;
+
+19 
+wxM’uI‹m
+* 
+	mm_m’uI‹m7
+;
+
+20 
+wxM’u
+* 
+	mm_Çme8
+;
+
+21 
+wxM’uI‹m
+* 
+	mm_m’uI‹m9
+;
+
+22 
+wxToŞB¬
+* 
+	mm_mašToŞb¬
+;
+
+24 
+	m´Ùeùed
+:
+
+25 
+vœtu®
+ 
+	$OnEx™
+(
+wxCommªdEv’t
+& 
+ev’t
+è{ƒv’t.
+	`Sk
+(); }
+
+26 
+vœtu®
+ 
+	$OnAbout
+(
+wxCommªdEv’t
+& 
+ev’t
+è{ƒv’t.
+	`Sk
+(); 
+	}
+}
+
+28 
+	gpublic
+:
+
+29 
+MašF¿meBa£CÏss
+(
+wxWšdow
+* 
+·»Á
+, 
+wxWšdowID
+ 
+id
+ = 
+wxID_ANY
+, cÚ¡ 
+wxSŒšg
+& 
+t™Ë
+ = 
+_
+("My F¿me"), cÚ¡ 
+wxPošt
+& 
+pos
+ = 
+wxDeçuÉPos™iÚ
+, cÚ¡ 
+wxSize
+& 
+size
+ = wxSize(-1,-1), 
+¡yË
+ = 
+wxCAPTION
+|
+wxRESIZE_BORDER
+|
+wxMAXIMIZE_BOX
+|
+wxMINIMIZE_BOX
+|
+wxSYSTEM_MENU
+|
+wxCLOSE_BOX
+);
+
+30 
+	gvœtu®
+ ~
+MašF¿meBa£CÏss
+();
+
+	@..\wxFrameTest\wxcrafter.wxcp
+
+11 "m_u£Enum": 
+çl£
+,
+
+53 "m_v®ue": 
+çl£
+
+
+57 "m_v®ue": 
+çl£
+
+
+61 "m_v®ue": 
+çl£
+
+
+192 "m_v®ue": 
+çl£
+
+
+196 "m_v®ue": 
+çl£
+
+
+200 "m_v®ue": 
+çl£
+
+
+259 "m_v®ue": 
+çl£
+
+
+263 "m_v®ue": 
+çl£
+
+
+267 "m_v®ue": 
+çl£
+
+
+335 "m_v®ue": 
+çl£
+
+
+339 "m_v®ue": 
+çl£
+
+
+343 "m_v®ue": 
+çl£
+
+
+416 "m_v®ue": 
+çl£
+
+
+484 "m_v®ue": 
+çl£
+
+
+528 "m_v®ue": 
+çl£
+
+
+592 "m_v®ue": 
+çl£
+
+
+636 "m_v®ue": 
+çl£
+
+
+699 "m_v®ue": 
+çl£
+
+
+749 "m_v®ue": 
+çl£
+
+
+793 "m_v®ue": 
+çl£
+
+
+	@..\wxFrameTest\wxcrafter_bitmaps.cpp
+
+5 
+	~<wx/wx´ec.h
+>
+
+7 #ifdeà
+__BORLANDC__
+
+
+8 #´agm¨
+hdr¡İ
+
+
+11 
+	~<wx/fesys.h
+>
+
+12 
+	~<wx/fs_mem.h
+>
+
+13 
+	~<wx/xrc/xmÌes.h
+>
+
+14 
+	~<wx/xrc/xh_®l.h
+>
+
+16 #ià
+wxCHECK_VERSION
+(2,8,5è&& 
+wxABI_VERSION
+ >= 20805
+
+17 
+	#XRC_ADD_FILE
+(
+Çme
+, 
+d©a
+, 
+size
+, 
+mime
+) \
+
+18 
+wxMemÜyFSHªdËr
+::
+	`AddFeW™hMimeTy³
+(
+Çme
+, 
+d©a
+, 
+size
+, 
+mime
+)
+
+	)
+
+20 
+	#XRC_ADD_FILE
+(
+Çme
+, 
+d©a
+, 
+size
+, 
+mime
+) \
+
+21 
+wxMemÜyFSHªdËr
+::
+	`AddFe
+(
+Çme
+, 
+d©a
+, 
+size
+)
+
+	)
+
+24 
+size_t
+ 
+	gxml_»s_size_0
+ = 51;
+
+25 
+	gxml_»s_fe_0
+[] = {
+
+30 
+	$wxC9ED9In™B™m­Resourûs
+()
+
+35 
+wxMemÜyFSHªdËr
+::
+	`AddFe
+(
+	`wxT
+("XRC_resource/dummy_file"), wxT("dummy one"));
+
+36 
+wxFeSy¡em
+ 
+fsys
+;
+
+37 
+wxFSFe
+ *
+f
+ = 
+fsys
+.
+	`O³nFe
+(
+	`wxT
+("memory:XRC_resource/dummy_file"));
+
+38 
+wxMemÜyFSHªdËr
+::
+	`RemoveFe
+(
+	`wxT
+("XRC_resource/dummy_file"));
+
+39 ià(
+f
+è
+d–‘e
+ f;
+
+40 
+wxFeSy¡em
+::
+	`AddHªdËr
+(
+Ãw
+ 
+wxMemÜyFSHªdËr
+);
+
+43 
+	`XRC_ADD_FILE
+(
+	`wxT
+("XRC_»sourû/wxüaá”_b™m­s.ıp$._wxüaá”_b™m­s.xrc"), 
+xml_»s_fe_0
+, 
+xml_»s_size_0
+, wxT("text/xml"));
+
+44 
+wxXmlResourû
+::
+	`G‘
+()->
+	`Lßd
+(
+	`wxT
+("memory:XRC_resource/wxcrafter_bitmaps.cpp$._wxcrafter_bitmaps.xrc"));
+
+45 
+	}
+}
+
+	@
+1
+.
+0
+12
+307
+..\main.cpp
+..\morsebeep.cpp
+..\my_wxcp_file.wxcp
+..\port_audio_std.cpp
+..\wxFrameTest\MainFrame.cpp
+..\wxFrameTest\MainFrame.h
+..\wxFrameTest\main.cpp
+..\wxFrameTest\win_resources.rc
+..\wxFrameTest\wxcrafter.cpp
+..\wxFrameTest\wxcrafter.h
+..\wxFrameTest\wxcrafter.wxcp
+..\wxFrameTest\wxcrafter_bitmaps.cpp

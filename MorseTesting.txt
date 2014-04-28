@@ -1,0 +1,1 @@
+./Debug/main.o ./Debug/morsebeep.o ./Debug/port_audio_std.o   
