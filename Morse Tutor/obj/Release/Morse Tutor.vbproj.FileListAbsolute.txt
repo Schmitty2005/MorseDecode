@@ -1,0 +1,12 @@
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\bin\Release\Morse Tutor.exe.config
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\bin\Release\Morse Tutor.exe
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\bin\Release\Morse Tutor.pdb
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\bin\Release\Morse Tutor.xml
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse_Tutor.Form1.resources
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse_Tutor.About.resources
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse_Tutor.Settings.resources
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse_Tutor.Resources.resources
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.vbproj.GenerateResource.Cache
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.exe
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.xml
+c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.pdb
