@@ -7,6 +7,8 @@ Imports System.Windows.Forms
 
 
 Public Module MorseDecode
+    ''
+    ''morsedict contains a dictionary with the proper morse code attached to the letter
     Public morsedict As New Dictionary(Of Char, String) From {{"a", ".-"}, {"b", "-..."}, {"c", ".-.-"}, {"d", "-.."}, _
                                                               {"e", "."}, {"f", "..-."}, {"g", "--."}, {"h", "...."}, _
                                                               {"i", ".."}, {"j", ".---"}, {"k", "-.-"}, {"l", ".-.."}, _
@@ -18,6 +20,9 @@ Public Module MorseDecode
                                                               {"6", "-...."}, {"7", "--..."}, {"8", "---.."}, {"9", "----."}, _
                                                               {"?", "..--.."}, {"!", ".-.-"}, {"(", "........"}, {")", "........."}, _
                                                               {" ", " "}}
+    ''
+    ''
+
     'these variables are used for testing
     Public mStrm As New MemoryStream
     Public player As New System.Media.SoundPlayer
@@ -30,13 +35,12 @@ Public Module MorseDecode
     'Public ltrSpacePlayer As New System.Media.SoundPlayer(ltrSpace)
     'Public wrdSpacePlayer As New System.Media.SoundPlayer(wrdSpace)
 
+    'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
+    ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
+    ' volume ramp (5ms is standard CW)
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Integer, ByVal msDuration As Integer, _
                         Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
-
-
-        'wave will be generate
-        ' this is a copy of the code below.  needs to be changed a little
-
+        'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
         Dim formatChunkSize As Integer = 16
@@ -74,7 +78,7 @@ Public Module MorseDecode
         Dim rampAmp As Double = 0
         Debug.Print(rampSamples)
 
-        'create amplification ramp for number of ramp samples
+        'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
         For [step] As Integer = 0 To rampSamples - 1
             rampAmp = [step] / rampSamples
             Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
@@ -90,33 +94,35 @@ Public Module MorseDecode
             writer.Write(s)
             Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
-       
-        'THIS NEEDS TO BE FIXED!  maybe.....
+
+        'THIS NEEDS TO BE FIXED!  ramp calculations all wrong!
         'create ending ramp amplfication from full volume to 0
         For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples) - 1)
             'rampAmp needs to be fixed......not calculated correctly.....
             rampAmp = (samples + rampSamples) / [step]
             Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
             s = s * rampAmp
-
+            'debug statement
             Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
             writer.Write(s)
         Next [step]
 
         Debug.Print("PLAYING createWave genStream....")
-
-        Dim testplayer As New System.Media.SoundPlayer(genStream)
-        genStream.Seek(0, SeekOrigin.Begin)
+        '
+        'testing code below:
+        'Dim testplayer As New System.Media.SoundPlayer(genStream)
+        'genStream.Seek(0, SeekOrigin.Begin)
         'testplayer.PlaySync()
 
 
-        'Return genStream possibly not needed!  4-27-2014 commented out
+        Return genStream 'possibly not needed!  4-27-2014 commented out
 
     End Function
 
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
 
         'a wave of silence will be created.
+        'wave header variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
         Dim formatChunkSize As Integer = 16
@@ -154,11 +160,11 @@ Public Module MorseDecode
         'Dim rampAmp As Double = 0
         'Debug.Print(rampSamples)
         For [step] As Integer = 0 To samples - 1
-            Dim s As Short = 0 '' CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
+            Dim s As Short = 0
             writer.Write(s)
             'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
-        mStrm.Seek(0, SeekOrigin.Begin)
+        'mStrm.Seek(0, SeekOrigin.Begin)
         Return genStream
 
     End Function
