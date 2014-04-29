@@ -11,3 +11,7 @@ C:\Users\Schmitt\Documents\Visual Studio 2013\Projects\Morse Tutor\Morse Tutor\o
 C:\Users\Schmitt\Documents\Visual Studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Documents\Visual Studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Debug\Morse Tutor.xml
 C:\Users\Schmitt\Documents\Visual Studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Debug\Morse Tutor.pdb
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.exe.config
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.exe
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.xml
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.pdb
