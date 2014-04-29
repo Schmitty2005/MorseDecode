@@ -92,7 +92,7 @@ Public Module MorseDecode
         For [step] As Integer = rampSamples To fullSamples - 1 ' remeber to add -1 to my own C++ code that uses PortAudio!
             Dim s As Short = CShort(Math.Truncate(amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
-            Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
+            'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
 
         'THIS NEEDS TO BE FIXED!  ramp calculations all wrong!
@@ -172,6 +172,7 @@ Public Module MorseDecode
 
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal spacingWPM As Integer = 15)
         ''routine to calc WPM dit and dah lengths
+        ' Integers are just placeholders for testing purposes
         Dim ditDurations As Integer = 500 ' 1200 / wordsPerMin
         Dim dahDurations As Integer = 1500 ' ditDurations * 3
         Dim wrdspDuration As Integer = 500 ' ditDurations * 7  ' need to make code for proper spacing
@@ -179,22 +180,25 @@ Public Module MorseDecode
         'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
 
         'generate wave memory streams
-        MorseDecode.createWave(ditStream, frequencyHz, ditDurations)
-        MorseDecode.createWave(dahStream, frequencyHz, dahDurations)
-        MorseDecode.createSilence(ltrSpace, ltrspDuration)
-        MorseDecode.createSilence(wrdSpace, wrdspDuration)
+        MorseDecode.createWave(MorseDecode.ditStream, frequencyHz, ditDurations)
+        MorseDecode.createWave(MorseDecode.dahStream, frequencyHz, dahDurations)
+        MorseDecode.createSilence(MorseDecode.ltrSpace, ltrspDuration)
+        MorseDecode.createSilence(MorseDecode.wrdSpace, wrdspDuration)
 
         'set memory streams to beginning
-        'MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
-        'MorseDecode.dahStream.Seek(0, SeekOrigin.Begin)
-        'MorseDecode.ltrSpace.Seek(0, SeekOrigin.Begin)
-        'MorseDecode.wrdSpace.Seek(0, SeekOrigin.Begin)
+        MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
+        MorseDecode.dahStream.Seek(0, SeekOrigin.Begin)
+        MorseDecode.ltrSpace.Seek(0, SeekOrigin.Begin)
+        MorseDecode.wrdSpace.Seek(0, SeekOrigin.Begin)
 
-        'set memory stream
-        'MorseDecode.player.Stream = ditStream
-        'MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
+        'set memory stream to play dit
+        MorseDecode.player.Stream = ditStream
+        'set memory stream to beginning for proper playback
+        MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
+        'play current stream in Sync mode
+        MorseDecode.player.PlaySync()
 
-        'MorseDecode.player.PlaySync()
+        'set memory stream to play dah
         'MorseDecode.player.Stream = ltrSpace
         'MorseDecode.player.PlaySync()
         'MorseDecode.player.Stream = dahStream

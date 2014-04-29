@@ -10,3 +10,15 @@ c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\o
 c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.exe
 c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.xml
 c:\users\schmitt\documents\visual studio 2013\Projects\Morse Tutor\Morse Tutor\obj\Release\Morse Tutor.pdb
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.exe.config
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.exe
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.xml
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.pdb
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.exe
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.pdb
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.xml
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.Form1.resources
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.About.resources
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.Settings.resources
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.Resources.resources
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.vbproj.GenerateResource.Cache

@@ -43,13 +43,9 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'find a way to async await beeps......
 
+        'a test routine for simplicity....
         PlayBeep(800, 500)
-
-        ' Debug.Print(morsedict.Item("a"))        'debug statements for testing
-        'Debug.Print(morsedict.Item("b"))        'ditto.......
-
         PlayBeep(400, 500)
         PlayBeep(800, 1500)
     End Sub
@@ -95,6 +91,10 @@ Public Class Form1
 
 
 
+
+    End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class
