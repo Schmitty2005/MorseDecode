@@ -20,25 +20,19 @@ Public Module MorseDecode
                                                               {"6", "-...."}, {"7", "--..."}, {"8", "---.."}, {"9", "----."}, _
                                                               {"?", "..--.."}, {"!", ".-.-"}, {"(", "........"}, {")", "........."}, _
                                                               {" ", " "}}
-    ''
-    ''
-
-    'these variables are used for testing
     Public mStrm As New MemoryStream
     Public player As New System.Media.SoundPlayer
     Public ditStream As New MemoryStream
     Public dahStream As New MemoryStream
     Public ltrSpace As New MemoryStream
     Public wrdSpace As New MemoryStream
-    ' Public ditplayer As New System.Media.SoundPlayer(ditStream)
-    'Public dahplayer As New System.Media.SoundPlayer(dahStream)
-    'Public ltrSpacePlayer As New System.Media.SoundPlayer(ltrSpace)
-    'Public wrdSpacePlayer As New System.Media.SoundPlayer(wrdSpace)
+    
 
     'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
     ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
     ' volume ramp (5ms is standard CW)
-    Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Integer, ByVal msDuration As Integer, _
+
+    Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
                         Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
@@ -49,11 +43,11 @@ Public Module MorseDecode
         Dim tracks As Short = 1
         Dim samplesPerSecond As Integer = 44100
         Dim bitsPerSample As Short = 16
-        Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) / 8))
+        Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
-        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration / 1000))   'removed /1000 from both
-        Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp / 1000))   'number of samples for ramp
+        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))   'removed /1000 from both
+        Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp \ 1000))   'number of samples for ramp
         Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
         Dim dataChunkSize As Integer = samples * frameSize
         Dim fileSize As Integer = waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
@@ -99,7 +93,7 @@ Public Module MorseDecode
         'create ending ramp amplfication from full volume to 0
         For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples) - 1)
             'rampAmp needs to be fixed......not calculated correctly.....
-            rampAmp = (samples + rampSamples) / [step]
+            rampAmp = 1 'for now.....until a forumla is found....
             Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
             s = s * rampAmp
             'debug statement
@@ -107,15 +101,7 @@ Public Module MorseDecode
             writer.Write(s)
         Next [step]
 
-        Debug.Print("PLAYING createWave genStream....")
-        '
-        'testing code below:
-        'Dim testplayer As New System.Media.SoundPlayer(genStream)
-        'genStream.Seek(0, SeekOrigin.Begin)
-        'testplayer.PlaySync()
-
-
-        Return genStream 'possibly not needed!  4-27-2014 commented out
+        Return genStream
 
     End Function
 
@@ -134,7 +120,7 @@ Public Module MorseDecode
         Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
-        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))
+        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration / 1000))
         'Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp \ 1000))   'number of samples for ramp
         'Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
         Dim dataChunkSize As Integer = samples * frameSize
@@ -186,17 +172,22 @@ Public Module MorseDecode
         MorseDecode.createSilence(MorseDecode.wrdSpace, wrdspDuration)
 
         'set memory streams to beginning
-        MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
-        MorseDecode.dahStream.Seek(0, SeekOrigin.Begin)
-        MorseDecode.ltrSpace.Seek(0, SeekOrigin.Begin)
-        MorseDecode.wrdSpace.Seek(0, SeekOrigin.Begin)
+        ditStream.Seek(0, SeekOrigin.Begin)
+        dahStream.Seek(0, SeekOrigin.Begin)
+        ltrSpace.Seek(0, SeekOrigin.Begin)
+        wrdSpace.Seek(0, SeekOrigin.Begin)
 
+        '=====================================================================================
+        '==         THESE ARE COMMENTED OUT!  USED FOR TESTING!                             ==
+        '=====================================================================================
+        '
         'set memory stream to play dit
-        MorseDecode.player.Stream = ditStream
+        'ditStream.Seek(0, SeekOrigin.Begin)
+        'player.Stream = ditStream
         'set memory stream to beginning for proper playback
-        MorseDecode.ditStream.Seek(0, SeekOrigin.Begin)
+
         'play current stream in Sync mode
-        MorseDecode.player.PlaySync()
+        'player.PlaySync()
 
         'set memory stream to play dah
         'MorseDecode.player.Stream = ltrSpace
@@ -226,6 +217,9 @@ Public Module MorseDecode
         ' set ditstream, set origin to begining, play stream
         'MorseDecode.player.Stream = ditStream
         'ditStream.Seek(0, SeekOrigin.Begin)
+        '===========================================================================
+        '=            END OF TESTING CODE                                          =
+        '===========================================================================
 
 
 

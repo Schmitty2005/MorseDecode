@@ -63,11 +63,12 @@ Public Class Form1
 
         'Dim player As New System.Media.SoundPlayer(mStrm)
         initializeSounds(25, 800)
+
         ditStream.Seek(0, IO.SeekOrigin.Begin)
         MorseDecode.player.Stream = ditStream
 
         'ditStream.Seek(0, SeekOrigin.begin)
-        MorseDecode.player.PlaySync()
+        player.PlaySync()
 
 
 
