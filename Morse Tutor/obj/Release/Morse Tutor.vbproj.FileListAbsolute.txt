@@ -22,3 +22,7 @@ C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.A
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.Settings.resources
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse_Tutor.Resources.resources
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.vbproj.GenerateResource.Cache
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.exe.manifest
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Release\Morse Tutor.application
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.exe.manifest
+C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Release\Morse Tutor.application
