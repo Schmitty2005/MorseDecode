@@ -232,11 +232,7 @@ Public Module MorseDecode
 
     Public Sub PlayBeep(ByVal frequency As UInt16, ByVal msDuration As Integer, Optional ByVal msRamp As Integer = 10, Optional ByVal volume As UInt16 = 16383)
         '' a routine that plays a beep!
-        '
-        '
         'http://stackoverflow.com/questions/19672593/generate-morse-code-or-any-audio-in-net-c-or-vb-net-without-3rd-party-depe
-        '
-        '
         '
         'Dim mStrm As New MemoryStream()
         Dim writer As New BinaryWriter(mStrm)
@@ -313,11 +309,7 @@ Public Module MorseDecode
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
     Public Sub PlayString(ByVal playString As String, Optional ByVal repeats As Integer = 1)
         ''this routine displays each character in a string....
-        '
-        '
-        'it will be modified to play an actual string....
-        '
-
+        ''dits and dahs will be added later on
         Dim toPlay As String = playString.ToLower
         Dim playLength As Short = CType(playString.Length, Short)
         Dim playChar As Char

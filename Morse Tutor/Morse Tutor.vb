@@ -42,7 +42,7 @@ Public Class Form1
 
     End Sub
 
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
 
         'a test routine for simplicity....
         PlayBeep(800, 500)
@@ -55,38 +55,35 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        MorseDecode.PlayString("the Man was here")
+        MorseDecode.PlayString("Morse Leaner Alpha")
 
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
-        'Dim player As New System.Media.SoundPlayer(mStrm)
+        ' Call initializeSounds routine to set up waveforms for playback
         initializeSounds(25, 800)
 
+        'set stream to beginning
         ditStream.Seek(0, IO.SeekOrigin.Begin)
         MorseDecode.player.Stream = ditStream
-
-        'ditStream.Seek(0, SeekOrigin.begin)
+        'Play stream
         player.PlaySync()
-
-
-
-
-        ''MorseDecode.player.PlaySync()
-
 
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
         MorseDecode.PlayBeep(800, 800)
-        For [crap] = 1 To 10000
 
+        For [crap] = 1 To 10000
+            'pause timer
         Next
+        'play beep
         MorseDecode.PlayBeep(800, 250)
-        For [crap] = 1 To 10000
 
+        For [crap] = 1 To 10000
+            'pause timer
         Next
+
         MorseDecode.PlayBeep(800, 250)
 
 

@@ -37,7 +37,6 @@ Partial Class Form1
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.charDisplay_tooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.display_test = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
@@ -49,10 +48,10 @@ Partial Class Form1
         Me.display_chr.AutoSize = True
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.display_chr.Font = New System.Drawing.Font("Mongolian Baiti", 196.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_chr.Location = New System.Drawing.Point(557, 22)
+        Me.display_chr.Font = New System.Drawing.Font("Mongolian Baiti", 213.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.display_chr.Location = New System.Drawing.Point(569, 24)
         Me.display_chr.Name = "display_chr"
-        Me.display_chr.Size = New System.Drawing.Size(309, 280)
+        Me.display_chr.Size = New System.Drawing.Size(336, 305)
         Me.display_chr.TabIndex = 2
         Me.display_chr.Text = "A"
         Me.display_chr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -145,33 +144,24 @@ Partial Class Form1
         '
         Me.display_test.AutoSize = True
         Me.display_test.Font = New System.Drawing.Font("Microsoft Sans Serif", 64.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_test.Location = New System.Drawing.Point(115, 93)
+        Me.display_test.Location = New System.Drawing.Point(115, 110)
         Me.display_test.Name = "display_test"
         Me.display_test.Size = New System.Drawing.Size(335, 97)
         Me.display_test.TabIndex = 6
         Me.display_test.Text = "Dah-Dit"
         '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(132, 193)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 23)
-        Me.Button1.TabIndex = 7
-        Me.Button1.Text = "Test"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(318, 192)
+        Me.Button2.Location = New System.Drawing.Point(456, 242)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.Size = New System.Drawing.Size(70, 59)
         Me.Button2.TabIndex = 8
-        Me.Button2.Text = "Button2"
+        Me.Button2.Text = "Test Text Display"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(318, 222)
+        Me.Button3.Location = New System.Drawing.Point(302, 242)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(75, 59)
         Me.Button3.TabIndex = 9
@@ -180,11 +170,11 @@ Partial Class Form1
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(317, 38)
+        Me.Button4.Location = New System.Drawing.Point(383, 242)
         Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 23)
+        Me.Button4.Size = New System.Drawing.Size(67, 59)
         Me.Button4.TabIndex = 10
-        Me.Button4.Text = "Button4"
+        Me.Button4.Text = "Test PlayBeep"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Form1
@@ -195,7 +185,6 @@ Partial Class Form1
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.display_test)
         Me.Controls.Add(Me.exit_button)
         Me.Controls.Add(Me.start_button)
@@ -224,7 +213,6 @@ Partial Class Form1
     Friend WithEvents AboutToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents charDisplay_tooltip As System.Windows.Forms.ToolTip
     Friend WithEvents display_test As System.Windows.Forms.Label
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
