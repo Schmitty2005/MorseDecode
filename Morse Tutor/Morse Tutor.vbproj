@@ -79,7 +79,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Marcus-Roberto-Google-Play-Google-Play-Music.ico</ApplicationIcon>
+    <ApplicationIcon>Icons8-Android-Industry-radio-tower.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -194,6 +194,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons8-Android-Industry-radio-tower.ico" />
     <Content Include="Marcus-Roberto-Google-Play-Google-Play-Music.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
