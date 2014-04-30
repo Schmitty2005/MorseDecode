@@ -89,15 +89,14 @@ Public Module MorseDecode
             'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
 
-        'THIS NEEDS TO BE FIXED!  ramp calculations all wrong!
+
         'create ending ramp amplfication from full volume to 0
         For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples) - 1)
-            'rampAmp needs to be fixed......not calculated correctly.....
-            rampAmp = 1 'for now.....until a forumla is found....
+            rampAmp = CDbl((rampSamples + fullSamples + rampSamples - [step]) / rampSamples)
             Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
             s = s * rampAmp
             'debug statement
-            Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
+            'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
             writer.Write(s)
         Next [step]
 
@@ -319,6 +318,7 @@ Public Module MorseDecode
             Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
             Form1.display_test.Text = morsestring             'displays dah dit sequece in window for testing purposes
             Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
+            'pause
             For [counter] As Integer = 1 To 1000000
                 Application.DoEvents()
             Next [counter]
