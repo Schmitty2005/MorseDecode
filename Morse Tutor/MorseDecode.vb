@@ -97,6 +97,7 @@ Public Module MorseDecode
             s = s * rampAmp
             'debug statement
             'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
+            Debug.Print("Step : " & [step])
             writer.Write(s)
         Next [step]
 
