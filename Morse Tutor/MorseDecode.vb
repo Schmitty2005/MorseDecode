@@ -9,17 +9,17 @@ Imports System.Windows.Forms
 Public Module MorseDecode
     ''
     ''morsedict contains a dictionary with the proper morse code attached to the letter
-    Public morsedict As New Dictionary(Of Char, String) From {{"a", ".-"}, {"b", "-..."}, {"c", ".-.-"}, {"d", "-.."}, _
+    Public morsedict As New Dictionary(Of Char, String) From {{"a", ".-"}, {"b", "-..."}, {"c", "-.-."}, {"d", "-.."}, _
                                                               {"e", "."}, {"f", "..-."}, {"g", "--."}, {"h", "...."}, _
                                                               {"i", ".."}, {"j", ".---"}, {"k", "-.-"}, {"l", ".-.."}, _
-                                                              {"m", "--"}, {"n", ".-"}, {"o", "---"}, {"p", ".--."}, _
-                                                              {"q", "..-."}, {"r", ".-."}, {"s", "..."}, {"t", "-"}, _
+                                                              {"m", "--"}, {"n", "-."}, {"o", "---"}, {"p", ".--."}, _
+                                                              {"q", "--.-"}, {"r", ".-."}, {"s", "..."}, {"t", "-"}, _
                                                               {"u", "..-"}, {"v", "...-"}, {"w", ".--"}, {"x", "-..-"}, _
                                                               {"y", "-.--"}, {"z", "--.."}, {"0", "-----"}, {"1", ".----"}, _
                                                               {"2", "..---"}, {"3", "...--"}, {"4", "....-"}, {"5", "....."}, _
                                                               {"6", "-...."}, {"7", "--..."}, {"8", "---.."}, {"9", "----."}, _
-                                                              {"?", "..--.."}, {"!", ".-.-"}, {"(", "........"}, {")", "........."}, _
-                                                              {" ", " "}}
+                                                              {"?", "..--.."}, {"!", ".-.-"}, {"(", "--..--"}, {")", "........."}, _
+                                                              {" ", " "}, {"@", ".--.-."}, {"/", "-..-."}}
     Public mStrm As New MemoryStream
     Public player As New System.Media.SoundPlayer
     Public ditStream As New MemoryStream
@@ -120,7 +120,7 @@ Public Module MorseDecode
         Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
-        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration / 1000))
+        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))
         'Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp \ 1000))   'number of samples for ramp
         'Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
         Dim dataChunkSize As Integer = samples * frameSize
