@@ -35,7 +35,7 @@ Public Module MorseDecode
     ' volume ramp (5ms is standard CW)
 
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 10, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 0, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
