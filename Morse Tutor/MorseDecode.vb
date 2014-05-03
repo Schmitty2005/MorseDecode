@@ -70,7 +70,7 @@ Public Module MorseDecode
         ' we need 'amp' to have the range of 0 thru Int16.MaxValue ( = 32 767)
         Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
         Dim rampAmp As Double = 0
-        Debug.Print(rampSamples)
+        'Debug.Print(rampSamples)
 
         'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
         For [step] As Integer = 0 To rampSamples - 1
@@ -97,7 +97,7 @@ Public Module MorseDecode
             s = s * rampAmp
             'debug statement
             'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
-            Debug.Print("Step : " & [step])
+            'Debug.Print("Step : " & [step])
             writer.Write(s)
         Next [step]
 
@@ -159,9 +159,9 @@ Public Module MorseDecode
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal spacingWPM As Integer = 15)
         ''routine to calc WPM dit and dah lengths
         ' Integers are just placeholders for testing purposes
-        Dim ditDurations As Integer = 500 ' 1200 / wordsPerMin
-        Dim dahDurations As Integer = 1500 ' ditDurations * 3
-        Dim wrdspDuration As Integer = 500 ' ditDurations * 7  ' need to make code for proper spacing
+        Dim ditDurations As Integer = 1200 / wordsPerMin
+        Dim dahDurations As Integer = ditDurations * 3
+        Dim wrdspDuration As Integer = ditDurations * 7  ' need to make code for proper spacing
         Dim ltrspDuration As Integer = dahDurations
         'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
 
