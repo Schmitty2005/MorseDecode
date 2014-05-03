@@ -307,6 +307,50 @@ Public Module MorseDecode
         player.Dispose()
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
+
+    Sub playDit()
+        ditStream.Seek(0, SeekOrigin.Begin)
+        player.Stream = ditStream
+        player.PlaySync()
+    End Sub
+    Sub playDah()
+        dahStream.Seek(0, SeekOrigin.Begin)
+        player.Stream = dahStream
+        player.PlaySync()
+    End Sub
+    Sub playLtrSpc()
+        ltrSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = ltrSpace
+        player.PlaySync()
+    End Sub
+    Sub playWrdSpc()
+        wrdSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = wrdSpace
+        player.PlaySync()
+    End Sub
+
+    Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
+        'this routine will play the dit's/dah's from an individual character
+        Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
+        Dim counter As Int16 = morseString.Length
+        Dim ditdah As Char
+
+        For [step] As Integer = 0 To counter - 1
+            ditdah = morseString.Chars([step])
+
+            If ditdah = "." Then
+                playDit()
+                If [step] <> (counter - 1) Then playLtrSpc()
+            End If
+
+            If ditdah = "-" Then
+                playDah()
+                If [step] <> (counter - 1) Then playLtrSpc()
+            End If
+        Next
+
+    End Sub
+
     Public Sub PlayString(ByVal playString As String, Optional ByVal repeats As Integer = 1)
         ''this routine displays each character in a string....
         ''dits and dahs will be added later on
@@ -323,7 +367,7 @@ Public Module MorseDecode
             For [counter] As Integer = 1 To 1000000
                 Application.DoEvents()
             Next [counter]
-
+            PlayCharacter(playChar)
         Next [step]
 
     End Sub
