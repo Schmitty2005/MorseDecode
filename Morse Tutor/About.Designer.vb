@@ -32,16 +32,16 @@ Partial Class About
         'about_label
         '
         Me.about_label.AutoSize = True
-        Me.about_label.Location = New System.Drawing.Point(12, 65)
+        Me.about_label.Location = New System.Drawing.Point(32, 47)
         Me.about_label.Name = "about_label"
-        Me.about_label.Size = New System.Drawing.Size(250, 104)
+        Me.about_label.Size = New System.Drawing.Size(390, 156)
         Me.about_label.TabIndex = 0
         Me.about_label.Text = resources.GetString("about_label.Text")
         Me.about_label.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'close_button
         '
-        Me.close_button.Location = New System.Drawing.Point(99, 227)
+        Me.close_button.Location = New System.Drawing.Point(189, 230)
         Me.close_button.Name = "close_button"
         Me.close_button.Size = New System.Drawing.Size(75, 23)
         Me.close_button.TabIndex = 1
@@ -52,7 +52,7 @@ Partial Class About
         '
         Me.about_title.AutoSize = True
         Me.about_title.Font = New System.Drawing.Font("Stencil", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.about_title.Location = New System.Drawing.Point(71, 9)
+        Me.about_title.Location = New System.Drawing.Point(28, 9)
         Me.about_title.Name = "about_title"
         Me.about_title.Size = New System.Drawing.Size(135, 38)
         Me.about_title.TabIndex = 2
@@ -61,23 +61,23 @@ Partial Class About
         'about_link
         '
         Me.about_link.AutoSize = True
-        Me.about_link.Location = New System.Drawing.Point(96, 199)
+        Me.about_link.Location = New System.Drawing.Point(355, 9)
         Me.about_link.Name = "about_link"
         Me.about_link.Size = New System.Drawing.Size(93, 13)
         Me.about_link.TabIndex = 3
         Me.about_link.TabStop = True
         Me.about_link.Text = "Authors Webpage"
         '
-        'Form2
+        'About
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 262)
+        Me.ClientSize = New System.Drawing.Size(450, 265)
         Me.Controls.Add(Me.about_link)
         Me.Controls.Add(Me.about_title)
         Me.Controls.Add(Me.close_button)
         Me.Controls.Add(Me.about_label)
-        Me.Name = "Form2"
+        Me.Name = "About"
         Me.Text = "About"
         Me.ResumeLayout(False)
         Me.PerformLayout()
