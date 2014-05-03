@@ -99,9 +99,15 @@ Public Module MorseDecode
             s = s * rampAmp
             'debug statement
             'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
-            'Debug.Print("Step : " & [step])
+            Debug.Print("Step : " & [step])
             writer.Write(s)
+
         Next [step]
+        'add extra zero at end for good measure
+        Dim z As Short = 0
+        writer.Write(z)
+        Debug.Print("generateWave stream length: " & genStream.Length)
+
 
         Return genStream
 
@@ -153,6 +159,7 @@ Public Module MorseDecode
             'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
         'mStrm.Seek(0, SeekOrigin.Begin)
+        Debug.Print("Silence: " & genStream.Length)
         Return genStream
 
     End Function
@@ -168,7 +175,9 @@ Public Module MorseDecode
         'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
 
         'generate wave memory streams
+        Debug.Print("Generating Dit Stream.....")
         MorseDecode.createWave(MorseDecode.ditStream, frequencyHz, ditDurations)
+        Debug.Print("Generating Dah Stream.....")
         MorseDecode.createWave(MorseDecode.dahStream, frequencyHz, dahDurations)
         MorseDecode.createSilence(MorseDecode.ltrSpace, ltrspDuration)
         MorseDecode.createSilence(MorseDecode.wrdSpace, wrdspDuration)
