@@ -15,6 +15,8 @@ C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.xml
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.pdb
+<<<<<<< HEAD
+=======
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.pdb
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.xml
@@ -28,3 +30,4 @@ C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\bin\Debug\Morse Tutor.application
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.exe.manifest
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.application
+>>>>>>> 101a8669723d7579371a79ec686b8e53e40ca801
