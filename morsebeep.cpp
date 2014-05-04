@@ -8,6 +8,11 @@
  * 1/31/2014
  *
  */
+ /**Brief Description
+  @author Bill Smith
+  @date 05-04-2014
+   **/
+
 #include <math.h>
 #ifndef pi
 #define pi (3.14159265)
