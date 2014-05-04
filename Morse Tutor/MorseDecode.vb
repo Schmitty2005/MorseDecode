@@ -3,12 +3,14 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
-
+' A future version should have an Async method for playback verusus using the System.Media.player.playsync().
+' The program runs like crap
+'
 
 
 Public Module MorseDecode
-    ''
-    ''morsedict contains a dictionary with the proper morse code attached to the letter
+
+    'morsedict contains a dictionary with the proper morse code attached to the letter
     Public morsedict As New Dictionary(Of Char, String) From {{"a", ".-"}, {"b", "-..."}, {"c", "-.-."}, {"d", "-.."}, _
                                                               {"e", "."}, {"f", "..-."}, {"g", "--."}, {"h", "...."}, _
                                                               {"i", ".."}, {"j", ".---"}, {"k", "-.-"}, {"l", ".-.."}, _
@@ -20,6 +22,7 @@ Public Module MorseDecode
                                                               {"6", "-...."}, {"7", "--..."}, {"8", "---.."}, {"9", "----."}, _
                                                               {"?", "..--.."}, {"!", ".-.-"}, {"(", "--..--"}, {")", "........."}, _
                                                               {" ", " "}, {"@", ".--.-."}, {"/", "-..-."}}
+    'declare memoryStreams as public for playback
     Public mStrm As New MemoryStream
     Public player As New System.Media.SoundPlayer
     Public ditStream As New MemoryStream
@@ -72,7 +75,6 @@ Public Module MorseDecode
         ' we need 'amp' to have the range of 0 thru Int16.MaxValue ( = 32 767)
         Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
         Dim rampAmp As Double = 0
-        'Debug.Print(rampSamples)
 
         'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
         For [step] As Integer = 0 To rampSamples - 1
@@ -83,7 +85,7 @@ Public Module MorseDecode
             'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
 
-        amp = volume >> 2
+        'amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
         ' create regular amplitude wave for full duration minus ending ramp
         For [step] As Integer = rampSamples To fullSamples - 1 ' remeber to add -1 to my own C++ code that uses PortAudio!
             Dim s As Short = CShort(Math.Truncate(amp * Math.Sin(theta * CDbl([step]))))
@@ -101,8 +103,8 @@ Public Module MorseDecode
             'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
             Debug.Print("Step : " & [step])
             writer.Write(s)
-
         Next [step]
+
         'add extra zero at end for good measure
         Dim z As Short = 0
         writer.Write(z)
