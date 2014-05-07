@@ -32,13 +32,21 @@ Public Module MorseDecode
     Public interSpace As New MemoryStream
 
     
+    Sub debug_output(ByVal testStream As MemoryStream)
+        Dim length As Int16 = testStream.Length
+        For [counter] = 0 To length
+
+        Next
+        'this sub will output the stream into the debug window for checking waves!
+
+    End Sub
 
     'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
     ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
     ' volume ramp (5ms is standard CW)
 
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 0, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
@@ -48,7 +56,7 @@ Public Module MorseDecode
         Dim tracks As Short = 1
         Dim samplesPerSecond As Integer = 44100
         Dim bitsPerSample As Short = 16
-        Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
+        Dim frameSize = As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
         Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))   'removed /1000 from both
@@ -85,7 +93,7 @@ Public Module MorseDecode
             'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
 
-        'amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
+        amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
         ' create regular amplitude wave for full duration minus ending ramp
         For [step] As Integer = rampSamples To fullSamples - 1 ' remeber to add -1 to my own C++ code that uses PortAudio!
             Dim s As Short = CShort(Math.Truncate(amp * Math.Sin(theta * CDbl([step]))))
@@ -173,7 +181,7 @@ Public Module MorseDecode
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
         Dim wrdspDuration As Integer = ditDurations * 7  ' need to make code for proper spacing
-        Dim ltrspDuration As Integer = dahDurations
+        Dim ltrspDuration As Integer = (dahDurations - ditDurations)
         'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
 
         'generate wave memory streams

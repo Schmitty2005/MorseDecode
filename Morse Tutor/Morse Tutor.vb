@@ -96,4 +96,16 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
+
+    Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+
+        initializeSounds(7, 600)
+
+        For [step] = 1 To 5
+            playDit()
+        Next
+        For [step] = 1 To 5
+            playDah()
+        Next
+    End Sub
 End Class
