@@ -358,16 +358,16 @@ Public Module MorseDecode
         'player.PlaySync()
     End Sub
     Sub playWrdSpc()
-        Thread.Sleep(600)
-        'wrdSpace.Seek(0, SeekOrigin.Begin)
-        'player.Stream = wrdSpace
-        'player.PlaySync()
+        'Thread.Sleep(600)
+        wrdSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = wrdSpace
+        player.PlaySync()
     End Sub
     Sub playInterSpc()
-        Thread.Sleep(0)
-        'interSpace.Seek(0, SeekOrigin.Begin)
-        'player.Stream = interSpace
-        'player.PlaySync()
+        'Thread.Sleep(0)
+        interSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = interSpace
+        player.PlaySync()
     End Sub
 
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
