@@ -48,7 +48,7 @@ Public Module MorseDecode
     ' volume ramp (5ms is standard CW)
 
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 7, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 10, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
@@ -105,19 +105,24 @@ Public Module MorseDecode
 
 
         'create ending ramp amplfication from full volume to 0
-        For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples) - 1)
+        For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples))   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
             rampAmp = CDbl((rampSamples + fullSamples + rampSamples - [step]) / rampSamples)
             Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
             s = s * rampAmp
             'debug statement
             'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
-            Debug.Print("Step : " & [step])
+            Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
             writer.Write(s)
+            If [step] = (((2 * rampSamples) + fullSamples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
         Next [step]
 
         'add extra zero at end for good measure
-        Dim z As Short = 0
-        writer.Write(z)
+        'Dim z As Short = 0
+        'writer.Write(z)
+        'add some extra 0's to clean up any noise! LOL!  Cheap and dirty fix!
+        For [x] = 0 To 200
+            writer.Write(0)
+        Next
         Debug.Print("generateWave stream length: " & genStream.Length)
 
 
@@ -165,7 +170,7 @@ Public Module MorseDecode
         'Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
         'Dim rampAmp As Double = 0
         'Debug.Print(rampSamples)
-        For [step] As Integer = 0 To samples - 1
+        For [step] As Integer = 0 To samples ' removed -1 should be 'samples - 1'
             Dim s As Short = 0
             writer.Write(s)
             'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
