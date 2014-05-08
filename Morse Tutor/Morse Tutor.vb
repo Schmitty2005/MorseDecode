@@ -55,14 +55,14 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(10, 600)
+        initializeSounds(18, 600)
         MorseDecode.PlayString("Morse Code Test")
 
     End Sub
 
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
         ' Call initializeSounds routine to set up waveforms for playback
-        initializeSounds(25, 400)
+        initializeSounds(18, 600)
 
         'set stream to beginning
         ditStream.Seek(0, IO.SeekOrigin.Begin)

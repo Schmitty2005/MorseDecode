@@ -3,6 +3,8 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
+Imports System.Threading
+
 ' A future version should have an Async method for playback verusus using the System.Media.player.playsync().
 ' The program runs like crap
 '
@@ -46,7 +48,7 @@ Public Module MorseDecode
     ' volume ramp (5ms is standard CW)
 
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 7, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
@@ -56,7 +58,7 @@ Public Module MorseDecode
         Dim tracks As Short = 1
         Dim samplesPerSecond As Integer = 44100
         Dim bitsPerSample As Short = 16
-        Dim frameSize = As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
+        Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
         Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))   'removed /1000 from both
@@ -331,29 +333,36 @@ Public Module MorseDecode
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
 
     Sub playDit()
+        'Console.Beep(600, 100)
+        'Thread.Sleep(100)
         ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
         player.PlaySync()
     End Sub
     Sub playDah()
+        'Console.Beep(600, 300)
+        'Thread.Sleep(100)
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
         player.PlaySync()
     End Sub
     Sub playLtrSpc()
-        ltrSpace.Seek(0, SeekOrigin.Begin)
-        player.Stream = ltrSpace
-        player.PlaySync()
+        Thread.Sleep(100)
+        'ltrSpace.Seek(0, SeekOrigin.Begin)
+        'player.Stream = ltrSpace
+        'player.PlaySync()
     End Sub
     Sub playWrdSpc()
-        wrdSpace.Seek(0, SeekOrigin.Begin)
-        player.Stream = wrdSpace
-        player.PlaySync()
+        Thread.Sleep(600)
+        'wrdSpace.Seek(0, SeekOrigin.Begin)
+        'player.Stream = wrdSpace
+        'player.PlaySync()
     End Sub
     Sub playInterSpc()
-        interSpace.Seek(0, SeekOrigin.Begin)
-        player.Stream = interSpace
-        player.PlaySync()
+        Thread.Sleep(0)
+        'interSpace.Seek(0, SeekOrigin.Begin)
+        'player.Stream = interSpace
+        'player.PlaySync()
     End Sub
 
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
@@ -367,12 +376,12 @@ Public Module MorseDecode
 
             If ditdah = "." Then
                 playDit()
-                If [step] <> (counter - 1) Then playInterSpc()
+                'If [step] <> (counter - 1) Then playInterSpc()
             End If
 
             If ditdah = "-" Then
                 playDah()
-                If [step] <> (counter - 1) Then playInterSpc()
+                'If [step] <> (counter - 1) Then playInterSpc()
             End If
 
         Next
