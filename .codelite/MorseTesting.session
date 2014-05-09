@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Session Name="C:\CppCode\Testing\MorseTesting\MorseTesting.workspace">
-  <int Value="6" Name="m_selectedTab"/>
+  <int Value="0" Name="m_selectedTab"/>
   <wxString Value="C:\CppCode\Testing\MorseTesting\MorseTesting.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
       <wxString Value="C:\CppCode\Testing\MorseTesting\main.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="9" Name="FirstVisibleLine"/>
       <int Value="1" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>
     <TabInfo>
       <wxString Value="C:\CppCode\Testing\MorseTesting\morsebeep.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="1" Name="CurrentLine"/>
+      <int Value="93" Name="FirstVisibleLine"/>
+      <int Value="13" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds">
-        <IntVectorItem Value="69"/>
-        <IntVectorItem Value="101"/>
-        <IntVectorItem Value="105"/>
-        <IntVectorItem Value="112"/>
-        <IntVectorItem Value="184"/>
-        <IntVectorItem Value="209"/>
-        <IntVectorItem Value="229"/>
-        <IntVectorItem Value="269"/>
-        <IntVectorItem Value="282"/>
-        <IntVectorItem Value="290"/>
-        <IntVectorItem Value="311"/>
+        <IntVectorItem Value="74"/>
+        <IntVectorItem Value="106"/>
+        <IntVectorItem Value="110"/>
+        <IntVectorItem Value="117"/>
+        <IntVectorItem Value="189"/>
+        <IntVectorItem Value="214"/>
+        <IntVectorItem Value="234"/>
+        <IntVectorItem Value="274"/>
+        <IntVectorItem Value="287"/>
+        <IntVectorItem Value="295"/>
+        <IntVectorItem Value="316"/>
       </IntVector>
     </TabInfo>
     <TabInfo>
@@ -54,13 +54,6 @@
       <wxString Value="C:\cppLibs\portaudio\examples\paex_write_sine.c" Name="FileName"/>
       <int Value="62" Name="FirstVisibleLine"/>
       <int Value="65" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="C:\CppCode\Testing\MorseTesting\.codelite\MorseTesting.tags" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

@@ -19,7 +19,7 @@
 #endif
 #include <iostream>
 #include "portaudio.h"
-#define MORSE_RAMP_DURATION_DEFAULT_MS (5)
+#define MORSE_RAMP_DURATION_DEFAULT_MS (10)
 #define MORSE_SAMPLE_RATE (44100)
 #define MORSE_FREQ_DEFAULT (800)
 #define MORSE_DIT_DURATION_DEFAULT_MS (250)
@@ -78,6 +78,11 @@ private:
 
 
 public:
+int generate_silence (float duration_silence)
+{
+	
+}
+
 	typedef struct wave_data 
 	{
 		float *wave_pointer;
@@ -89,6 +94,10 @@ public:
 	wave_data dah_data;
 	wave_data letterSpace_data;
 	wave_data wordSpace_data;
+	wave_data inter_space_data;
+	wave_data letter_space_data;
+	wave_data word_space_data;
+	
 	
 	float *dit_pointer;			//dit wave pointer
 	float *dah_pointer;			//dah wave pointer
@@ -155,6 +164,7 @@ public:
 // begin dit generation
 // set sample pointer to proper location
 sample_pointer = dit_pointer;
+x=1;
 
 		while (x<=begin_ramp_count)
 			{
