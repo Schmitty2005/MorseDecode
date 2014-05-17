@@ -66,7 +66,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(28, 800)
+        initializeSounds(12, 600)
         MorseDecode.PlayString("This is a morse code test! Ke7gbt gonna break things! w7dk/r test test cq cq dx cq dx")
 
     End Sub
