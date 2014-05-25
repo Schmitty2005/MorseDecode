@@ -4,12 +4,9 @@ Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
 Imports System.Threading
-
 ' A future version should have an Async method for playback verusus using the System.Media.player.playsync().
 ' The program runs like crap
 '
-
-
 Public Module MorseDecode
 
     'morsedict contains a dictionary with the proper morse code attached to the letter
@@ -33,6 +30,7 @@ Public Module MorseDecode
     Public wrdSpace As New MemoryStream
     Public interSpace As New MemoryStream
 
+     
 
     Sub debug_output(ByVal testStream As MemoryStream)
         Dim length As Int16 = testStream.Length
@@ -42,11 +40,9 @@ Public Module MorseDecode
         'this sub will output the stream into the debug window for checking waves!
 
     End Sub
-
     'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
     ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
     ' volume ramp (5ms is standard CW)
-
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
                         Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
@@ -129,7 +125,6 @@ Public Module MorseDecode
         Return genStream
 
     End Function
-
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
 
         'a wave of silence will be created.
@@ -180,8 +175,6 @@ Public Module MorseDecode
         Return genStream
 
     End Function
-
-
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal spacingWPM As Integer = 15)
         ''routine to calc WPM dit and dah lengths
         ' Integers are just placeholders for testing purposes
@@ -209,12 +202,8 @@ Public Module MorseDecode
         '=====================================================================================
         '==         THESE ARE COMMENTED OUT!  USED FOR TESTING!                             ==
         '=====================================================================================
-       
+
     End Sub ' sub used to initialize waves to be played back
-
-
-
-
     Public Sub PlayBeep(ByVal frequency As UInt16, ByVal msDuration As Integer, Optional ByVal msRamp As Integer = 10, Optional ByVal volume As UInt16 = 16383)
         '' a routine that plays a beep!
         'http://stackoverflow.com/questions/19672593/generate-morse-code-or-any-audio-in-net-c-or-vb-net-without-3rd-party-depe
@@ -292,38 +281,42 @@ Public Module MorseDecode
         player.Dispose()
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
-
     Sub playDit()
-        Application.DoEvents()
+        'Application.DoEvents()
         'Console.Beep(600, 100)
         'Thread.Sleep(100)
         ditStream.Seek(0, SeekOrigin.Begin)
+        'On Error GoTo errorMessage
+        'Debug.Print (Error)
+
         player.Stream = ditStream
         player.PlaySync()
+
     End Sub
     Sub playDah()
-        Application.DoEvents()
+        'Application.DoEvents()
         'Console.Beep(600, 300)
         'Thread.Sleep(100)
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
         player.PlaySync()
+
     End Sub
     Sub playLtrSpc()
-        Application.DoEvents()
+        'Application.DoEvents()
         'Thread.Sleep(100)
 
         player.Stream = ltrSpace
         ltrSpace.Seek(0, SeekOrigin.Begin)
         player.PlaySync()
+
     End Sub
     Sub playWrdSpc()
-        Application.DoEvents()
 
-        'Thread.Sleep(600)
         wrdSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = wrdSpace
         player.PlaySync()
+
     End Sub
     Sub playInterSpc()
         Application.DoEvents()
@@ -332,8 +325,8 @@ Public Module MorseDecode
         interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
         player.PlaySync()
-    End Sub
 
+    End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character
         Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
@@ -391,10 +384,12 @@ Public Module MorseDecode
         Dim playChar As Char
 
         For [step] As Integer = 0 To playLength - 1
+            On Error GoTo -1
+
             playChar = toPlay.Chars([step])
             Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
             Form1.display_test.Text = morsestring
-            Application.DoEvents()
+            'Application.DoEvents()
 
             'displays dah dit sequece in window for testing purposes
             Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
@@ -402,17 +397,14 @@ Public Module MorseDecode
 
             If playChar = " " Then
                 playWrdSpc()
-                Application.DoEvents()
-
             Else
-                Application.DoEvents()
-
                 PlayCharacter(playChar)
-                Application.DoEvents()
-
                 playLtrSpc()
-            End If
 
+            End If
+            'Do Events and check for closed stream to avoid errors
+            Application.DoEvents()
+            If player.Stream.CanWrite <> True Then Exit Sub
         Next [step]
 
     End Sub

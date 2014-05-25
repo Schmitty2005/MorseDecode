@@ -49,10 +49,10 @@ Partial Class Form1
         Me.display_chr.AutoSize = True
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.display_chr.Font = New System.Drawing.Font("Monospac821 BT", 213.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_chr.Location = New System.Drawing.Point(564, -15)
+        Me.display_chr.Font = New System.Drawing.Font("Monospac821 BT", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.display_chr.Location = New System.Drawing.Point(602, 9)
         Me.display_chr.Name = "display_chr"
-        Me.display_chr.Size = New System.Drawing.Size(317, 343)
+        Me.display_chr.Size = New System.Drawing.Size(291, 315)
         Me.display_chr.TabIndex = 2
         Me.display_chr.Text = "A"
         Me.display_chr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter

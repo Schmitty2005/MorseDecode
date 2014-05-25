@@ -14,13 +14,19 @@ Public Class Form1
 
     Private Sub exit_button_Click(sender As Object, e As EventArgs) Handles exit_button.Click
         'clean up!
+        player.Stop()
+        player.Dispose()
+        On Error Resume Next
+
         ditStream.Dispose()
         dahStream.Dispose()
         wrdSpace.Dispose()
         ltrSpace.Dispose()
         interSpace.Dispose()
 
-        player.Dispose()
+        On Error Resume Next
+
+
 
         'and exit
 
