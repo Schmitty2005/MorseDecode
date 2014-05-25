@@ -23,9 +23,6 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.display_chr = New System.Windows.Forms.Label()
         Me.start_button = New System.Windows.Forms.Button()
         Me.exit_button = New System.Windows.Forms.Button()
@@ -44,10 +41,8 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.wave_out = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MenuStrip1.SuspendLayout()
-        CType(Me.wave_out, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -57,7 +52,7 @@ Partial Class Form1
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.display_chr.Font = New System.Drawing.Font("Monospac821 BT", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_chr.Location = New System.Drawing.Point(602, 9)
+        Me.display_chr.Location = New System.Drawing.Point(627, 43)
         Me.display_chr.Name = "display_chr"
         Me.display_chr.Size = New System.Drawing.Size(291, 315)
         Me.display_chr.TabIndex = 2
@@ -152,7 +147,7 @@ Partial Class Form1
         '
         Me.display_test.AutoSize = True
         Me.display_test.Font = New System.Drawing.Font("Microsoft Sans Serif", 64.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_test.Location = New System.Drawing.Point(115, 110)
+        Me.display_test.Location = New System.Drawing.Point(42, 27)
         Me.display_test.Name = "display_test"
         Me.display_test.Size = New System.Drawing.Size(335, 97)
         Me.display_test.TabIndex = 6
@@ -194,23 +189,6 @@ Partial Class Form1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'wave_out
-        '
-        ChartArea1.Name = "ChartArea1"
-        Me.wave_out.ChartAreas.Add(ChartArea1)
-        Me.wave_out.DataSource = Me.MyApplicationBindingSource
-        Legend1.Name = "Legend1"
-        Me.wave_out.Legends.Add(Legend1)
-        Me.wave_out.Location = New System.Drawing.Point(0, 27)
-        Me.wave_out.Name = "wave_out"
-        Series1.ChartArea = "ChartArea1"
-        Series1.Legend = "Legend1"
-        Series1.Name = "Series1"
-        Me.wave_out.Series.Add(Series1)
-        Me.wave_out.Size = New System.Drawing.Size(421, 206)
-        Me.wave_out.TabIndex = 12
-        Me.wave_out.Text = "Wave output"
-        '
         'MyApplicationBindingSource
         '
         Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
@@ -220,7 +198,6 @@ Partial Class Form1
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
-        Me.Controls.Add(Me.wave_out)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Button3)
@@ -235,7 +212,6 @@ Partial Class Form1
         Me.Text = "Morse Learner V 0.01alpha"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.wave_out, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -259,7 +235,6 @@ Partial Class Form1
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents wave_out As System.Windows.Forms.DataVisualization.Charting.Chart
     Friend WithEvents MyApplicationBindingSource As System.Windows.Forms.BindingSource
 
 End Class

@@ -128,7 +128,7 @@ Public Class Form1
         Next
     End Sub
 
-    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles wave_out.Click
+    Private Sub Chart1_Click(sender As Object, e As EventArgs)
 
     End Sub
 End Class
