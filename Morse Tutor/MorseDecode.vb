@@ -175,13 +175,15 @@ Public Module MorseDecode
         Return genStream
 
     End Function
-    Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal spacingWPM As Integer = 15)
+    Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal farnsworth_bool As Boolean = False, Optional ByVal farns_spacing As Integer = 15)
         ''routine to calc WPM dit and dah lengths
         ' Integers are just placeholders for testing purposes
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
         Dim wrdspDuration As Integer = ditDurations * 7  ' need to make code for proper spacing
         Dim ltrspDuration As Integer = (dahDurations - ditDurations)
+        If farnsworth_bool Then wrdspDuration = (1200 / farns_spacing) * 7
+        If farnsworth_bool Then ltrspDuration = (wrdspDuration * 3) - wrdspDuration
         'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
 
         'generate wave memory streams
@@ -282,9 +284,7 @@ Public Module MorseDecode
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
     Sub playDit()
-        'Application.DoEvents()
-        'Console.Beep(600, 100)
-        'Thread.Sleep(100)
+        
         ditStream.Seek(0, SeekOrigin.Begin)
         'On Error GoTo errorMessage
         'Debug.Print (Error)
@@ -294,34 +294,28 @@ Public Module MorseDecode
 
     End Sub
     Sub playDah()
-        'Application.DoEvents()
-        'Console.Beep(600, 300)
-        'Thread.Sleep(100)
+        'If player.Stream.CanRead <> True Then Exit Sub
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
         player.PlaySync()
 
     End Sub
     Sub playLtrSpc()
-        'Application.DoEvents()
-        'Thread.Sleep(100)
-
+        'If player.Stream.CanRead <> True Then Exit Sub
         player.Stream = ltrSpace
         ltrSpace.Seek(0, SeekOrigin.Begin)
         player.PlaySync()
 
     End Sub
     Sub playWrdSpc()
-
+        'If player.Stream.CanRead <> True Then Exit Sub
         wrdSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = wrdSpace
         player.PlaySync()
 
     End Sub
     Sub playInterSpc()
-        Application.DoEvents()
-
-        'Thread.Sleep(0)
+        'If player.Stream.CanRead <> True Then Exit Sub
         interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
         player.PlaySync()
