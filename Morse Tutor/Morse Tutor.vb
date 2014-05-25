@@ -117,6 +117,8 @@ Public Class Form1
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
 
         initializeSounds(7, 600)
+        wave_out.DataSource = ditStream
+        wave_out.Update()
 
         For [step] = 1 To 5
             playDit()
@@ -124,5 +126,9 @@ Public Class Form1
         For [step] = 1 To 5
             playDah()
         Next
+    End Sub
+
+    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles wave_out.Click
+
     End Sub
 End Class

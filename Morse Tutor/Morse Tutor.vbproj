@@ -167,6 +167,12 @@
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
     </None>
+    <None Include="My Project\DataSources\About.datasource" />
+    <None Include="My Project\DataSources\Form1.datasource" />
+    <None Include="My Project\DataSources\globalVar.datasource" />
+    <None Include="My Project\DataSources\Morse_Tutor.My.MyApplication.datasource" />
+    <None Include="My Project\DataSources\Morse_Tutor.My.MySettings.datasource" />
+    <None Include="My Project\DataSources\Settings.datasource" />
     <None Include="My Project\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <CustomToolNamespace>My</CustomToolNamespace>

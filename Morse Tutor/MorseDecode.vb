@@ -196,10 +196,10 @@ Public Module MorseDecode
         MorseDecode.createSilence(MorseDecode.interSpace, ditDurations)
 
         'set memory streams to beginning
-        ditStream.Seek(0, SeekOrigin.Begin)
-        dahStream.Seek(0, SeekOrigin.Begin)
-        ltrSpace.Seek(0, SeekOrigin.Begin)
-        wrdSpace.Seek(0, SeekOrigin.Begin)
+        'ditStream.Seek(0, SeekOrigin.Begin)
+        'dahStream.Seek(0, SeekOrigin.Begin)
+        'ltrSpace.Seek(0, SeekOrigin.Begin)
+        ' wrdSpace.Seek(0, SeekOrigin.Begin)
 
         '=====================================================================================
         '==         THESE ARE COMMENTED OUT!  USED FOR TESTING!                             ==
@@ -315,7 +315,7 @@ Public Module MorseDecode
 
     End Sub
     Sub playInterSpc()
-        'If player.Stream.CanRead <> True Then Exit Sub
+        'If player.Stream.CanWrite <> True Then Exit Sub
         interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
         player.PlaySync()
@@ -383,12 +383,8 @@ Public Module MorseDecode
             playChar = toPlay.Chars([step])
             Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
             Form1.display_test.Text = morsestring
-            'Application.DoEvents()
-
             'displays dah dit sequece in window for testing purposes
             Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
-
-
             If playChar = " " Then
                 playWrdSpc()
             Else
