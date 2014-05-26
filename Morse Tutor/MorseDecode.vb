@@ -43,7 +43,7 @@ Public Module MorseDecode
     'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
     ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
     ' volume ramp (5ms is standard CW)
-    Function createWave(ByRef genStream As MemoryStream, ByVal frequency As UInt16, ByVal msDuration As Integer, _
+    Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
                         Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
         'set variables
         Dim writer As New BinaryWriter(genStream)
@@ -83,31 +83,31 @@ Public Module MorseDecode
         Dim rampAmp As Double = 0
 
         'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
-        For [step] As Integer = 0 To rampSamples - 1
-            rampAmp = [step] / rampSamples
-            Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
+        For [step] As Integer = 0 To rampSamples
+            rampAmp = [step] / CDbl(rampSamples)
+            Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step])))) ' removed Math.truncate (amp)
             s = s * rampAmp
             writer.Write(s)
-            'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
+            Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
 
         amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
         ' create regular amplitude wave for full duration minus ending ramp
-        For [step] As Integer = rampSamples To fullSamples - 1 ' remeber to add -1 to my own C++ code that uses PortAudio!
-            Dim s As Short = CShort(Math.Truncate(amp * Math.Sin(theta * CDbl([step]))))
+        For [step] As Integer = rampSamples + 1 To fullSamples - (rampSamples * 2) ' remeber to add -1 to my own C++ code that uses PortAudio!
+            Dim s As Short = CShort((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
             'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
 
 
         'create ending ramp amplfication from full volume to 0
-        For [step] As Integer = (rampSamples + fullSamples) To (((2 * rampSamples) + fullSamples - 1))   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
-            rampAmp = CDbl((rampSamples + fullSamples + rampSamples - [step]) / rampSamples)
-            Dim s As Short = CShort(Math.Truncate((amp) * Math.Sin(theta * CDbl([step]))))
-            s = s * rampAmp
+        For [step] As Integer = (rampSamples + fullSamples + 1) To (((2 * rampSamples) + fullSamples))   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
+            rampAmp = CDbl((rampSamples + fullSamples + CDbl(rampSamples) - CDbl([step])) / CDbl((rampSamples)))
+            Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
+            s = CShort(s * rampAmp)
             'debug statement
-            'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
-            Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
+            Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
+            'Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
             writer.Write(s)
             If [step] = (((2 * rampSamples) + fullSamples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
         Next [step]
@@ -116,9 +116,11 @@ Public Module MorseDecode
         'Dim z As Short = 0
         'writer.Write(z)
         'add some extra 0's to clean up any noise! LOL!  Cheap and dirty fix!
-        For [x] = 0 To 200
-            writer.Write(0)
-        Next
+        ''Dim stream_pos As Long = genStream.Length
+        ''For [x] = 0 To 200
+        ''    writer.Write(0)
+        ''Next
+        ''genStream.SetLength(stream_pos + 4)
         Debug.Print("generateWave stream length: " & genStream.Length)
 
 
@@ -165,12 +167,12 @@ Public Module MorseDecode
         'Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
         'Dim rampAmp As Double = 0
         'Debug.Print(rampSamples)
-        For [step] As Integer = 0 To samples ' removed -1 should be 'samples - 1'
+        For [step] As Integer = 0 To samples  ' removed -1 should be 'samples - 1'
             Dim s As Short = 0
             writer.Write(s)
-            'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
+            Debug.Print("Step :" & [step] & vbCrLf)
         Next [step]
-        'mStrm.Seek(0, SeekOrigin.Begin)
+
         Debug.Print("Silence: " & genStream.Length)
         Return genStream
 
@@ -333,12 +335,10 @@ Public Module MorseDecode
 
             If ditdah = "." Then
                 playDit()
-                'If [step] <> (counter - 1) Then playInterSpc()
             End If
 
             If ditdah = "-" Then
                 playDah()
-                'If [step] <> (counter - 1) Then playInterSpc()
             End If
 
         Next

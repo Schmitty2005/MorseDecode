@@ -14,4 +14,3 @@ C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.app
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.exe
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.xml
 C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.pdb
-C:\Users\Schmitt\Source\Repos\MorseDecode2\Morse Tutor\obj\Debug\Morse Tutor.vbprojResolveAssemblyReference.cache

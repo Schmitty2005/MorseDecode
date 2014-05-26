@@ -117,14 +117,22 @@ Public Class Form1
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
 
         initializeSounds(7, 600)
-        wave_out.DataSource = ditStream
-        wave_out.Update()
+        'wave_out.DataSource = ditStream
+        'wave_out.Update()
+        
 
         For [step] = 1 To 5
             playDit()
         Next
         For [step] = 1 To 5
+            playLtrSpc()
+        Next
+        For [step] = 1 To 5
             playDah()
+        Next
+        For [step] = 1 To 5
+            playWrdSpc()
+
         Next
     End Sub
 

@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Morse Tutor.exe" size="219648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Morse Tutor.exe" size="220672">
       <assemblyIdentity name="Morse Tutor" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>1sve6cwl8oCawglydW54FckOpdsYXZXI2E6jGfm5SU8=</dsig:DigestValue>
+        <dsig:DigestValue>am9QjQnhSXQd1J+ccQJhD1NxFHrTq81mmIV48TTXs0Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
