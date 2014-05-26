@@ -54,29 +54,29 @@ Public Module MorseDecode
         Dim tracks As Short = 1
         Dim samplesPerSecond As Integer = 44100
         Dim bitsPerSample As Short = 16
-        Dim frameSize As Short = CShort(tracks * ((bitsPerSample + 7) \ 8))
+        Dim frameSize As Short = 2 ' manual input of 2 because it should be right! CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
-        Dim waveSize As Integer = 4
-        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))   'removed /1000 from both
-        Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp \ 1000))   'number of samples for ramp
+        Dim waveSize As Integer = 2 ' change from 4 to 2
+        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)) + 2)   'removed /1000 from both
+        Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
         Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
-        Dim dataChunkSize As Integer = samples * frameSize
+        Dim dataChunkSize As Integer = samples * 1 'frameSize
         Dim fileSize As Integer = waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
         writer.Write(fileSize)
         writer.Write(&H45564157) ' = encoding.GetBytes("WAVE")
         writer.Write(&H20746D66) ' = encoding.GetBytes("fmt ")
-        writer.Write(formatChunkSize)
-        writer.Write(formatType)
-        writer.Write(tracks)
-        writer.Write(samplesPerSecond)
-        writer.Write(bytesPerSecond)
-        writer.Write(frameSize)
-        writer.Write(bitsPerSample)
+        writer.Write(formatChunkSize) ' = 16 for 'PCM'
+        writer.Write(formatType)        ' 1 for 'PCM'
+        writer.Write(tracks)            ' number of channels
+        writer.Write(samplesPerSecond)  ' sample rate
+        writer.Write(bytesPerSecond)    ' ByteRate         == SampleRate * NumChannels * BitsPerSample/8
+        writer.Write(frameSize)         ' AKA 'Block Align' according to https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+        writer.Write(bitsPerSample)     ' 8 bit or  16 bit sound sample etc....
         writer.Write(&H61746164) ' = encoding.GetBytes("data")
-        writer.Write(dataChunkSize)
-        Dim theta As Double = frequency * TAU / CDbl(samplesPerSecond - 1)
+        writer.Write(dataChunkSize)     ' == NumSamples * NumChannels * BitsPerSample/8
+        Dim theta As Double = frequency * TAU / CDbl(samplesPerSecond) ' removed -1 from samples per second. CDbl(samplesPerSecond -1)
         ' 'volume' is UInt16 with range 0 thru Uint16.MaxValue ( = 65 535)
         ' we need 'amp' to have the range of 0 thru Int16.MaxValue ( = 32 767)
         Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
@@ -92,7 +92,7 @@ Public Module MorseDecode
         Next [step]
 
         amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
-        ' create regular amplitude wave for full duration minus ending ramp
+        ' create regular amplitude wave for full duration minus beginning and ending ramp
         For [step] As Integer = rampSamples + 1 To fullSamples - (rampSamples * 2) ' remeber to add -1 to my own C++ code that uses PortAudio!
             Dim s As Short = CShort((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
@@ -121,6 +121,7 @@ Public Module MorseDecode
         ''    writer.Write(0)
         ''Next
         ''genStream.SetLength(stream_pos + 4)
+        ' genStream.SetLength(CLng(fullSamples + 72)) ' added in a attempt to fix popping and clicking.
         Debug.Print("generateWave stream length: " & genStream.Length)
 
 
@@ -288,40 +289,29 @@ Public Module MorseDecode
     Sub playDit()
         
         ditStream.Seek(0, SeekOrigin.Begin)
-        'On Error GoTo errorMessage
-        'Debug.Print (Error)
-
         player.Stream = ditStream
         player.PlaySync()
 
     End Sub
     Sub playDah()
-        'If player.Stream.CanRead <> True Then Exit Sub
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
         player.PlaySync()
-
     End Sub
     Sub playLtrSpc()
-        'If player.Stream.CanRead <> True Then Exit Sub
         player.Stream = ltrSpace
         ltrSpace.Seek(0, SeekOrigin.Begin)
         player.PlaySync()
-
     End Sub
     Sub playWrdSpc()
-        'If player.Stream.CanRead <> True Then Exit Sub
         wrdSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = wrdSpace
         player.PlaySync()
-
     End Sub
     Sub playInterSpc()
-        'If player.Stream.CanWrite <> True Then Exit Sub
         interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
         player.PlaySync()
-
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character

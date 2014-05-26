@@ -72,7 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(20, 800, True, 18)
+        initializeSounds(15, 500, True, 18)
         MorseDecode.PlayString("5 0 e t a r q c d")
 
     End Sub
@@ -123,16 +123,23 @@ Public Class Form1
 
         For [step] = 1 To 5
             playDit()
+            Application.DoEvents()
+
         Next
         For [step] = 1 To 5
             playLtrSpc()
+            Application.DoEvents()
+
         Next
+
         For [step] = 1 To 5
             playDah()
+            Application.DoEvents()
+
         Next
         For [step] = 1 To 5
             playWrdSpc()
-
+            Application.DoEvents()
         Next
     End Sub
 
