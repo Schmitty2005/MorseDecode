@@ -41,8 +41,9 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -190,10 +191,6 @@ Partial Class Form1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'MyApplicationBindingSource
-        '
-        Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
-        '
         'RichTextBox1
         '
         Me.RichTextBox1.Location = New System.Drawing.Point(51, 153)
@@ -202,11 +199,25 @@ Partial Class Form1
         Me.RichTextBox1.TabIndex = 12
         Me.RichTextBox1.Text = ""
         '
+        'MyApplicationBindingSource
+        '
+        Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
+        '
+        'Button5
+        '
+        Me.Button5.Location = New System.Drawing.Point(302, 307)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(75, 54)
+        Me.Button5.TabIndex = 13
+        Me.Button5.Text = "Write Stream as Wave"
+        Me.Button5.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
+        Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button4)
@@ -247,5 +258,6 @@ Partial Class Form1
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents MyApplicationBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+    Friend WithEvents Button5 As System.Windows.Forms.Button
 
 End Class
