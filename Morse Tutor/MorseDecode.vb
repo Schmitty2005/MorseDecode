@@ -60,7 +60,7 @@ Public Module MorseDecode
         Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
         Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
         Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
-        Dim dataChunkSize As Integer = samples * 1 'frameSize
+        Dim dataChunkSize As Integer = samples * 2 'frameSize --- changed 1 to 2 5/28/14
         Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
@@ -390,7 +390,7 @@ Public Module MorseDecode
     End Sub
 
     Sub write_stream(ByRef MS As MemoryStream)
-        Using file As New FileStream("testfile.wav", FileMode.Create, System.IO.FileAccess.Write)
+        Using file As New FileStream("ditfile.wav", FileMode.Create, System.IO.FileAccess.Write)
             Dim bytes As Byte() = New Byte(MS.Length - 1) {}
             MS.Read(bytes, 0, CInt(MS.Length))
             file.Write(bytes, 0, bytes.Length)

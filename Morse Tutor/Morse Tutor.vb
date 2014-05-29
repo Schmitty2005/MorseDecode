@@ -149,6 +149,6 @@ Public Class Form1
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         dahStream.Seek(0, IO.SeekOrigin.Begin)
-        write_stream(MorseDecode.dahStream)
+        write_stream(MorseDecode.ditStream)
     End Sub
 End Class
