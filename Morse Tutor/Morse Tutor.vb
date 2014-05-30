@@ -73,7 +73,7 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         initializeSounds(12, 441, True, 12)
-        MorseDecode.PlayString("5 0 e t a r q c d")
+        MorseDecode.PlayString("0")
 
     End Sub
 
@@ -148,7 +148,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
-        dahStream.Seek(0, IO.SeekOrigin.Begin)
+        ditStream.Seek(0, IO.SeekOrigin.Begin)
         write_stream(MorseDecode.ditStream)
     End Sub
 End Class

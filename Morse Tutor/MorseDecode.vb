@@ -57,10 +57,10 @@ Public Module MorseDecode
         Dim frameSize As Short = 2 ' manual input of 2 because it should be right! CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 2 ' change from 4 to 2
-        Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
+        Dim total_samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
         Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
-        Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
-        Dim dataChunkSize As Integer = samples * 2 'frameSize --- changed 1 to 2 5/28/14
+        Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
+        Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
         Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
@@ -84,7 +84,7 @@ Public Module MorseDecode
 
         'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
         For [step] As Integer = 0 To rampSamples
-            rampAmp = [step] / CDbl(rampSamples)
+            rampAmp = CDbl([step]) / CDbl(rampSamples)
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step])))) ' removed Math.truncate (amp)
             s = s * rampAmp
             writer.Write(s)
@@ -93,40 +93,30 @@ Public Module MorseDecode
 
         amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
         ' create regular amplitude wave for full duration minus beginning and ending ramp
-        For [step] As Integer = rampSamples + 1 To samples - (rampSamples * 2) ' remeber to add -1 to my own C++ code that uses PortAudio!
-            Dim s As Short = CShort((amp * Math.Sin(theta * CDbl([step]))))
+        For [step] As Integer = rampSamples To (full_amplitude_samples) ' remeber to add -1 to my own C++ code that uses PortAudio!
+            Dim s As Short = CDbl((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
             'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
 
 
         'create ending ramp amplfication from full volume to 0
-        For [step] As Integer = (rampSamples + fullSamples + 1) To samples   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
-            rampAmp = CDbl((rampSamples + fullSamples + CDbl(rampSamples) - CDbl([step])) / CDbl((rampSamples)))
+        For [step] As Integer = (rampSamples + full_amplitude_samples) To total_samples   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
+            rampAmp = CDbl((rampSamples + full_amplitude_samples + CDbl(rampSamples) - CDbl([step])) / CDbl((rampSamples)))
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = CShort(s * rampAmp)
             'debug statement
             Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
             'Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
             writer.Write(s)
-            If [step] = (((2 * rampSamples) + fullSamples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
+            If [step] = (((2 * rampSamples) + full_amplitude_samples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
         Next [step]
 
-        'add extra zero at end for good measure
-        'Dim z As Short = 0
-        'writer.Write(z)
-        'add some extra 0's to clean up any noise! LOL!  Cheap and dirty fix!
-        ''Dim stream_pos As Long = genStream.Length
-        ''For [x] = 0 To 200
-        ''    writer.Write(0)
-        ''Next
-        ''genStream.SetLength(stream_pos + 4)
-        'genStream.SetLength(CLng(fileSize)) ' added in a attempt to fix popping and clicking.
+        ' add extra sample to keep samples even
+        If genStream.Length Mod 2 <> 0 Then writer.Write(0)
+        ' debug statement
         Debug.Print("generateWave stream length: " & genStream.Length)
-
-
         Return genStream
-
     End Function
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
 
@@ -390,7 +380,7 @@ Public Module MorseDecode
     End Sub
 
     Sub write_stream(ByRef MS As MemoryStream)
-        Using file As New FileStream("ditfile.wav", FileMode.Create, System.IO.FileAccess.Write)
+        Using file As New FileStream("testfile.wav", FileMode.Create, System.IO.FileAccess.Write)
             Dim bytes As Byte() = New Byte(MS.Length - 1) {}
             MS.Read(bytes, 0, CInt(MS.Length))
             file.Write(bytes, 0, bytes.Length)
