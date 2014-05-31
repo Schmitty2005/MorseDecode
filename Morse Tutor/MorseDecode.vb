@@ -29,22 +29,12 @@ Public Module MorseDecode
     Public ltrSpace As New MemoryStream
     Public wrdSpace As New MemoryStream
     Public interSpace As New MemoryStream
-
-     
-
-    Sub debug_output(ByVal testStream As MemoryStream)
-        Dim length As Int16 = testStream.Length
-        For [counter] = 0 To length
-
-        Next
-        'this sub will output the stream into the debug window for checking waves!
-
-    End Sub
-    'createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
-    ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
-    ' volume ramp (5ms is standard CW)
+    
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
                         Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
+        ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
+        ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
+        ' volume ramp (5ms is standard CW)
         'set variables
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
@@ -88,7 +78,7 @@ Public Module MorseDecode
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step])))) ' removed Math.truncate (amp)
             s = s * rampAmp
             writer.Write(s)
-            Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
+            'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
 
         amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
@@ -106,7 +96,7 @@ Public Module MorseDecode
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = CShort(s * rampAmp)
             'debug statement
-            Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
+            'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
             'Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
             writer.Write(s)
             If [step] = (((2 * rampSamples) + full_amplitude_samples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
@@ -119,9 +109,7 @@ Public Module MorseDecode
         Return genStream
     End Function
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
-
         'a wave of silence will be created.
-
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
         Dim formatChunkSize As Integer = 16
@@ -134,8 +122,6 @@ Public Module MorseDecode
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 4
         Dim samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msDuration \ 1000))
-        'Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp \ 1000))   'number of samples for ramp
-        'Dim fullSamples As Integer = samples - (rampSamples * 2)         'number of samples at full amplitude
         Dim dataChunkSize As Integer = samples * frameSize
         Dim fileSize As Integer = waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
@@ -152,18 +138,11 @@ Public Module MorseDecode
         writer.Write(bitsPerSample)
         writer.Write(&H61746164) ' = encoding.GetBytes("data")
         writer.Write(dataChunkSize)
-        'Dim theta As Double = frequency * TAU / CDbl(samplesPerSecond)
-        ' 'volume' is UInt16 with range 0 thru Uint16.MaxValue ( = 65 535)
-        ' we need 'amp' to have the range of 0 thru Int16.MaxValue ( = 32 767)
-        'Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
-        'Dim rampAmp As Double = 0
-        'Debug.Print(rampSamples)
-        For [step] As Integer = 0 To samples  ' removed -1 should be 'samples - 1'
+        For [step] As Integer = 0 To samples
             Dim s As Short = 0
             writer.Write(s)
             Debug.Print("Step :" & [step] & vbCrLf)
         Next [step]
-
         Debug.Print("Silence: " & genStream.Length)
         Return genStream
 
@@ -378,7 +357,6 @@ Public Module MorseDecode
         Next [step]
 
     End Sub
-
     Sub write_stream(ByRef MS As MemoryStream, ByVal wave_filname As String)
         Using file As New FileStream(wave_filname, FileMode.Create, System.IO.FileAccess.Write)
             Dim bytes As Byte() = New Byte(MS.Length - 1) {}

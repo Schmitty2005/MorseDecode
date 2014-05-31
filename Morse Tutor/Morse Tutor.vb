@@ -72,8 +72,8 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(12, 441, True, 12)
-        MorseDecode.PlayString("0")
+        initializeSounds(12, 800)
+        MorseDecode.PlayString("0 3 m")
 
     End Sub
 
