@@ -31,7 +31,7 @@ Public Module MorseDecode
     Public interSpace As New MemoryStream
     
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 3, Optional ByVal volume As UInt16 = 16383) ' 16383
         ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
         ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
         ' volume ramp (5ms is standard CW)
@@ -75,37 +75,32 @@ Public Module MorseDecode
         'create amplification ramp of wave  for number of ramp samples (duration of msRamp)
         For [step] As Integer = 0 To rampSamples
             rampAmp = CDbl([step]) / CDbl(rampSamples)
-            Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step])))) ' removed Math.truncate (amp)
+            Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = s * rampAmp
             writer.Write(s)
-            'Debug.Print("Step :" & [step] & " Ramp at beginning: " & rampAmp & " S Value :" & s)
         Next [step]
-
-        amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
+        'amp = volume >> 2 uncommented on 5/30/14 should be OKAY
         ' create regular amplitude wave for full duration minus beginning and ending ramp
-        For [step] As Integer = rampSamples To (full_amplitude_samples + rampSamples) ' remeber to add -1 to my own C++ code that uses PortAudio!
+        For [step] As Integer = rampSamples To (full_amplitude_samples + rampSamples)
             Dim s As Short = CDbl((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
-            'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
         Next [step]
-
-
         'create ending ramp amplfication from full volume to 0
-        For [step] As Integer = (rampSamples + full_amplitude_samples) To total_samples   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
+        For [step] As Integer = (rampSamples + full_amplitude_samples) To total_samples
             rampAmp = (total_samples - [step]) / CDbl(rampSamples)
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = CShort(s * rampAmp)
-            'debug statement
-            'Debug.Print("Step: " & [step] & "   RampAmp at ending : " & rampAmp & "  S value : " & s)
-            'Debug.Print("Step : " & [step] & "  Value : " & s & vbCrLf)
-            writer.Write(s)
-            If [step] = (((2 * rampSamples) + full_amplitude_samples) - 1) Then Debug.Print("End [STEP] = " & [step] & vbCrLf)
         Next [step]
-
         ' add extra sample to keep samples even
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
-        ' debug statement
-        Debug.Print("generateWave stream length: " & genStream.Length)
+        '
+        'Eventually add code to add on interspace silence onto each dit and dah in a effort to remove clicks and pops in audio
+        ' adjust variables for file length in wave header to accomplish this.
+        '
+        '
+        '   INSERT CODE HERE FOR SILENCE AT END OF WAVE
+        '
+        '
         Return genStream
     End Function
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
@@ -178,6 +173,94 @@ Public Module MorseDecode
         '=====================================================================================
 
     End Sub ' sub used to initialize waves to be played back
+    Sub playDit()
+        
+        ditStream.Seek(0, SeekOrigin.Begin)
+        player.Stream = ditStream
+        player.PlaySync()
+
+    End Sub
+    Sub playDah()
+        dahStream.Seek(0, SeekOrigin.Begin)
+        player.Stream = dahStream
+        player.PlaySync()
+    End Sub
+    Sub playLtrSpc()
+        player.Stream = ltrSpace
+        ltrSpace.Seek(0, SeekOrigin.Begin)
+        player.PlaySync()
+    End Sub
+    Sub playWrdSpc()
+        wrdSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = wrdSpace
+        player.PlaySync()
+    End Sub
+    Sub playInterSpc()
+        interSpace.Seek(0, SeekOrigin.Begin)
+        player.Stream = interSpace
+        player.PlaySync()
+    End Sub
+    Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
+        'this routine will play the dit's/dah's from an individual character
+        Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
+        Dim counter As Int16 = morseString.Length
+        Dim ditdah As Char
+
+        For [step] As Integer = 0 To counter - 1
+            ditdah = morseString.Chars([step])
+            Application.DoEvents()
+
+            If ditdah = "." Then
+                playDit()
+            End If
+
+            If ditdah = "-" Then
+                playDah()
+            End If
+
+        Next
+
+    End Sub
+    Public Sub PlayString(ByVal playString As String, Optional ByVal repeats As Integer = 1)
+        ''this routine displays each character in a string....
+        ''dits and dahs will be added later on
+        Dim toPlay As String = playString.ToLower
+        Dim playLength As Short = CType(playString.Length, Short)
+        Dim playChar As Char
+
+        For [step] As Integer = 0 To playLength - 1
+            On Error GoTo -1
+
+            playChar = toPlay.Chars([step])
+            Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
+            Form1.display_test.Text = morsestring
+            'displays dah dit sequece in window for testing purposes
+            Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
+            If playChar = " " Then
+                playWrdSpc()
+            Else
+                PlayCharacter(playChar)
+                playLtrSpc()
+
+            End If
+            'Do Events and check for closed stream to avoid errors
+            Application.DoEvents()
+            If player.Stream.CanWrite <> True Then Exit Sub
+        Next [step]
+
+    End Sub
+    Sub write_stream(ByRef MS As MemoryStream, ByVal wave_filname As String)
+        Using file As New FileStream(wave_filname, FileMode.Create, System.IO.FileAccess.Write)
+            Dim bytes As Byte() = New Byte(MS.Length - 1) {}
+            MS.Read(bytes, 0, CInt(MS.Length))
+            file.Write(bytes, 0, bytes.Length)
+            MS.Close()
+        End Using
+
+    End Sub
+    Public Sub Main()
+
+    End Sub
     Public Sub PlayBeep(ByVal frequency As UInt16, ByVal msDuration As Integer, Optional ByVal msRamp As Integer = 10, Optional ByVal volume As UInt16 = 16383)
         '' a routine that plays a beep!
         'http://stackoverflow.com/questions/19672593/generate-morse-code-or-any-audio-in-net-c-or-vb-net-without-3rd-party-depe
@@ -255,122 +338,16 @@ Public Module MorseDecode
         player.Dispose()
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
-    Sub playDit()
-        
-        ditStream.Seek(0, SeekOrigin.Begin)
-        player.Stream = ditStream
-        player.PlaySync()
+    Public Sub morse_char_wave(ByRef wave_PCM_data_chunk As MemoryStream)
+        'create variables for header with proper length
 
     End Sub
-    Sub playDah()
-        dahStream.Seek(0, SeekOrigin.Begin)
-        player.Stream = dahStream
-        player.PlaySync()
-    End Sub
-    Sub playLtrSpc()
-        player.Stream = ltrSpace
-        ltrSpace.Seek(0, SeekOrigin.Begin)
-        player.PlaySync()
-    End Sub
-    Sub playWrdSpc()
-        wrdSpace.Seek(0, SeekOrigin.Begin)
-        player.Stream = wrdSpace
-        player.PlaySync()
-    End Sub
-    Sub playInterSpc()
-        interSpace.Seek(0, SeekOrigin.Begin)
-        player.Stream = interSpace
-        player.PlaySync()
-    End Sub
-    Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
-        'this routine will play the dit's/dah's from an individual character
-        Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
-        Dim counter As Int16 = morseString.Length
-        Dim ditdah As Char
-
-        For [step] As Integer = 0 To counter - 1
-            ditdah = morseString.Chars([step])
-            Application.DoEvents()
-
-            If ditdah = "." Then
-                playDit()
-            End If
-
-            If ditdah = "-" Then
-                playDah()
-            End If
-
-        Next
+    Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef to_append As MemoryStream)
+        'set append stream position to remove header information
+        to_append.Position = (to_append.Seek(44, SeekOrigin.Current))
+        'set result stream position to end
+        combined.Position = combined.Length
 
     End Sub
-    Public Async Function async_playString(ByVal playString As String, Optional ByVal repeats As Integer = 1) As Task(Of Integer)
-        ' dont know how to progam Async methods!
-        Dim done As Int16
-        Dim toPlay As String = playString.ToLower
-        Dim playLength As Short = CType(playString.Length, Short)
-        Dim playChar As Char
-        For [step] As Integer = 0 To playLength - 1
-            playChar = toPlay.Chars([step])
-            Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
-
-            Form1.display_test.Text = morsestring             'displays dah dit sequece in window for testing purposes
-            Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
-            Task.WaitAll()
-
-            If playChar = " " Then
-                playWrdSpc()
-            Else
-                PlayCharacter(playChar)
-                playLtrSpc()
-            End If
-
-        Next [step]
-
-        Return done
-
-    End Function
-    Public Sub PlayString(ByVal playString As String, Optional ByVal repeats As Integer = 1)
-        ''this routine displays each character in a string....
-        ''dits and dahs will be added later on
-        Dim toPlay As String = playString.ToLower
-        Dim playLength As Short = CType(playString.Length, Short)
-        Dim playChar As Char
-
-        For [step] As Integer = 0 To playLength - 1
-            On Error GoTo -1
-
-            playChar = toPlay.Chars([step])
-            Dim morsestring = morsedict.Item(playChar)       ' retrives dah-dit sequence from dictionary
-            Form1.display_test.Text = morsestring
-            'displays dah dit sequece in window for testing purposes
-            Form1.display_chr.Text = (Char.ToUpper(playChar))   'display char in big window
-            If playChar = " " Then
-                playWrdSpc()
-            Else
-                PlayCharacter(playChar)
-                playLtrSpc()
-
-            End If
-            'Do Events and check for closed stream to avoid errors
-            Application.DoEvents()
-            If player.Stream.CanWrite <> True Then Exit Sub
-        Next [step]
-
-    End Sub
-    Sub write_stream(ByRef MS As MemoryStream, ByVal wave_filname As String)
-        Using file As New FileStream(wave_filname, FileMode.Create, System.IO.FileAccess.Write)
-            Dim bytes As Byte() = New Byte(MS.Length - 1) {}
-            MS.Read(bytes, 0, CInt(MS.Length))
-            file.Write(bytes, 0, bytes.Length)
-            MS.Close()
-        End Using
-
-    End Sub
-    Public Sub Main()
-
-    End Sub
-
-
-
 
 End Module
