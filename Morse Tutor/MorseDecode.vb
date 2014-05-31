@@ -373,9 +373,9 @@ Public Module MorseDecode
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
 
     End Sub
-    Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef to_append As MemoryStream)
+    Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef append_to_combined As MemoryStream)
         'set append stream position to remove header information
-        to_append.Position = (to_append.Seek(44, SeekOrigin.Current))
+        append_to_combined.Position = (append_to_combined.Seek(44, SeekOrigin.Current))
         'set result stream position to end
         combined.Position = combined.Length
         'remeber to find position of file length in wave header
