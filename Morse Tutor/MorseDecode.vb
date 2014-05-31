@@ -340,6 +340,50 @@ Public Module MorseDecode
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
     Public Sub morse_char_wave(ByRef wave_PCM_data_chunk As MemoryStream)
         'create variables for header with proper length
+        '
+        'header variables
+        'set variables
+        Dim writer As New BinaryWriter(wave_PCM_data_chunk)
+        Dim formatChunkSize As Integer = 16
+        Dim headerSize As Integer = 8
+        Dim formatType As Short = 1
+        Dim tracks As Short = 1
+        Dim samplesPerSecond As Integer = 44100
+        Dim bitsPerSample As Short = 16
+        Dim frameSize As Short = 2 ' manual input of 2 because it should be right! CShort(tracks * ((bitsPerSample + 7) \ 8))
+        Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
+        Dim waveSize As Integer = 2 ' change from 4 to 2
+
+        '
+        ' change total_samples to reflect new total samples size
+        Dim total_samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
+
+        'no longer needed
+        'Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
+        '
+        'change dataChunk size to reflect new chunksize
+        Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
+
+
+        '
+        'change filesize to reflect actual new filesize!
+        Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
+
+
+        ' var encoding = new System.Text.UTF8Encoding();
+        writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
+        writer.Write(fileSize)
+        writer.Write(&H45564157) ' = encoding.GetBytes("WAVE")
+        writer.Write(&H20746D66) ' = encoding.GetBytes("fmt ")
+        writer.Write(formatChunkSize) ' = 16 for 'PCM'
+        writer.Write(formatType)        ' 1 for 'PCM'
+        writer.Write(tracks)            ' number of channels
+        writer.Write(samplesPerSecond)  ' sample rate
+        writer.Write(bytesPerSecond)    ' ByteRate         == SampleRate * NumChannels * BitsPerSample/8
+        writer.Write(frameSize)         ' AKA 'Block Align' according to https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+        writer.Write(bitsPerSample)     ' 8 bit or  16 bit sound sample etc....
+        writer.Write(&H61746164) ' = encoding.GetBytes("data")
+        writer.Write(dataChunkSize)     ' == NumSamples * NumChannels * BitsPerSample/8
 
     End Sub
     Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef to_append As MemoryStream)
@@ -347,6 +391,8 @@ Public Module MorseDecode
         to_append.Position = (to_append.Seek(44, SeekOrigin.Current))
         'set result stream position to end
         combined.Position = combined.Length
+        'remeber to find position of file length in wave header
+
 
     End Sub
 
