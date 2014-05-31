@@ -338,12 +338,11 @@ Public Module MorseDecode
         player.Dispose()
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
-    Public Sub morse_char_wave(ByRef wave_PCM_data_chunk As MemoryStream)
+    Public Sub PCM_to_wave(ByRef wave_PCM_data_chunk As MemoryStream)
+        ' create a wave from PCM data!
         'create variables for header with proper length
-        '
-        'header variables
-        'set variables
-        Dim writer As New BinaryWriter(wave_PCM_data_chunk)
+        Dim genStream As New MemoryStream
+        Dim writer As New BinaryWriter(genStream)
         Dim formatChunkSize As Integer = 16
         Dim headerSize As Integer = 8
         Dim formatType As Short = 1
@@ -353,24 +352,9 @@ Public Module MorseDecode
         Dim frameSize As Short = 2 ' manual input of 2 because it should be right! CShort(tracks * ((bitsPerSample + 7) \ 8))
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 2 ' change from 4 to 2
-
-        '
-        ' change total_samples to reflect new total samples size
-        Dim total_samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
-
-        'no longer needed
-        'Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
-        '
-        'change dataChunk size to reflect new chunksize
-        Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
-
-
-        '
-        'change filesize to reflect actual new filesize!
+        Dim dataChunkSize As Integer = wave_PCM_data_chunk.Length 'frameSize --- changed 1 to 2 5/28/14
         Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
-
-
-        ' var encoding = new System.Text.UTF8Encoding();
+        'Write new wave header
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
         writer.Write(fileSize)
         writer.Write(&H45564157) ' = encoding.GetBytes("WAVE")
@@ -384,6 +368,9 @@ Public Module MorseDecode
         writer.Write(bitsPerSample)     ' 8 bit or  16 bit sound sample etc....
         writer.Write(&H61746164) ' = encoding.GetBytes("data")
         writer.Write(dataChunkSize)     ' == NumSamples * NumChannels * BitsPerSample/8
+        ' create routine to write stream data to new stream
+        wave_PCM_data_chunk.CopyTo(genStream)
+        If genStream.Length Mod 2 <> 0 Then writer.Write(0)
 
     End Sub
     Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef to_append As MemoryStream)
