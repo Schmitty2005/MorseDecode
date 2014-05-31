@@ -93,7 +93,7 @@ Public Module MorseDecode
 
         amp = volume >> 2 'commented out on 5/3/2014 uncomment if audio waves are no longer working
         ' create regular amplitude wave for full duration minus beginning and ending ramp
-        For [step] As Integer = rampSamples To (full_amplitude_samples) ' remeber to add -1 to my own C++ code that uses PortAudio!
+        For [step] As Integer = rampSamples To (full_amplitude_samples + rampSamples) ' remeber to add -1 to my own C++ code that uses PortAudio!
             Dim s As Short = CDbl((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
             'Debug.Print("Step: " & [step] & "  Full Amp sample : " & s)
@@ -102,7 +102,7 @@ Public Module MorseDecode
 
         'create ending ramp amplfication from full volume to 0
         For [step] As Integer = (rampSamples + full_amplitude_samples) To total_samples   'removed -1 for testing (((2 * rampSamples) + fullSamples -1))
-            rampAmp = CDbl((rampSamples + full_amplitude_samples + CDbl(rampSamples) - CDbl([step])) / CDbl((rampSamples)))
+            rampAmp = (total_samples - [step]) / CDbl(rampSamples)
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = CShort(s * rampAmp)
             'debug statement
@@ -121,7 +121,7 @@ Public Module MorseDecode
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
 
         'a wave of silence will be created.
-        'wave header variables
+
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
         Dim formatChunkSize As Integer = 16
@@ -379,8 +379,8 @@ Public Module MorseDecode
 
     End Sub
 
-    Sub write_stream(ByRef MS As MemoryStream)
-        Using file As New FileStream("testfile.wav", FileMode.Create, System.IO.FileAccess.Write)
+    Sub write_stream(ByRef MS As MemoryStream, ByVal wave_filname As String)
+        Using file As New FileStream(wave_filname, FileMode.Create, System.IO.FileAccess.Write)
             Dim bytes As Byte() = New Byte(MS.Length - 1) {}
             MS.Read(bytes, 0, CInt(MS.Length))
             file.Write(bytes, 0, bytes.Length)

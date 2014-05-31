@@ -148,7 +148,17 @@ Public Class Form1
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        'write all samples as a wave file for debugging purposes
         ditStream.Seek(0, IO.SeekOrigin.Begin)
-        write_stream(MorseDecode.ditStream)
+        write_stream(MorseDecode.ditStream, "ditwave.wav")
+        dahStream.Seek(0, IO.SeekOrigin.Begin)
+        write_stream(MorseDecode.dahStream, "dahwave.wav")
+        ltrSpace.Seek(0, IO.SeekOrigin.Begin)
+        write_stream(MorseDecode.ltrSpace, "ltrspacewave.wav")
+        wrdSpace.Seek(0, IO.SeekOrigin.Begin)
+        write_stream(MorseDecode.wrdSpace, "wrdspacewave.wav")
+        interSpace.Seek(0, IO.SeekOrigin.Begin)
+        write_stream(MorseDecode.interSpace, "intrspacewave.wav")
+
     End Sub
 End Class
