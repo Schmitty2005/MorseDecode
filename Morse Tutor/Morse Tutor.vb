@@ -73,7 +73,7 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         initializeSounds(32, 1000, True, 15)
-        MorseDecode.PlayString("0 3 m cq cq dx dx")
+        MorseDecode.PlayString("cq")
 
     End Sub
 
@@ -171,6 +171,23 @@ Public Class Form1
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         PCM_to_wave(MorseDecode.ditStream)
         MorseDecode.ditStream.Seek(0, IO.SeekOrigin.Begin)
+        playDit()
+
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        strip_wave_header(MorseDecode.ditStream)
+        strip_wave_header(MorseDecode.dahStream)
+        strip_wave_header(MorseDecode.interSpace)
+        strip_wave_header(MorseDecode.ltrSpace)
+        strip_wave_header(MorseDecode.wrdSpace)
+        combine_PCM(ditStream, interSpace)
+        combine_PCM(ditStream, dahStream)
+        combine_PCM(ditStream, interSpace)
+        combine_PCM(ditStream, dahStream)
+        combine_PCM(ditStream, wrdSpace)
+        combine_PCM(ditStream, dahStream)
+        PCM_to_wave(ditStream)
         playDit()
 
     End Sub

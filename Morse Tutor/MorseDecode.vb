@@ -380,14 +380,15 @@ Public Module MorseDecode
         PCM_data.Seek(0, SeekOrigin.Begin)
         Return PCM_data
     End Function
-    Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef append_to_combined As MemoryStream)
+    Function combine_PCM(ByVal combined As MemoryStream, ByRef append_to_combined As MemoryStream)
         'set append stream position to remove header information
-        append_to_combined.Position = (append_to_combined.Seek(44, SeekOrigin.Current))
+        append_to_combined.Position = (append_to_combined.Seek(0, SeekOrigin.Begin))
         'set result stream position to end
         combined.Position = combined.Length
+        append_to_combined.CopyTo(combined)
         'remeber to find position of file length in wave header
 
-
-    End Sub
+        Return combined
+    End Function
 
 End Module
