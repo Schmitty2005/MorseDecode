@@ -353,7 +353,7 @@ Public Module MorseDecode
         Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
         Dim waveSize As Integer = 2 ' change from 4 to 2
         Dim dataChunkSize As Integer = wave_PCM_data_chunk.Length 'frameSize --- changed 1 to 2 5/28/14
-        Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
+        Dim fileSize As Integer = 44 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         'Write new wave header
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
         writer.Write(fileSize)
@@ -375,7 +375,7 @@ Public Module MorseDecode
     End Function
     Function strip_wave_header(ByRef wave_stream As MemoryStream)
         Dim PCM_data As New MemoryStream
-        wave_stream.Position = 36
+        wave_stream.Position = 44
         wave_stream.CopyTo(PCM_data)
         PCM_data.Seek(0, SeekOrigin.Begin)
         Return PCM_data
