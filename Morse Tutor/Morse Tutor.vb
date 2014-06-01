@@ -161,4 +161,17 @@ Public Class Form1
         write_stream(MorseDecode.interSpace, "intrspacewave.wav")
 
     End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        strip_wave_header(MorseDecode.ditStream)
+
+
+    End Sub
+
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        PCM_to_wave(MorseDecode.ditStream)
+        MorseDecode.ditStream.Seek(0, IO.SeekOrigin.Begin)
+        playDit()
+
+    End Sub
 End Class

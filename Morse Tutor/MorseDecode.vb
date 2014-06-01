@@ -338,7 +338,7 @@ Public Module MorseDecode
         player.Dispose()
 
     End Sub ' public static void PlayBeep(UInt16 frequency, int msDuration
-    Public Sub PCM_to_wave(ByRef wave_PCM_data_chunk As MemoryStream)
+    Function PCM_to_wave(ByRef wave_PCM_data_chunk As MemoryStream)
         ' create a wave from PCM data!
         'create variables for header with proper length
         Dim genStream As New MemoryStream
@@ -371,8 +371,15 @@ Public Module MorseDecode
         ' create routine to write stream data to new stream
         wave_PCM_data_chunk.CopyTo(genStream)
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
-
-    End Sub
+        Return genStream
+    End Function
+    Function strip_wave_header(ByRef wave_stream As MemoryStream)
+        Dim PCM_data As New MemoryStream
+        wave_stream.Position = 36
+        wave_stream.CopyTo(PCM_data)
+        PCM_data.Seek(0, SeekOrigin.Begin)
+        Return PCM_data
+    End Function
     Public Sub combine_PCM(ByVal combined As MemoryStream, ByRef append_to_combined As MemoryStream)
         'set append stream position to remove header information
         append_to_combined.Position = (append_to_combined.Seek(44, SeekOrigin.Current))
