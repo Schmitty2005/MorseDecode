@@ -81,15 +81,16 @@ Public Module MorseDecode
         Next [step]
         'amp = volume >> 2 uncommented on 5/30/14 should be OKAY
         ' create regular amplitude wave for full duration minus beginning and ending ramp
-        For [step] As Integer = rampSamples To (full_amplitude_samples + rampSamples)
+        For [step] As Integer = (rampSamples + 1) To (full_amplitude_samples + rampSamples)
             Dim s As Short = CDbl((amp * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
         Next [step]
         'create ending ramp amplfication from full volume to 0
-        For [step] As Integer = (rampSamples + full_amplitude_samples) To total_samples
-            rampAmp = (total_samples - [step]) / CDbl(rampSamples)
+        For [step] As Integer = (rampSamples + full_amplitude_samples + 1) To total_samples + 1
+            rampAmp = (total_samples + 1 - [step]) / CDbl(rampSamples)
             Dim s As Short = CShort(((amp) * Math.Sin(theta * CDbl([step]))))
             s = CShort(s * rampAmp)
+            writer.Write(s)
         Next [step]
         ' add extra sample to keep samples even
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
@@ -437,6 +438,7 @@ Public Module MorseDecode
         'insert code for full ramp begining and ending with full wave in between
         For [step] As Integer = 0 To total_samples - 1 ' this will be the begining ramp
             a = 0.5 * (1 - Math.Cos(2 * Math.PI * [step] / CDbl(total_samples)))
+            Debug.Print("A: " & a)
             Dim s As Short = CShort(Math.Truncate(amp * a * Math.Sin(theta * CDbl([step]))))
             writer.Write(s)
         Next [step]
