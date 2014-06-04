@@ -179,4 +179,12 @@ Public Class Form1
         playDit()
 
     End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        createWave(ditStream, 600, 100, 12, 600, 24832)
+        ditStream.Seek(0, IO.SeekOrigin.Begin)
+        For [step] = 1 To 5
+            playDit()
+        Next
+    End Sub
 End Class

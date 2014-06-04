@@ -41,11 +41,12 @@ Partial Class Form1
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
+        Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button9 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -193,10 +194,6 @@ Partial Class Form1
         Me.Button1.Text = "Test old beeps"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'MyApplicationBindingSource
-        '
-        Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
-        '
         'Button5
         '
         Me.Button5.Location = New System.Drawing.Point(302, 307)
@@ -233,11 +230,25 @@ Partial Class Form1
         Me.Button8.Text = "Strip Header, Combine PCM, Create Wave Header, PLayback"
         Me.Button8.UseVisualStyleBackColor = True
         '
+        'MyApplicationBindingSource
+        '
+        Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
+        '
+        'Button9
+        '
+        Me.Button9.Location = New System.Drawing.Point(59, 229)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(174, 30)
+        Me.Button9.TabIndex = 17
+        Me.Button9.Text = "Trailing Silence added TEST"
+        Me.Button9.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
+        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
@@ -284,5 +295,6 @@ Partial Class Form1
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents Button9 As System.Windows.Forms.Button
 
 End Class

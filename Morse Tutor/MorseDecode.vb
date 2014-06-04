@@ -31,7 +31,7 @@ Public Module MorseDecode
     Public interSpace As New MemoryStream
     
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 3, Optional ByVal volume As UInt16 = 16383) ' 16383
+                        Optional msRamp As Integer = 3, Optional ByVal msTrailingSilence As Integer = 0, Optional ByVal volume As UInt16 = 16383) ' 16383
         ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
         ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
         ' volume ramp (5ms is standard CW)
@@ -50,6 +50,7 @@ Public Module MorseDecode
         Dim total_samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
         Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
         Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
+        Dim silenceSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msTrailingSilence * 0.001)))
         Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
         Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
@@ -92,16 +93,15 @@ Public Module MorseDecode
             s = CShort(s * rampAmp)
             writer.Write(s)
         Next [step]
-        ' add extra sample to keep samples even
-        If genStream.Length Mod 2 <> 0 Then writer.Write(0)
-        '
-        'Eventually add code to add on interspace silence onto each dit and dah in a effort to remove clicks and pops in audio
-        ' adjust variables for file length in wave header to accomplish this.
-        '
-        '
-        '   INSERT CODE HERE FOR SILENCE AT END OF WAVE
-        '
-        '
+        'routine to add trailing silence to waves for cleaner sound.  Ex. Incorporate interspace at end of dit or dah
+        ' instead of separate interspace wave....interspace wave may be causing clicks and pops in audio playback.
+        If msTrailingSilence <> 0 Then
+            For [step] As Integer = 0 To silenceSamples
+                writer.Write(0)
+            Next
+        End If
+
+        If genStream.Length Mod 2 <> 0 Then writer.Write(0) ' add extra sample to keep samples even
         Return genStream
     End Function
     Function createSilence(ByRef genStream As MemoryStream, ByRef msDuration As Integer)
@@ -175,31 +175,55 @@ Public Module MorseDecode
 
     End Sub ' sub used to initialize waves to be played back
     Sub playDit()
-        
+
         ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
-        player.PlaySync()
+        player.LoadAsync()
+check:
+        If player.IsLoadCompleted = True Then player.PlaySync()
+        If player.IsLoadCompleted = False Then GoTo check
 
     End Sub
     Sub playDah()
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
-        player.PlaySync()
+        player.LoadAsync()
+check:
+        If player.IsLoadCompleted = True Then player.PlaySync()
+        If player.IsLoadCompleted = False Then GoTo check
+
+
     End Sub
     Sub playLtrSpc()
         player.Stream = ltrSpace
+        player.LoadAsync()
         ltrSpace.Seek(0, SeekOrigin.Begin)
-        player.PlaySync()
+check:
+        If player.IsLoadCompleted = True Then player.PlaySync()
+        If player.IsLoadCompleted = False Then GoTo check
+
+
     End Sub
     Sub playWrdSpc()
         wrdSpace.Seek(0, SeekOrigin.Begin)
+        player.LoadAsync()
         player.Stream = wrdSpace
-        player.PlaySync()
+check:
+        If player.IsLoadCompleted = True Then player.PlaySync()
+        If player.IsLoadCompleted = False Then GoTo check
+
+
+
     End Sub
     Sub playInterSpc()
         interSpace.Seek(0, SeekOrigin.Begin)
+        player.LoadAsync()
         player.Stream = interSpace
-        player.PlaySync()
+check:
+        If player.IsLoadCompleted = True Then player.PlaySync()
+        If player.IsLoadCompleted = False Then GoTo check
+
+
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character
@@ -209,7 +233,7 @@ Public Module MorseDecode
 
         For [step] As Integer = 0 To counter - 1
             ditdah = morseString.Chars([step])
-            Application.DoEvents()
+            'Application.DoEvents()
 
             If ditdah = "." Then
                 playDit()
@@ -245,7 +269,7 @@ Public Module MorseDecode
 
             End If
             'Do Events and check for closed stream to avoid errors
-            Application.DoEvents()
+            'Application.DoEvents()
             If player.Stream.CanWrite <> True Then Exit Sub
         Next [step]
 
