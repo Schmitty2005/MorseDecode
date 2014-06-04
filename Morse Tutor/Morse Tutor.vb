@@ -72,7 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(32, 1000, True, 15)
+        initializeSounds(13, 600, False)
         MorseDecode.PlayString("cq")
 
     End Sub
@@ -90,22 +90,10 @@ Public Class Form1
     End Sub
 
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
-        MorseDecode.PlayBeep(800, 800)
-
-        For [crap] = 1 To 10000
-            'pause timer
-        Next
-        'play beep
-        MorseDecode.PlayBeep(800, 250)
-
-        For [crap] = 1 To 10000
-            'pause timer
-        Next
-
-        MorseDecode.PlayBeep(800, 250)
-
-
-
+        createWave_NEW(ditStream, 400, 240)
+        player.Stream = ditStream
+        ditStream.Seek(0, IO.SeekOrigin.Begin)
+        player.PlaySync()
 
 
     End Sub

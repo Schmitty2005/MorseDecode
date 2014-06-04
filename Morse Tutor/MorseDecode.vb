@@ -369,6 +369,7 @@ Public Module MorseDecode
         writer.Write(&H61746164) ' = encoding.GetBytes("data")
         writer.Write(dataChunkSize)     ' == NumSamples * NumChannels * BitsPerSample/8
         ' create routine to write stream data to new stream
+        wave_PCM_data_chunk.Seek(0, SeekOrigin.Begin)
         wave_PCM_data_chunk.CopyTo(genStream)
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
         Return genStream
@@ -389,6 +390,58 @@ Public Module MorseDecode
         'remeber to find position of file length in wave header
 
         Return combined
+    End Function
+    Function createWave_NEW(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
+                            Optional msRamp As Integer = 3, Optional ByVal volume As UInt16 = 16383) ' 16383
+        ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
+        ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
+        ' volume ramp (5ms is standard CW)
+        'set variables
+        Dim writer As New BinaryWriter(genStream)
+        Dim TAU As Double = 2 * Math.PI
+        Dim formatChunkSize As Integer = 16
+        Dim headerSize As Integer = 8
+        Dim formatType As Short = 1
+        Dim tracks As Short = 1
+        Dim samplesPerSecond As Integer = 44100
+        Dim bitsPerSample As Short = 16
+        Dim frameSize As Short = 2 ' manual input of 2 because it should be right! CShort(tracks * ((bitsPerSample + 7) \ 8))
+        Dim bytesPerSecond As Integer = samplesPerSecond * frameSize
+        Dim waveSize As Integer = 2 ' change from 4 to 2
+        Dim total_samples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msDuration * 0.001)))   'removed /1000 from both
+        Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
+        Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
+        Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
+        Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
+        ' var encoding = new System.Text.UTF8Encoding();
+        writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
+        writer.Write(fileSize)
+        writer.Write(&H45564157) ' = encoding.GetBytes("WAVE")
+        writer.Write(&H20746D66) ' = encoding.GetBytes("fmt ")
+        writer.Write(formatChunkSize) ' = 16 for 'PCM'
+        writer.Write(formatType)        ' 1 for 'PCM'
+        writer.Write(tracks)            ' number of channels
+        writer.Write(samplesPerSecond)  ' sample rate
+        writer.Write(bytesPerSecond)    ' ByteRate         == SampleRate * NumChannels * BitsPerSample/8
+        writer.Write(frameSize)         ' AKA 'Block Align' according to https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+        writer.Write(bitsPerSample)     ' 8 bit or  16 bit sound sample etc....
+        writer.Write(&H61746164) ' = encoding.GetBytes("data")
+        writer.Write(dataChunkSize)     ' == NumSamples * NumChannels * BitsPerSample/8
+        Dim theta As Double = frequency * TAU / CDbl(samplesPerSecond) ' removed -1 from samples per second. CDbl(samplesPerSecond -1)
+        ' 'volume' is UInt16 with range 0 thru Uint16.MaxValue ( = 65 535)
+        ' we need 'amp' to have the range of 0 thru Int16.MaxValue ( = 32 767)
+        Dim amp As Double = volume >> 2 ' so we simply set amp = volume / 2
+        Dim rampAmp As Double = 0
+        Dim a As Double
+        'updated code using suggestions from stackoverflow.com
+        'insert code for full ramp begining and ending with full wave in between
+        For [step] As Integer = 0 To total_samples - 1 ' this will be the begining ramp
+            a = 0.5 * (1 - Math.Cos(2 * Math.PI * [step] / CDbl(total_samples)))
+            Dim s As Short = CShort(Math.Truncate(amp * a * Math.Sin(theta * CDbl([step]))))
+            writer.Write(s)
+        Next [step]
+
+        Return genStream
     End Function
 
 End Module

@@ -181,7 +181,7 @@ Partial Class Form1
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(67, 59)
         Me.Button4.TabIndex = 10
-        Me.Button4.Text = "Test PlayBeep"
+        Me.Button4.Text = "Test NEW PlayBeep"
         Me.Button4.UseVisualStyleBackColor = True
         '
         'Button1
@@ -190,7 +190,7 @@ Partial Class Form1
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(143, 96)
         Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Button1"
+        Me.Button1.Text = "Test old beeps"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'MyApplicationBindingSource
