@@ -181,10 +181,16 @@ Public Class Form1
     End Sub
 
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
-        createWave(ditStream, 600, 100, 12, 600, 24832)
+        createWave(ditStream, 800, 100, 5, 100)
+        createWave(dahStream, 800, 300, 5, 100)
         ditStream.Seek(0, IO.SeekOrigin.Begin)
+        dahStream.Seek(0, IO.SeekOrigin.Begin)
         For [step] = 1 To 5
             playDit()
+            playDah()
+            playDit()
+            playDit()
+
         Next
     End Sub
 End Class

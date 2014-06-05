@@ -51,7 +51,7 @@ Public Module MorseDecode
         Dim rampSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * msRamp * 0.001))   'number of samples for ramp
         Dim full_amplitude_samples As Integer = total_samples - (rampSamples * 2)         'number of samples at full amplitude
         Dim silenceSamples As Integer = CInt(Math.Truncate(CType(samplesPerSecond, [Decimal]) * CDbl(msTrailingSilence * 0.001)))
-        Dim dataChunkSize As Integer = total_samples * 2 'frameSize --- changed 1 to 2 5/28/14
+        Dim dataChunkSize As Integer = (total_samples * 2) + (silenceSamples * 2) 'frameSize --- changed 1 to 2 5/28/14
         Dim fileSize As Integer = 36 + dataChunkSize 'waveSize + headerSize + formatChunkSize + headerSize + dataChunkSize
         ' var encoding = new System.Text.UTF8Encoding();
         writer.Write(&H46464952) ' = encoding.GetBytes("RIFF")
@@ -178,51 +178,34 @@ Public Module MorseDecode
 
         ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
-        player.LoadAsync()
-check:
-        If player.IsLoadCompleted = True Then player.PlaySync()
-        If player.IsLoadCompleted = False Then GoTo check
+        player.PlaySync()
+
 
     End Sub
     Sub playDah()
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
-        player.LoadAsync()
-check:
-        If player.IsLoadCompleted = True Then player.PlaySync()
-        If player.IsLoadCompleted = False Then GoTo check
-
+   player.PlaySync()
 
     End Sub
     Sub playLtrSpc()
         player.Stream = ltrSpace
-        player.LoadAsync()
         ltrSpace.Seek(0, SeekOrigin.Begin)
-check:
-        If player.IsLoadCompleted = True Then player.PlaySync()
-        If player.IsLoadCompleted = False Then GoTo check
+        player.PlaySync()
 
 
     End Sub
     Sub playWrdSpc()
         wrdSpace.Seek(0, SeekOrigin.Begin)
-        player.LoadAsync()
         player.Stream = wrdSpace
-check:
-        If player.IsLoadCompleted = True Then player.PlaySync()
-        If player.IsLoadCompleted = False Then GoTo check
-
+   player.PlaySync()
 
 
     End Sub
     Sub playInterSpc()
         interSpace.Seek(0, SeekOrigin.Begin)
-        player.LoadAsync()
         player.Stream = interSpace
-check:
-        If player.IsLoadCompleted = True Then player.PlaySync()
-        If player.IsLoadCompleted = False Then GoTo check
-
+   player.PlaySync()
 
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
