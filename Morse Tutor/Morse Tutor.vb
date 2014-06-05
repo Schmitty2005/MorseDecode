@@ -72,7 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(25, 600, False)
+        initializeSounds(40, 600, True, 15)
         MorseDecode.PlayString("n7wdk test k7frt")
 
     End Sub

@@ -31,7 +31,7 @@ Public Module MorseDecode
     Public interSpace As New MemoryStream
     
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
-                         Optional ByVal msTrailingSilence As Integer = 0, Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
+                         Optional ByVal msTrailingSilence As Integer = 0, Optional msRamp As Integer = 4, Optional ByVal volume As UInt16 = 16383) ' 16383
         ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
         ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
         ' volume ramp (5ms is standard CW)
