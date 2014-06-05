@@ -38,15 +38,11 @@ Partial Class Form1
         Me.charDisplay_tooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.display_test = New System.Windows.Forms.Label()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Button9 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -67,7 +63,7 @@ Partial Class Form1
         '
         'start_button
         '
-        Me.start_button.Location = New System.Drawing.Point(37, 278)
+        Me.start_button.Location = New System.Drawing.Point(59, 242)
         Me.start_button.Name = "start_button"
         Me.start_button.Size = New System.Drawing.Size(75, 23)
         Me.start_button.TabIndex = 3
@@ -76,7 +72,7 @@ Partial Class Form1
         '
         'exit_button
         '
-        Me.exit_button.Location = New System.Drawing.Point(132, 278)
+        Me.exit_button.Location = New System.Drawing.Point(521, 335)
         Me.exit_button.Name = "exit_button"
         Me.exit_button.Size = New System.Drawing.Size(75, 23)
         Me.exit_button.TabIndex = 4
@@ -160,43 +156,16 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(456, 242)
+        Me.Button2.Location = New System.Drawing.Point(271, 242)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(70, 59)
+        Me.Button2.Size = New System.Drawing.Size(200, 59)
         Me.Button2.TabIndex = 8
-        Me.Button2.Text = "Test Text Display"
+        Me.Button2.Text = "Test Audio Playback"
         Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Location = New System.Drawing.Point(302, 242)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 59)
-        Me.Button3.TabIndex = 9
-        Me.Button3.Text = "Test NEW Play Method"
-        Me.Button3.UseVisualStyleBackColor = True
-        '
-        'Button4
-        '
-        Me.Button4.Location = New System.Drawing.Point(383, 242)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(67, 59)
-        Me.Button4.TabIndex = 10
-        Me.Button4.Text = "Test NEW PlayBeep"
-        Me.Button4.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(404, 27)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(143, 96)
-        Me.Button1.TabIndex = 11
-        Me.Button1.Text = "Test old beeps"
-        Me.Button1.UseVisualStyleBackColor = True
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(302, 307)
+        Me.Button5.Location = New System.Drawing.Point(190, 244)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(75, 54)
         Me.Button5.TabIndex = 13
@@ -234,28 +203,15 @@ Partial Class Form1
         '
         Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
         '
-        'Button9
-        '
-        Me.Button9.Location = New System.Drawing.Point(59, 229)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(174, 30)
-        Me.Button9.TabIndex = 17
-        Me.Button9.Text = "Trailing Silence added TEST"
-        Me.Button9.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
-        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
         Me.Controls.Add(Me.Button5)
-        Me.Controls.Add(Me.Button1)
-        Me.Controls.Add(Me.Button4)
-        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.display_test)
         Me.Controls.Add(Me.exit_button)
@@ -287,14 +243,10 @@ Partial Class Form1
     Friend WithEvents charDisplay_tooltip As System.Windows.Forms.ToolTip
     Friend WithEvents display_test As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
-    Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents Button4 As System.Windows.Forms.Button
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents MyApplicationBindingSource As System.Windows.Forms.BindingSource
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
-    Friend WithEvents Button9 As System.Windows.Forms.Button
 
 End Class

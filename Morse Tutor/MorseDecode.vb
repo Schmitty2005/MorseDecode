@@ -31,7 +31,7 @@ Public Module MorseDecode
     Public interSpace As New MemoryStream
     
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
-                        Optional msRamp As Integer = 3, Optional ByVal msTrailingSilence As Integer = 0, Optional ByVal volume As UInt16 = 16383) ' 16383
+                         Optional ByVal msTrailingSilence As Integer = 0, Optional msRamp As Integer = 5, Optional ByVal volume As UInt16 = 16383) ' 16383
         ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
         ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
         ' volume ramp (5ms is standard CW)
@@ -144,79 +144,54 @@ Public Module MorseDecode
 
     End Function
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal farnsworth_bool As Boolean = False, Optional ByVal farns_spacing As Integer = 15)
-        ''routine to calc WPM dit and dah lengths
-        ' Integers are just placeholders for testing purposes
+        'routine to calc WPM dit and dah lengths
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
-        Dim wrdspDuration As Integer = ditDurations * 7  ' need to make code for proper spacing
+        Dim wrdspDuration As Integer = ditDurations * 7
         Dim ltrspDuration As Integer = (dahDurations - ditDurations)
         If farnsworth_bool Then wrdspDuration = (1200 / farns_spacing) * 7
         If farnsworth_bool Then ltrspDuration = (wrdspDuration * 3) - wrdspDuration
-        'Debug.Print("Dit Duration: " & ditDurations & "Dah Duration :" & dahDurations & "Letter Space : " & ltrspDuration & "Word Space : " & wrdspDuration)
-
         'generate wave memory streams
-        Debug.Print("Generating Dit Stream.....")
-        MorseDecode.createWave(MorseDecode.ditStream, frequencyHz, ditDurations)
-        Debug.Print("Generating Dah Stream.....")
-        MorseDecode.createWave(MorseDecode.dahStream, frequencyHz, dahDurations)
+        MorseDecode.createWave(MorseDecode.ditStream, frequencyHz, ditDurations, ditDurations)
+        MorseDecode.createWave(MorseDecode.dahStream, frequencyHz, dahDurations, ditDurations)
         MorseDecode.createSilence(MorseDecode.ltrSpace, ltrspDuration)
         MorseDecode.createSilence(MorseDecode.wrdSpace, wrdspDuration)
         MorseDecode.createSilence(MorseDecode.interSpace, ditDurations)
-
-        'set memory streams to beginning
-        'ditStream.Seek(0, SeekOrigin.Begin)
-        'dahStream.Seek(0, SeekOrigin.Begin)
-        'ltrSpace.Seek(0, SeekOrigin.Begin)
-        ' wrdSpace.Seek(0, SeekOrigin.Begin)
-
-        '=====================================================================================
-        '==         THESE ARE COMMENTED OUT!  USED FOR TESTING!                             ==
-        '=====================================================================================
-
     End Sub ' sub used to initialize waves to be played back
     Sub playDit()
-
         ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
         player.PlaySync()
-
-
     End Sub
     Sub playDah()
         dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
-   player.PlaySync()
-
+        player.PlaySync()
     End Sub
     Sub playLtrSpc()
         player.Stream = ltrSpace
         ltrSpace.Seek(0, SeekOrigin.Begin)
         player.PlaySync()
-
-
     End Sub
     Sub playWrdSpc()
         wrdSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = wrdSpace
-   player.PlaySync()
-
-
+        player.PlaySync()
     End Sub
     Sub playInterSpc()
         interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
-   player.PlaySync()
-
+        player.PlaySync()
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character
         Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
-        Dim counter As Int16 = morseString.Length
+        Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim ditdah As Char
 
         For [step] As Integer = 0 To counter - 1
             ditdah = morseString.Chars([step])
-            'Application.DoEvents()
+            Application.DoEvents()
 
             If ditdah = "." Then
                 playDit()
