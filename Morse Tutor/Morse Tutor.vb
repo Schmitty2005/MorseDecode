@@ -195,12 +195,15 @@ Public Class Form1
     End Sub
 
     Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
-        initializeSounds(14, 800)
-        createCharWave(charStream, "v")
+        Dim charStream As New IO.MemoryStream
+        initializeSounds(60, 800)
+
+        charStream = createCharWave(charStream, "c")
         player.Stream = charStream
         charStream.Seek(0, IO.SeekOrigin.Begin)
         player.PlaySync()
 
+        charStream.Dispose()
 
     End Sub
 End Class
