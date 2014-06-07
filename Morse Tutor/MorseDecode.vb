@@ -3,10 +3,6 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
-Imports System.Threading
-' A future version should have an Async method for playback verusus using the System.Media.player.playsync().
-' The program runs like crap
-'
 Public Module MorseDecode
 
     'morsedict contains a dictionary with the proper morse code attached to the letter
@@ -29,6 +25,7 @@ Public Module MorseDecode
     Public ltrSpace As New MemoryStream
     Public wrdSpace As New MemoryStream
     Public interSpace As New MemoryStream
+    Public charStream As New MemoryStream
     
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
                          Optional ByVal msTrailingSilence As Integer = 0, Optional msRamp As Integer = 4, Optional ByVal volume As UInt16 = 16383) ' 16383
@@ -241,6 +238,32 @@ Public Module MorseDecode
         End Using
 
     End Sub
+    Function createCharWave(ByRef genStream As MemoryStream, ByVal waveChar As Char)
+        Dim morseString = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
+        Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
+        Dim ditdah As Char
+
+        For [step] As Integer = 0 To counter - 1
+            ditdah = morseString.Chars([step])
+            Application.DoEvents()
+            genStream.Seek(0, SeekOrigin.Begin)
+            If ditdah = "." Then
+                ditStream.Position = 44
+                ditStream.CopyTo(genStream)
+            End If
+
+            If ditdah = "-" Then
+                dahStream.Position = 44
+                dahStream.CopyTo(genStream)
+            End If
+
+        Next
+        'add wave header data to PCM stream
+        PCM_to_wave(genStream)
+        'return completed character wave as stream
+        Return genStream
+
+    End Function
     Public Sub Main()
 
     End Sub

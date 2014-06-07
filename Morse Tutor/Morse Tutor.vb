@@ -193,4 +193,14 @@ Public Class Form1
 
         Next
     End Sub
+
+    Private Sub Button1_Click_2(sender As Object, e As EventArgs) Handles Button1.Click
+        initializeSounds(14, 800)
+        createCharWave(charStream, "v")
+        player.Stream = charStream
+        charStream.Seek(0, IO.SeekOrigin.Begin)
+        player.PlaySync()
+
+
+    End Sub
 End Class
