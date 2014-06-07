@@ -43,6 +43,7 @@ Partial Class Form1
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Button8 = New System.Windows.Forms.Button()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -52,10 +53,10 @@ Partial Class Form1
         Me.display_chr.AutoSize = True
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.display_chr.Font = New System.Drawing.Font("Monospac821 BT", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.display_chr.Font = New System.Drawing.Font("Microsoft Sans Serif", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.display_chr.Location = New System.Drawing.Point(627, 43)
         Me.display_chr.Name = "display_chr"
-        Me.display_chr.Size = New System.Drawing.Size(291, 315)
+        Me.display_chr.Size = New System.Drawing.Size(301, 298)
         Me.display_chr.TabIndex = 2
         Me.display_chr.Text = "A"
         Me.display_chr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -203,11 +204,21 @@ Partial Class Form1
         '
         Me.MyApplicationBindingSource.DataSource = GetType(Morse_Tutor.My.MyApplication)
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(494, 52)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(75, 55)
+        Me.Button1.TabIndex = 17
+        Me.Button1.Text = "Test Character Wave"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
         Me.Controls.Add(Me.Button6)
@@ -248,5 +259,6 @@ Partial Class Form1
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class
