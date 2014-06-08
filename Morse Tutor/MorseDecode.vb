@@ -142,6 +142,12 @@ Public Module MorseDecode
 
     End Function
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal farnsworth_bool As Boolean = False, Optional ByVal farns_spacing As Integer = 15)
+        'add routine to allow reinitialization of streams
+        '' existing streams need to be deleted for it to work proplerly
+        ''
+        ''
+        ''
+        ''
         'routine to calc WPM dit and dah lengths
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3

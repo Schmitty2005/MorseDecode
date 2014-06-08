@@ -44,8 +44,19 @@ Partial Class Form1
         Me.Button8 = New System.Windows.Forms.Button()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.nudWPMSpeed = New System.Windows.Forms.NumericUpDown()
+        Me.labelWPM = New System.Windows.Forms.Label()
+        Me.labelSpacing = New System.Windows.Forms.Label()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.nudFarnsworth = New System.Windows.Forms.NumericUpDown()
+        Me.farnsworthBool = New System.Windows.Forms.RadioButton()
+        Me.btnSpacingRegular = New System.Windows.Forms.RadioButton()
+        Me.btnCustomSpacing = New System.Windows.Forms.RadioButton()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
+        CType(Me.nudFarnsworth, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'display_chr
@@ -64,7 +75,7 @@ Partial Class Form1
         '
         'start_button
         '
-        Me.start_button.Location = New System.Drawing.Point(59, 242)
+        Me.start_button.Location = New System.Drawing.Point(12, 361)
         Me.start_button.Name = "start_button"
         Me.start_button.Size = New System.Drawing.Size(75, 23)
         Me.start_button.TabIndex = 3
@@ -73,7 +84,7 @@ Partial Class Form1
         '
         'exit_button
         '
-        Me.exit_button.Location = New System.Drawing.Point(521, 335)
+        Me.exit_button.Location = New System.Drawing.Point(522, 361)
         Me.exit_button.Name = "exit_button"
         Me.exit_button.Size = New System.Drawing.Size(75, 23)
         Me.exit_button.TabIndex = 4
@@ -149,7 +160,7 @@ Partial Class Form1
         '
         Me.display_test.AutoSize = True
         Me.display_test.Font = New System.Drawing.Font("Microsoft Sans Serif", 64.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_test.Location = New System.Drawing.Point(42, 27)
+        Me.display_test.Location = New System.Drawing.Point(12, 28)
         Me.display_test.Name = "display_test"
         Me.display_test.Size = New System.Drawing.Size(335, 97)
         Me.display_test.TabIndex = 6
@@ -157,16 +168,16 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(271, 242)
+        Me.Button2.Location = New System.Drawing.Point(228, 232)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(200, 59)
+        Me.Button2.Size = New System.Drawing.Size(119, 126)
         Me.Button2.TabIndex = 8
         Me.Button2.Text = "Test Audio Playback"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(190, 244)
+        Me.Button5.Location = New System.Drawing.Point(147, 232)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(75, 54)
         Me.Button5.TabIndex = 13
@@ -175,7 +186,7 @@ Partial Class Form1
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(59, 128)
+        Me.Button6.Location = New System.Drawing.Point(29, 127)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(106, 95)
         Me.Button6.TabIndex = 14
@@ -184,16 +195,16 @@ Partial Class Form1
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(171, 127)
+        Me.Button7.Location = New System.Drawing.Point(29, 232)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(94, 95)
+        Me.Button7.Size = New System.Drawing.Size(106, 123)
         Me.Button7.TabIndex = 15
         Me.Button7.Text = "Add Wave header and playback"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(271, 128)
+        Me.Button8.Location = New System.Drawing.Point(147, 128)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(200, 95)
         Me.Button8.TabIndex = 16
@@ -206,18 +217,110 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(494, 52)
+        Me.Button1.Location = New System.Drawing.Point(147, 303)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 55)
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Test Character Wave"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'nudWPMSpeed
+        '
+        Me.nudWPMSpeed.Location = New System.Drawing.Point(133, 27)
+        Me.nudWPMSpeed.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
+        Me.nudWPMSpeed.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.nudWPMSpeed.Name = "nudWPMSpeed"
+        Me.nudWPMSpeed.Size = New System.Drawing.Size(49, 20)
+        Me.nudWPMSpeed.TabIndex = 18
+        Me.charDisplay_tooltip.SetToolTip(Me.nudWPMSpeed, "Adjust WPM 5 to 50")
+        Me.nudWPMSpeed.Value = New Decimal(New Integer() {20, 0, 0, 0})
+        '
+        'labelWPM
+        '
+        Me.labelWPM.AutoSize = True
+        Me.labelWPM.Location = New System.Drawing.Point(6, 30)
+        Me.labelWPM.Name = "labelWPM"
+        Me.labelWPM.Size = New System.Drawing.Size(68, 13)
+        Me.labelWPM.TabIndex = 19
+        Me.labelWPM.Text = "WPM Speed"
+        '
+        'labelSpacing
+        '
+        Me.labelSpacing.AutoSize = True
+        Me.labelSpacing.Location = New System.Drawing.Point(6, 151)
+        Me.labelSpacing.Name = "labelSpacing"
+        Me.labelSpacing.Size = New System.Drawing.Size(73, 13)
+        Me.labelSpacing.TabIndex = 20
+        Me.labelSpacing.Text = "Spacing Type"
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.btnCustomSpacing)
+        Me.GroupBox1.Controls.Add(Me.btnSpacingRegular)
+        Me.GroupBox1.Controls.Add(Me.farnsworthBool)
+        Me.GroupBox1.Controls.Add(Me.nudFarnsworth)
+        Me.GroupBox1.Controls.Add(Me.nudWPMSpeed)
+        Me.GroupBox1.Controls.Add(Me.labelWPM)
+        Me.GroupBox1.Controls.Add(Me.labelSpacing)
+        Me.GroupBox1.Location = New System.Drawing.Point(397, 43)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(200, 180)
+        Me.GroupBox1.TabIndex = 21
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Morse Speed"
+        Me.charDisplay_tooltip.SetToolTip(Me.GroupBox1, "Playback speed settings")
+        '
+        'nudFarnsworth
+        '
+        Me.nudFarnsworth.Location = New System.Drawing.Point(133, 149)
+        Me.nudFarnsworth.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
+        Me.nudFarnsworth.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.nudFarnsworth.Name = "nudFarnsworth"
+        Me.nudFarnsworth.Size = New System.Drawing.Size(49, 20)
+        Me.nudFarnsworth.TabIndex = 22
+        Me.charDisplay_tooltip.SetToolTip(Me.nudFarnsworth, "Adjust Farnsworth character spacing 5 to 50 WPM")
+        Me.nudFarnsworth.Value = New Decimal(New Integer() {12, 0, 0, 0})
+        '
+        'farnsworthBool
+        '
+        Me.farnsworthBool.AutoSize = True
+        Me.farnsworthBool.Location = New System.Drawing.Point(6, 106)
+        Me.farnsworthBool.Name = "farnsworthBool"
+        Me.farnsworthBool.Size = New System.Drawing.Size(119, 17)
+        Me.farnsworthBool.TabIndex = 23
+        Me.farnsworthBool.TabStop = True
+        Me.farnsworthBool.Text = "Farnsworth Spacing"
+        Me.charDisplay_tooltip.SetToolTip(Me.farnsworthBool, "Farnsworth Spacing ON/OFF")
+        Me.farnsworthBool.UseVisualStyleBackColor = True
+        '
+        'btnSpacingRegular
+        '
+        Me.btnSpacingRegular.AutoSize = True
+        Me.btnSpacingRegular.Location = New System.Drawing.Point(6, 83)
+        Me.btnSpacingRegular.Name = "btnSpacingRegular"
+        Me.btnSpacingRegular.Size = New System.Drawing.Size(131, 17)
+        Me.btnSpacingRegular.TabIndex = 24
+        Me.btnSpacingRegular.TabStop = True
+        Me.btnSpacingRegular.Text = "Standard CW Spacing"
+        Me.btnSpacingRegular.UseVisualStyleBackColor = True
+        '
+        'btnCustomSpacing
+        '
+        Me.btnCustomSpacing.AutoSize = True
+        Me.btnCustomSpacing.Location = New System.Drawing.Point(6, 129)
+        Me.btnCustomSpacing.Name = "btnCustomSpacing"
+        Me.btnCustomSpacing.Size = New System.Drawing.Size(121, 17)
+        Me.btnCustomSpacing.TabIndex = 25
+        Me.btnCustomSpacing.TabStop = True
+        Me.btnCustomSpacing.Text = "Custom CW spacing"
+        Me.btnCustomSpacing.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(942, 396)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button8)
         Me.Controls.Add(Me.Button7)
@@ -235,6 +338,10 @@ Partial Class Form1
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        CType(Me.nudFarnsworth, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -260,5 +367,13 @@ Partial Class Form1
     Friend WithEvents Button7 As System.Windows.Forms.Button
     Friend WithEvents Button8 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents nudWPMSpeed As System.Windows.Forms.NumericUpDown
+    Friend WithEvents labelWPM As System.Windows.Forms.Label
+    Friend WithEvents labelSpacing As System.Windows.Forms.Label
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents nudFarnsworth As System.Windows.Forms.NumericUpDown
+    Friend WithEvents farnsworthBool As System.Windows.Forms.RadioButton
+    Friend WithEvents btnCustomSpacing As System.Windows.Forms.RadioButton
+    Friend WithEvents btnSpacingRegular As System.Windows.Forms.RadioButton
 
 End Class
