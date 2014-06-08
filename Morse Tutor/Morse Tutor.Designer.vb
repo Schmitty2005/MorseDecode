@@ -179,7 +179,7 @@ Partial Class Form1
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(106, 95)
         Me.Button6.TabIndex = 14
-        Me.Button6.Text = "Strip Wave Header"
+        Me.Button6.Text = "Test String Wave"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button7

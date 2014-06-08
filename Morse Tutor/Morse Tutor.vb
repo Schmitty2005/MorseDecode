@@ -151,8 +151,18 @@ Public Class Form1
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        strip_wave_header(MorseDecode.ditStream)
+        If ditStream.Length = 0 Then
+            initializeSounds(14, 800)
+        End If
+        Dim playword As New IO.MemoryStream
+        createWordWave(wordStream, "TEST")
+        wordStream.Seek(0, IO.SeekOrigin.Begin)
+        player.Stream = wordStream
+        PCM_to_wave(wordStream)
+        wordStream.Seek(0, IO.SeekOrigin.Begin)
+        player.Stream = wordStream
 
+        player.PlaySync()
 
     End Sub
 
