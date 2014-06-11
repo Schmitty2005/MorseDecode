@@ -72,7 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(40, 600, True, 15)
+        initializeSounds(Me.nudWPMSpeed.Value, 600, Me.farnsworthBool.Checked, Me.nudFarnsworth.Value)
         MorseDecode.PlayString("n7wdk test k7frt")
 
     End Sub
@@ -151,8 +151,18 @@ Public Class Form1
     End Sub
 
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
-        strip_wave_header(MorseDecode.ditStream)
+        If ditStream.Length = 0 Then
+            initializeSounds(14, 800)
+        End If
+        Dim playword As New IO.MemoryStream
+        createWordWave(wordStream, "TEST")
+        wordStream.Seek(0, IO.SeekOrigin.Begin)
+        player.Stream = wordStream
+        PCM_to_wave(wordStream)
+        wordStream.Seek(0, IO.SeekOrigin.Begin)
+        player.Stream = wordStream
 
+        player.PlaySync()
 
     End Sub
 
@@ -225,5 +235,27 @@ Public Class Form1
 
         charStream.Dispose()
 
+    End Sub
+
+    Private Sub farnsworthBool_CheckedChanged(sender As Object, e As EventArgs) Handles farnsworthBool.CheckedChanged
+        If farnsworthBool.Checked Then
+            Me.nudFarnsworth.Enabled = True
+            Me.labelSpacing.Text = "FarnsWorth Spacing"
+            Me.labelSpacing.Show()
+        Else
+            Me.labelSpacing.Hide()
+            Me.nudFarnsworth.Enabled = False
+        End If
+    End Sub
+
+    Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles btnCustomSpacing.CheckedChanged
+        If Me.btnCustomSpacing.Checked Then
+            Me.labelSpacing.Text = "Custom Spacing"
+            Me.labelSpacing.Show()
+            Me.nudFarnsworth.Enabled = True
+        Else
+            Me.labelSpacing.Hide()
+            Me.nudFarnsworth.Enabled = False
+        End If
     End Sub
 End Class

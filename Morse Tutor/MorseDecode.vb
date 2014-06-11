@@ -26,7 +26,8 @@ Public Module MorseDecode
     Public wrdSpace As New MemoryStream
     Public interSpace As New MemoryStream
     ' Public charStream As New MemoryStream
-    
+    Public wordStream As New MemoryStream
+
     Function createWave(ByRef genStream As MemoryStream, ByVal frequency As Double, ByVal msDuration As Integer, _
                          Optional ByVal msTrailingSilence As Integer = 0, Optional msRamp As Integer = 4, Optional ByVal volume As UInt16 = 16383) ' 16383
         ' createWave generates a sine wave in the form of a memory stream to be passed to windows.media.player
@@ -141,6 +142,12 @@ Public Module MorseDecode
 
     End Function
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal farnsworth_bool As Boolean = False, Optional ByVal farns_spacing As Integer = 15)
+        'add routine to allow reinitialization of streams
+        '' existing streams need to be deleted for it to work proplerly
+        ''
+        ''
+        ''
+        ''
         'routine to calc WPM dit and dah lengths
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
@@ -239,6 +246,7 @@ Public Module MorseDecode
 
     End Sub
     Function createCharWave(ByVal playStream As MemoryStream, ByVal waveChar As Char)
+
         Dim morseString = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim genStream As New MemoryStream
@@ -265,6 +273,25 @@ Public Module MorseDecode
         'return completed character wave as stream
 
         Return playStream
+
+    End Function
+    Function createWordWave(ByRef playstream As MemoryStream, ByVal wordString As String)
+        If ditStream.Length = 0 Then initializeSounds(14, 800)
+        Dim charCounter As Integer = wordString.Length
+        Dim charConvert As Char
+        Dim genstream As New MemoryStream
+        wordString = wordString.ToLower()        'set to lowercase for proper dictionary reference
+        For [step] = 0 To charCounter - 1
+            charConvert = wordString.Chars([step])
+            genstream = createCharWave(genstream, charConvert)
+            genstream.Position = 44 ' strip wave header data
+            genstream.CopyTo(playstream)
+        Next
+        wrdSpace.Position = 44     ' strip wave header data
+        wrdSpace.CopyTo(genstream)
+        playstream.Seek(0, SeekOrigin.Begin)
+        PCM_to_wave(playstream)
+        Return playstream
 
     End Function
     Public Sub Main()
