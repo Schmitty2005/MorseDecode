@@ -38,6 +38,7 @@ Partial Class Form1
         Me.charDisplay_tooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.nudWPMSpeed = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.cmboFreqHz = New System.Windows.Forms.ComboBox()
         Me.btnCustomSpacing = New System.Windows.Forms.RadioButton()
         Me.btnSpacingRegular = New System.Windows.Forms.RadioButton()
         Me.farnsworthBool = New System.Windows.Forms.RadioButton()
@@ -52,6 +53,7 @@ Partial Class Form1
         Me.Button8 = New System.Windows.Forms.Button()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -65,7 +67,7 @@ Partial Class Form1
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.display_chr.Font = New System.Drawing.Font("Microsoft Sans Serif", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_chr.Location = New System.Drawing.Point(648, 91)
+        Me.display_chr.Location = New System.Drawing.Point(634, 43)
         Me.display_chr.Name = "display_chr"
         Me.display_chr.Size = New System.Drawing.Size(301, 298)
         Me.display_chr.TabIndex = 2
@@ -84,7 +86,7 @@ Partial Class Form1
         '
         'exit_button
         '
-        Me.exit_button.Location = New System.Drawing.Point(897, 427)
+        Me.exit_button.Location = New System.Drawing.Point(93, 427)
         Me.exit_button.Name = "exit_button"
         Me.exit_button.Size = New System.Drawing.Size(75, 23)
         Me.exit_button.TabIndex = 4
@@ -169,6 +171,8 @@ Partial Class Form1
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.Label1)
+        Me.GroupBox1.Controls.Add(Me.cmboFreqHz)
         Me.GroupBox1.Controls.Add(Me.btnCustomSpacing)
         Me.GroupBox1.Controls.Add(Me.btnSpacingRegular)
         Me.GroupBox1.Controls.Add(Me.farnsworthBool)
@@ -178,11 +182,22 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.labelSpacing)
         Me.GroupBox1.Location = New System.Drawing.Point(397, 43)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 166)
+        Me.GroupBox1.Size = New System.Drawing.Size(200, 207)
         Me.GroupBox1.TabIndex = 21
         Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Morse Speed"
+        Me.GroupBox1.Text = "Morse Properties"
         Me.charDisplay_tooltip.SetToolTip(Me.GroupBox1, "Playback speed settings")
+        '
+        'cmboFreqHz
+        '
+        Me.cmboFreqHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmboFreqHz.DropDownWidth = 80
+        Me.cmboFreqHz.FormattingEnabled = True
+        Me.cmboFreqHz.Items.AddRange(New Object() {"200", "400", "600", "800", "1000", "1200"})
+        Me.cmboFreqHz.Location = New System.Drawing.Point(136, 160)
+        Me.cmboFreqHz.Name = "cmboFreqHz"
+        Me.cmboFreqHz.Size = New System.Drawing.Size(49, 21)
+        Me.cmboFreqHz.TabIndex = 26
         '
         'btnCustomSpacing
         '
@@ -191,13 +206,13 @@ Partial Class Form1
         Me.btnCustomSpacing.Name = "btnCustomSpacing"
         Me.btnCustomSpacing.Size = New System.Drawing.Size(121, 17)
         Me.btnCustomSpacing.TabIndex = 25
-        Me.btnCustomSpacing.TabStop = True
         Me.btnCustomSpacing.Text = "Custom CW spacing"
         Me.btnCustomSpacing.UseVisualStyleBackColor = True
         '
         'btnSpacingRegular
         '
         Me.btnSpacingRegular.AutoSize = True
+        Me.btnSpacingRegular.Checked = True
         Me.btnSpacingRegular.Location = New System.Drawing.Point(9, 62)
         Me.btnSpacingRegular.Name = "btnSpacingRegular"
         Me.btnSpacingRegular.Size = New System.Drawing.Size(131, 17)
@@ -213,7 +228,6 @@ Partial Class Form1
         Me.farnsworthBool.Name = "farnsworthBool"
         Me.farnsworthBool.Size = New System.Drawing.Size(119, 17)
         Me.farnsworthBool.TabIndex = 23
-        Me.farnsworthBool.TabStop = True
         Me.farnsworthBool.Text = "Farnsworth Spacing"
         Me.charDisplay_tooltip.SetToolTip(Me.farnsworthBool, "Farnsworth Spacing ON/OFF")
         Me.farnsworthBool.UseVisualStyleBackColor = True
@@ -251,15 +265,17 @@ Partial Class Form1
         '
         Me.display_test.AutoSize = True
         Me.display_test.Font = New System.Drawing.Font("Microsoft Sans Serif", 64.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.display_test.Location = New System.Drawing.Point(12, 28)
+        Me.display_test.Location = New System.Drawing.Point(737, 353)
         Me.display_test.Name = "display_test"
-        Me.display_test.Size = New System.Drawing.Size(335, 97)
+        Me.display_test.Size = New System.Drawing.Size(95, 97)
         Me.display_test.TabIndex = 6
-        Me.display_test.Text = "Dah-Dit"
+        Me.display_test.Text = ".-"
+        Me.display_test.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.charDisplay_tooltip.SetToolTip(Me.display_test, "Morse Code is Displayed")
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(237, 232)
+        Me.Button2.Location = New System.Drawing.Point(397, 256)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(119, 126)
         Me.Button2.TabIndex = 8
@@ -268,7 +284,7 @@ Partial Class Form1
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(147, 232)
+        Me.Button5.Location = New System.Drawing.Point(147, 155)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(75, 54)
         Me.Button5.TabIndex = 13
@@ -277,7 +293,7 @@ Partial Class Form1
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(29, 127)
+        Me.Button6.Location = New System.Drawing.Point(29, 43)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(106, 95)
         Me.Button6.TabIndex = 14
@@ -286,7 +302,7 @@ Partial Class Form1
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(29, 232)
+        Me.Button7.Location = New System.Drawing.Point(29, 151)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(106, 123)
         Me.Button7.TabIndex = 15
@@ -295,7 +311,7 @@ Partial Class Form1
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(147, 128)
+        Me.Button8.Location = New System.Drawing.Point(147, 44)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(209, 94)
         Me.Button8.TabIndex = 16
@@ -308,12 +324,21 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(147, 300)
+        Me.Button1.Location = New System.Drawing.Point(147, 219)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 55)
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Test Character Wave"
         Me.Button1.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 167)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(76, 13)
+        Me.Label1.TabIndex = 27
+        Me.Label1.Text = "CW Freq in Hz"
         '
         'Form1
         '
@@ -375,5 +400,7 @@ Partial Class Form1
     Friend WithEvents farnsworthBool As System.Windows.Forms.RadioButton
     Friend WithEvents btnCustomSpacing As System.Windows.Forms.RadioButton
     Friend WithEvents btnSpacingRegular As System.Windows.Forms.RadioButton
+    Friend WithEvents cmboFreqHz As System.Windows.Forms.ComboBox
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
