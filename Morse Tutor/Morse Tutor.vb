@@ -72,7 +72,7 @@ Public Class Form1
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        initializeSounds(Me.nudWPMSpeed.Value, 600, Me.farnsworthBool.Checked, Me.nudFarnsworth.Value)
+        initializeSounds(Me.nudWPMSpeed.Value, 1000, Me.farnsworthBool.Checked, Me.nudFarnsworth.Value)
         MorseDecode.PlayString("n7wdk test k7frt")
 
     End Sub
@@ -257,5 +257,9 @@ Public Class Form1
             Me.labelSpacing.Hide()
             Me.nudFarnsworth.Enabled = False
         End If
+    End Sub
+
+    Private Sub GroupBox1_Enter(sender As Object, e As EventArgs) Handles GroupBox1.Enter
+
     End Sub
 End Class

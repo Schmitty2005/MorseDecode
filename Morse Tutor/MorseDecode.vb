@@ -142,12 +142,15 @@ Public Module MorseDecode
 
     End Function
     Public Sub initializeSounds(ByVal wordsPerMin As Integer, ByVal frequencyHz As Integer, Optional ByVal farnsworth_bool As Boolean = False, Optional ByVal farns_spacing As Integer = 15)
-        'add routine to allow reinitialization of streams
-        '' existing streams need to be deleted for it to work proplerly
-        ''
-        ''
-        ''
-        ''
+        'Reset Streams if they already exist - used for WPM and spacing changes
+        If ditStream.Length <> 0 Then
+            ditStream.SetLength(0)
+            dahStream.SetLength(0)
+            wrdSpace.SetLength(0)
+            ltrSpace.SetLength(0)
+            interSpace.SetLength(0)
+        End If
+       
         'routine to calc WPM dit and dah lengths
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
@@ -434,6 +437,7 @@ Public Module MorseDecode
         ' frequency is frequency in Hertz, msDuration is tone duration in milliseconds, msRamp is the beginning and ending
         ' volume ramp (5ms is standard CW)
         'set variables
+
         Dim writer As New BinaryWriter(genStream)
         Dim TAU As Double = 2 * Math.PI
         Dim formatChunkSize As Integer = 16
