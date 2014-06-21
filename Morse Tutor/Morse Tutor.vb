@@ -73,7 +73,7 @@ Public Class Form1
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         initializeSounds(Me.nudWPMSpeed.Value, Convert.ToInt16(Me.cmboFreqHz.SelectedItem), Me.farnsworthBool.Checked, Me.nudFarnsworth.Value)
-        MorseDecode.PlayString("n7wdk test k7frt")
+        MorseDecode.PlayString("CQ CQ / test")
 
     End Sub
 

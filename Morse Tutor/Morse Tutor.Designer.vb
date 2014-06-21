@@ -38,6 +38,7 @@ Partial Class Form1
         Me.charDisplay_tooltip = New System.Windows.Forms.ToolTip(Me.components)
         Me.nudWPMSpeed = New System.Windows.Forms.NumericUpDown()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.cmboFreqHz = New System.Windows.Forms.ComboBox()
         Me.btnCustomSpacing = New System.Windows.Forms.RadioButton()
         Me.btnSpacingRegular = New System.Windows.Forms.RadioButton()
@@ -53,12 +54,16 @@ Partial Class Form1
         Me.Button8 = New System.Windows.Forms.Button()
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.boxLearning = New System.Windows.Forms.GroupBox()
+        Me.udboxRepetitions = New System.Windows.Forms.NumericUpDown()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         CType(Me.nudFarnsworth, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.boxLearning.SuspendLayout()
+        CType(Me.udboxRepetitions, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'display_chr
@@ -188,12 +193,21 @@ Partial Class Form1
         Me.GroupBox1.Text = "Morse Properties"
         Me.charDisplay_tooltip.SetToolTip(Me.GroupBox1, "Playback speed settings")
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(12, 167)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(76, 13)
+        Me.Label1.TabIndex = 27
+        Me.Label1.Text = "CW Freq in Hz"
+        '
         'cmboFreqHz
         '
         Me.cmboFreqHz.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmboFreqHz.DropDownWidth = 80
         Me.cmboFreqHz.FormattingEnabled = True
-        Me.cmboFreqHz.Items.AddRange(New Object() {"200", "400", "600", "800", "1000", "1200"})
+        Me.cmboFreqHz.Items.AddRange(New Object() {"500", "600", "700", "800", "1000", "1200"})
         Me.cmboFreqHz.Location = New System.Drawing.Point(136, 160)
         Me.cmboFreqHz.Name = "cmboFreqHz"
         Me.cmboFreqHz.Size = New System.Drawing.Size(49, 21)
@@ -284,36 +298,40 @@ Partial Class Form1
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(147, 155)
+        Me.Button5.ForeColor = System.Drawing.Color.Red
+        Me.Button5.Location = New System.Drawing.Point(114, 353)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 54)
+        Me.Button5.Size = New System.Drawing.Size(94, 40)
         Me.Button5.TabIndex = 13
         Me.Button5.Text = "Write Stream as Wave"
         Me.Button5.UseVisualStyleBackColor = True
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(29, 43)
+        Me.Button6.ForeColor = System.Drawing.Color.Red
+        Me.Button6.Location = New System.Drawing.Point(12, 298)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(106, 95)
+        Me.Button6.Size = New System.Drawing.Size(96, 43)
         Me.Button6.TabIndex = 14
         Me.Button6.Text = "Test String Wave"
         Me.Button6.UseVisualStyleBackColor = True
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(29, 151)
+        Me.Button7.ForeColor = System.Drawing.Color.Red
+        Me.Button7.Location = New System.Drawing.Point(214, 353)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(106, 123)
+        Me.Button7.Size = New System.Drawing.Size(106, 40)
         Me.Button7.TabIndex = 15
         Me.Button7.Text = "Add Wave header and playback"
         Me.Button7.UseVisualStyleBackColor = True
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(147, 44)
+        Me.Button8.ForeColor = System.Drawing.Color.Red
+        Me.Button8.Location = New System.Drawing.Point(117, 298)
         Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(209, 94)
+        Me.Button8.Size = New System.Drawing.Size(203, 43)
         Me.Button8.TabIndex = 16
         Me.Button8.Text = "Strip Header, Combine PCM, Create Wave Header, PLayback"
         Me.Button8.UseVisualStyleBackColor = True
@@ -324,27 +342,50 @@ Partial Class Form1
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(147, 219)
+        Me.Button1.ForeColor = System.Drawing.Color.Red
+        Me.Button1.Location = New System.Drawing.Point(12, 353)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(75, 55)
+        Me.Button1.Size = New System.Drawing.Size(96, 40)
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Test Character Wave"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'Label1
+        'boxLearning
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 167)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(76, 13)
-        Me.Label1.TabIndex = 27
-        Me.Label1.Text = "CW Freq in Hz"
+        Me.boxLearning.Controls.Add(Me.Label2)
+        Me.boxLearning.Controls.Add(Me.udboxRepetitions)
+        Me.boxLearning.Location = New System.Drawing.Point(13, 43)
+        Me.boxLearning.Name = "boxLearning"
+        Me.boxLearning.Size = New System.Drawing.Size(378, 249)
+        Me.boxLearning.TabIndex = 22
+        Me.boxLearning.TabStop = False
+        Me.boxLearning.Text = "Learning Settings"
+        '
+        'udboxRepetitions
+        '
+        Me.udboxRepetitions.Location = New System.Drawing.Point(151, 31)
+        Me.udboxRepetitions.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        Me.udboxRepetitions.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.udboxRepetitions.Name = "udboxRepetitions"
+        Me.udboxRepetitions.Size = New System.Drawing.Size(63, 20)
+        Me.udboxRepetitions.TabIndex = 0
+        Me.udboxRepetitions.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(16, 33)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(109, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Character Repetitions"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 462)
+        Me.Controls.Add(Me.boxLearning)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Button8)
@@ -359,7 +400,7 @@ Partial Class Form1
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "Form1"
-        Me.Text = "Morse Learner V 0.01alpha"
+        Me.Text = "Morse Learner V 0.30alpha"
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).EndInit()
@@ -367,6 +408,9 @@ Partial Class Form1
         Me.GroupBox1.PerformLayout()
         CType(Me.nudFarnsworth, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MyApplicationBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.boxLearning.ResumeLayout(False)
+        Me.boxLearning.PerformLayout()
+        CType(Me.udboxRepetitions, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -402,5 +446,8 @@ Partial Class Form1
     Friend WithEvents btnSpacingRegular As System.Windows.Forms.RadioButton
     Friend WithEvents cmboFreqHz As System.Windows.Forms.ComboBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents boxLearning As System.Windows.Forms.GroupBox
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents udboxRepetitions As System.Windows.Forms.NumericUpDown
 
 End Class

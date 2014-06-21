@@ -196,17 +196,22 @@ Public Module MorseDecode
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim ditdah As Char
 
-        For [step] As Integer = 0 To counter - 1
-            ditdah = morseString.Chars([step])
-            Application.DoEvents()
+        For [other] As Integer = 1 To Form1.udboxRepetitions.Value
 
-            If ditdah = "." Then
-                playDit()
-            End If
+            For [step] As Integer = 0 To counter - 1
+                ditdah = morseString.Chars([step])
+                Application.DoEvents()
 
-            If ditdah = "-" Then
-                playDah()
-            End If
+                If ditdah = "." Then
+                    playDit()
+                End If
+
+                If ditdah = "-" Then
+                    playDah()
+                End If
+
+            Next
+            playLtrSpc()
 
         Next
 
