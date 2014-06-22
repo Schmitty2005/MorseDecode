@@ -3,6 +3,15 @@ Imports System.Collections.Generic
 Imports System.IO
 Imports System.Linq
 Imports System.Windows.Forms
+
+'
+'Some of the published orders for learning the characters are: 5 0 E T A R - S L U Q J - H O N C
+'V - I B Y P - W K Z M - D X F G. F G H M J R U - B D K N T V Y - C E I L O S - A P Q X Z
+'W. E T A I M N - S O D R C U - K P H G W L - Q H F Y - Z V X J. E I S H - T M O - A N W
+'G - D U V J B - R K L F - P X Z C Y Q. F K B Q T C Z H W X M D Y U P A J O E R S G N L
+'V I. E T I M S O H - A W U J V F - C G K Q F Z - R Y L B X D N. A E I O U - vowels first,
+'then some of most frequent consonants, such as T N R S D L H, etc., so that many words can be
+'practiced from almost the first consonant letters learned. 
 Public Module MorseDecode
 
     'morsedict contains a dictionary with the proper morse code attached to the letter

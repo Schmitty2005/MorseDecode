@@ -55,8 +55,11 @@ Partial Class Form1
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
         Me.boxLearning = New System.Windows.Forms.GroupBox()
-        Me.udboxRepetitions = New System.Windows.Forms.NumericUpDown()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.udboxRepetitions = New System.Windows.Forms.NumericUpDown()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -137,25 +140,25 @@ Partial Class Form1
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'DonateToolStripMenuItem
         '
         Me.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem"
-        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.DonateToolStripMenuItem.Text = "Donate $$"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'charDisplay_tooltip
@@ -166,8 +169,8 @@ Partial Class Form1
         'nudWPMSpeed
         '
         Me.nudWPMSpeed.Location = New System.Drawing.Point(133, 27)
-        Me.nudWPMSpeed.Maximum = New Decimal(New Integer() {50, 0, 0, 0})
-        Me.nudWPMSpeed.Minimum = New Decimal(New Integer() {5, 0, 0, 0})
+        Me.nudWPMSpeed.Maximum = New Decimal(New Integer() {70, 0, 0, 0})
+        Me.nudWPMSpeed.Minimum = New Decimal(New Integer() {18, 0, 0, 0})
         Me.nudWPMSpeed.Name = "nudWPMSpeed"
         Me.nudWPMSpeed.Size = New System.Drawing.Size(49, 20)
         Me.nudWPMSpeed.TabIndex = 18
@@ -352,6 +355,9 @@ Partial Class Form1
         '
         'boxLearning
         '
+        Me.boxLearning.Controls.Add(Me.CheckBox3)
+        Me.boxLearning.Controls.Add(Me.CheckBox2)
+        Me.boxLearning.Controls.Add(Me.CheckBox1)
         Me.boxLearning.Controls.Add(Me.Label2)
         Me.boxLearning.Controls.Add(Me.udboxRepetitions)
         Me.boxLearning.Location = New System.Drawing.Point(13, 43)
@@ -360,6 +366,15 @@ Partial Class Form1
         Me.boxLearning.TabIndex = 22
         Me.boxLearning.TabStop = False
         Me.boxLearning.Text = "Learning Settings"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(16, 33)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(109, 13)
+        Me.Label2.TabIndex = 1
+        Me.Label2.Text = "Character Repetitions"
         '
         'udboxRepetitions
         '
@@ -371,14 +386,35 @@ Partial Class Form1
         Me.udboxRepetitions.TabIndex = 0
         Me.udboxRepetitions.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label2
+        'CheckBox1
         '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(16, 33)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(109, 13)
-        Me.Label2.TabIndex = 1
-        Me.Label2.Text = "Character Repetitions"
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(19, 62)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(82, 17)
+        Me.CheckBox1.TabIndex = 2
+        Me.CheckBox1.Text = "5 0 E T A R"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(19, 86)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox2.TabIndex = 3
+        Me.CheckBox2.Text = "S L U Q J"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Location = New System.Drawing.Point(19, 109)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBox3.TabIndex = 4
+        Me.CheckBox3.Text = "H O N V C"
+        Me.CheckBox3.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -449,5 +485,8 @@ Partial Class Form1
     Friend WithEvents boxLearning As System.Windows.Forms.GroupBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents udboxRepetitions As System.Windows.Forms.NumericUpDown
+    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
 
 End Class

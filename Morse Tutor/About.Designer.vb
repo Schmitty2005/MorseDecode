@@ -34,7 +34,7 @@ Partial Class About
         Me.about_label.AutoSize = True
         Me.about_label.Location = New System.Drawing.Point(32, 47)
         Me.about_label.Name = "about_label"
-        Me.about_label.Size = New System.Drawing.Size(390, 156)
+        Me.about_label.Size = New System.Drawing.Size(390, 182)
         Me.about_label.TabIndex = 0
         Me.about_label.Text = resources.GetString("about_label.Text")
         Me.about_label.TextAlign = System.Drawing.ContentAlignment.TopCenter
