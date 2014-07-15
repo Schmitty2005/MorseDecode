@@ -159,7 +159,7 @@ Public Module MorseDecode
             ltrSpace.SetLength(0)
             interSpace.SetLength(0)
         End If
-       
+
         'routine to calc WPM dit and dah lengths
         Dim ditDurations As Integer = 1200 / wordsPerMin
         Dim dahDurations As Integer = ditDurations * 3
@@ -178,6 +178,8 @@ Public Module MorseDecode
         ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
         player.PlaySync()
+        'insert code for catching error on exit to avoid crash if exit button is pressed.
+
     End Sub
     Sub playDah()
         dahStream.Seek(0, SeekOrigin.Begin)
@@ -293,13 +295,14 @@ Public Module MorseDecode
 
     End Function
     Function createWordWave(ByRef playstream As MemoryStream, ByVal wordString As String)
-        If ditStream.Length = 0 Then initializeSounds(14, 800)
+        'If ditStream.Length = 0 Then initializeSounds(14, 800)
         Dim charCounter As Integer = wordString.Length
         Dim charConvert As Char
         Dim genstream As New MemoryStream
         wordString = wordString.ToLower()        'set to lowercase for proper dictionary reference
         For [step] = 0 To charCounter - 1
             charConvert = wordString.Chars([step])
+            'this coding is wrong....
             genstream = createCharWave(genstream, charConvert)
             genstream.Position = 44 ' strip wave header data
             genstream.CopyTo(playstream)
@@ -429,6 +432,7 @@ Public Module MorseDecode
         Return genStream
     End Function
     Function strip_wave_header(ByRef wave_stream As MemoryStream)
+        'check to see if function is needed.  Delete if not.
         Dim PCM_data As New MemoryStream
         wave_stream.Position = 44
         wave_stream.CopyTo(PCM_data)
