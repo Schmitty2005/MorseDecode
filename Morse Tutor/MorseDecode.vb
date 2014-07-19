@@ -175,31 +175,72 @@ Public Module MorseDecode
         MorseDecode.createSilence(MorseDecode.interSpace, ditDurations)
     End Sub ' sub used to initialize waves to be played back
     Sub playDit()
-        ditStream.Seek(0, SeekOrigin.Begin)
         player.Stream = ditStream
-        player.PlaySync()
+        Try
+            ditStream.Seek(0, SeekOrigin.Begin)
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
+        Try
+            player.PlaySync()
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
         'insert code for catching error on exit to avoid crash if exit button is pressed.
 
     End Sub
     Sub playDah()
-        dahStream.Seek(0, SeekOrigin.Begin)
         player.Stream = dahStream
-        player.PlaySync()
+        Try
+            dahStream.Seek(0, SeekOrigin.Begin)
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
+        Try
+            player.PlaySync()
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
     End Sub
     Sub playLtrSpc()
         player.Stream = ltrSpace
-        ltrSpace.Seek(0, SeekOrigin.Begin)
-        player.PlaySync()
+        Try
+            ltrSpace.Seek(0, SeekOrigin.Begin)
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
+        Try
+            player.PlaySync()
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
     End Sub
     Sub playWrdSpc()
-        wrdSpace.Seek(0, SeekOrigin.Begin)
+        Try
+            wrdSpace.Seek(0, SeekOrigin.Begin)
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
         player.Stream = wrdSpace
-        player.PlaySync()
+        Try
+            player.PlaySync()
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
     End Sub
     Sub playInterSpc()
-        interSpace.Seek(0, SeekOrigin.Begin)
         player.Stream = interSpace
-        player.PlaySync()
+        Try
+            interSpace.Seek(0, SeekOrigin.Begin)
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
+
+        Try
+            player.PlaySync()
+        Catch ex As Exception
+            MessageBox.Show("Message: " & ex.Message)
+        End Try
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character
