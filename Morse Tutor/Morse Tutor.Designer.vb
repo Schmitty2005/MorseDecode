@@ -215,6 +215,7 @@ Partial Class Form1
         Me.cmboFreqHz.Name = "cmboFreqHz"
         Me.cmboFreqHz.Size = New System.Drawing.Size(49, 21)
         Me.cmboFreqHz.TabIndex = 26
+        Me.cmboFreqHz.SelectedIndex = 3
         '
         'btnCustomSpacing
         '

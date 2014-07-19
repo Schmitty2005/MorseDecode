@@ -244,6 +244,7 @@ Public Module MorseDecode
     End Sub
     Public Sub PlayCharacter(ByVal pChar As Char, Optional ByVal repeats As Integer = 1)
         'this routine will play the dit's/dah's from an individual character
+        pChar = Char.ToLower(pChar)
         Dim morseString = morsedict.Item(pChar) 'get dit dah sequence from morsedict
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim ditdah As Char
@@ -544,5 +545,11 @@ Public Module MorseDecode
 
         Return genStream
     End Function
-
+    Sub playrandomchar(ByRef characterstring As String)
+        Dim playchar As Char
+        Dim charnumb As Integer = characterstring.Length
+        Dim newrand As Integer = CInt(Math.Floor((charnumb) * Rnd())) + 1
+        playchar = characterstring.Chars(newrand)
+        PlayCharacter(playchar, Form1.udboxRepetitions.Value)
+    End Sub
 End Module
