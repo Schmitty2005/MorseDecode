@@ -307,7 +307,7 @@ Public Module MorseDecode
 
     End Sub
     Function createCharWave(ByVal playStream As MemoryStream, ByVal waveChar As Char)
-
+        waveChar = Char.ToLower(waveChar)
         Dim morseString = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim genStream As New MemoryStream
