@@ -55,11 +55,13 @@ Partial Class Form1
         Me.MyApplicationBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Button1 = New System.Windows.Forms.Button()
         Me.boxLearning = New System.Windows.Forms.GroupBox()
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.udboxRepetitions = New System.Windows.Forms.NumericUpDown()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox3 = New System.Windows.Forms.CheckBox()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.label_Timer = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -71,7 +73,6 @@ Partial Class Form1
         '
         'display_chr
         '
-        Me.display_chr.AutoSize = True
         Me.display_chr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.display_chr.FlatStyle = System.Windows.Forms.FlatStyle.System
         Me.display_chr.Font = New System.Drawing.Font("Microsoft Sans Serif", 195.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
@@ -140,25 +141,25 @@ Partial Class Form1
         'HelpToolStripMenuItem
         '
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.HelpToolStripMenuItem.Text = "Help"
         '
         'WebsiteToolStripMenuItem
         '
         Me.WebsiteToolStripMenuItem.Name = "WebsiteToolStripMenuItem"
-        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.WebsiteToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.WebsiteToolStripMenuItem.Text = "Website"
         '
         'DonateToolStripMenuItem
         '
         Me.DonateToolStripMenuItem.Name = "DonateToolStripMenuItem"
-        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DonateToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.DonateToolStripMenuItem.Text = "Donate $$"
         '
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(127, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'charDisplay_tooltip
@@ -190,7 +191,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.labelSpacing)
         Me.GroupBox1.Location = New System.Drawing.Point(397, 43)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(200, 207)
+        Me.GroupBox1.Size = New System.Drawing.Size(200, 249)
         Me.GroupBox1.TabIndex = 21
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Morse Properties"
@@ -215,7 +216,6 @@ Partial Class Form1
         Me.cmboFreqHz.Name = "cmboFreqHz"
         Me.cmboFreqHz.Size = New System.Drawing.Size(49, 21)
         Me.cmboFreqHz.TabIndex = 26
-        Me.cmboFreqHz.SelectedIndex = 3
         '
         'btnCustomSpacing
         '
@@ -293,9 +293,9 @@ Partial Class Form1
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(397, 256)
+        Me.Button2.Location = New System.Drawing.Point(12, 298)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(119, 126)
+        Me.Button2.Size = New System.Drawing.Size(211, 75)
         Me.Button2.TabIndex = 8
         Me.Button2.Text = "Test Audio Playback"
         Me.Button2.UseVisualStyleBackColor = True
@@ -309,6 +309,7 @@ Partial Class Form1
         Me.Button5.TabIndex = 13
         Me.Button5.Text = "Write Stream as Wave"
         Me.Button5.UseVisualStyleBackColor = True
+        Me.Button5.Visible = False
         '
         'Button6
         '
@@ -319,6 +320,7 @@ Partial Class Form1
         Me.Button6.TabIndex = 14
         Me.Button6.Text = "Test String Wave"
         Me.Button6.UseVisualStyleBackColor = True
+        Me.Button6.Visible = False
         '
         'Button7
         '
@@ -329,6 +331,7 @@ Partial Class Form1
         Me.Button7.TabIndex = 15
         Me.Button7.Text = "Add Wave header and playback"
         Me.Button7.UseVisualStyleBackColor = True
+        Me.Button7.Visible = False
         '
         'Button8
         '
@@ -339,6 +342,7 @@ Partial Class Form1
         Me.Button8.TabIndex = 16
         Me.Button8.Text = "Strip Header, Combine PCM, Create Wave Header, PLayback"
         Me.Button8.UseVisualStyleBackColor = True
+        Me.Button8.Visible = False
         '
         'MyApplicationBindingSource
         '
@@ -353,6 +357,7 @@ Partial Class Form1
         Me.Button1.TabIndex = 17
         Me.Button1.Text = "Test Character Wave"
         Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.Visible = False
         '
         'boxLearning
         '
@@ -367,6 +372,36 @@ Partial Class Form1
         Me.boxLearning.TabIndex = 22
         Me.boxLearning.TabStop = False
         Me.boxLearning.Text = "Learning Settings"
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Location = New System.Drawing.Point(19, 109)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBox3.TabIndex = 4
+        Me.CheckBox3.Text = "H O N V C"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(19, 86)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(72, 17)
+        Me.CheckBox2.TabIndex = 3
+        Me.CheckBox2.Text = "S L U Q J"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(19, 62)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(82, 17)
+        Me.CheckBox1.TabIndex = 2
+        Me.CheckBox1.Text = "5 0 E T A R"
+        Me.CheckBox1.UseVisualStyleBackColor = True
         '
         'Label2
         '
@@ -387,41 +422,22 @@ Partial Class Form1
         Me.udboxRepetitions.TabIndex = 0
         Me.udboxRepetitions.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'CheckBox1
+        'label_Timer
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(19, 62)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(82, 17)
-        Me.CheckBox1.TabIndex = 2
-        Me.CheckBox1.Text = "5 0 E T A R"
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
-        'CheckBox2
-        '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(19, 86)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(72, 17)
-        Me.CheckBox2.TabIndex = 3
-        Me.CheckBox2.Text = "S L U Q J"
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'CheckBox3
-        '
-        Me.CheckBox3.AutoSize = True
-        Me.CheckBox3.Location = New System.Drawing.Point(19, 109)
-        Me.CheckBox3.Name = "CheckBox3"
-        Me.CheckBox3.Size = New System.Drawing.Size(76, 17)
-        Me.CheckBox3.TabIndex = 4
-        Me.CheckBox3.Text = "H O N V C"
-        Me.CheckBox3.UseVisualStyleBackColor = True
+        Me.label_Timer.AutoSize = True
+        Me.label_Timer.Font = New System.Drawing.Font("Comic Sans MS", 24.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.label_Timer.Location = New System.Drawing.Point(191, 408)
+        Me.label_Timer.Name = "label_Timer"
+        Me.label_Timer.Size = New System.Drawing.Size(94, 45)
+        Me.label_Timer.TabIndex = 23
+        Me.label_Timer.Text = "5:00"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 462)
+        Me.Controls.Add(Me.label_Timer)
         Me.Controls.Add(Me.boxLearning)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Button1)
@@ -489,5 +505,7 @@ Partial Class Form1
     Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents label_Timer As System.Windows.Forms.Label
 
 End Class
