@@ -309,7 +309,7 @@ Public Module MorseDecode
     End Sub
     Function createCharWave(ByVal playStream As MemoryStream, ByVal waveChar As Char)
         waveChar = Char.ToLower(waveChar)
-        Dim morseString = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
+        Dim morseString As String = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
         Dim genStream As New MemoryStream
 
@@ -320,13 +320,13 @@ Public Module MorseDecode
             Application.DoEvents()
 
             If ditdah = "." Then
-                ditStream.Position = 44
-                ditStream.CopyTo(genStream)
+                MorseDecode.ditStream.Position = 44
+                MorseDecode.ditStream.CopyTo(genStream)
             End If
 
             If ditdah = "-" Then
-                dahStream.Position = 44
-                dahStream.CopyTo(genStream)
+                MorseDecode.dahStream.Position = 44
+                MorseDecode.dahStream.CopyTo(genStream)
             End If
 
         Next
@@ -563,5 +563,9 @@ Public Module MorseDecode
         Next
 
     End Sub
+    Sub decodeWaveHeader(ByRef waveStream As System.IO.MemoryStream)
+        'this sub will be used for debugging.  It will output the wave file header in a message box or deubug window
+        Dim waveHeader As New System.IO.MemoryStream
 
+    End Sub
 End Module

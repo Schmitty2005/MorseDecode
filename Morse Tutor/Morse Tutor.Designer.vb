@@ -62,6 +62,7 @@ Partial Class Form1
         Me.udboxRepetitions = New System.Windows.Forms.NumericUpDown()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.label_Timer = New System.Windows.Forms.Label()
+        Me.Button3 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.nudWPMSpeed, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
@@ -432,11 +433,21 @@ Partial Class Form1
         Me.label_Timer.TabIndex = 23
         Me.label_Timer.Text = "5:00"
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(522, 298)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 75)
+        Me.Button3.TabIndex = 24
+        Me.Button3.Text = "Check Word Wave"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(984, 462)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.label_Timer)
         Me.Controls.Add(Me.boxLearning)
         Me.Controls.Add(Me.GroupBox1)
@@ -507,5 +518,6 @@ Partial Class Form1
     Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents label_Timer As System.Windows.Forms.Label
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 
 End Class
