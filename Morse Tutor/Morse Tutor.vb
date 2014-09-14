@@ -272,9 +272,11 @@ Public Class Form1
     Private Sub Button3_Click_1(sender As Object, e As EventArgs) Handles Button3.Click
         initializeSounds(Me.nudWPMSpeed.Value, Convert.ToInt16(Me.cmboFreqHz.SelectedItem), Me.farnsworthBool.Checked, Me.nudFarnsworth.Value)
         mStrm.SetLength(0)
-        createWordWave(mStrm, "test morse string")
-        player.Stream = mStrm
-        mStrm.Seek(0, IO.SeekOrigin.Begin)
+
+        Dim testStream As New System.IO.MemoryStream
+        testStream = createWordWave(mStrm, "test morse string")
+        player.Stream = testStream
+        testStream.Seek(0, IO.SeekOrigin.Begin)
         player.PlaySync()
 
     End Sub

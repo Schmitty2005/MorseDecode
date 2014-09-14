@@ -337,7 +337,8 @@ Public Module MorseDecode
         Return playStream
 
     End Function
-    Function createWordWave(ByRef playstream As MemoryStream, ByVal wordString As String)
+    Function createWordWave(ByRef playstream As MemoryStream, ByVal wordString As String) As MemoryStream
+        ' added As MemoryStream to end of function -- I did not know this was the proper way......
         'If ditStream.Length = 0 Then initializeSounds(14, 800)
         Dim charCounter As Integer = wordString.Length
         Dim charConvert As Char
@@ -354,6 +355,8 @@ Public Module MorseDecode
         wrdSpace.CopyTo(genstream)
         playstream.Seek(0, SeekOrigin.Begin)
         PCM_to_wave(playstream)
+        'check for playstream corruption here before it gets passed.
+        'Problem seems to be with byref/return method that I am using.
         Return playstream
 
     End Function
@@ -471,6 +474,7 @@ Public Module MorseDecode
         wave_PCM_data_chunk.Seek(0, SeekOrigin.Begin)
         wave_PCM_data_chunk.CopyTo(genStream)
         If genStream.Length Mod 2 <> 0 Then writer.Write(0)
+        wave_PCM_data_chunk = genStream
 
         Return genStream
     End Function
