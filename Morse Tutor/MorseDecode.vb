@@ -572,4 +572,9 @@ Public Module MorseDecode
         Dim waveHeader As New System.IO.MemoryStream
 
     End Sub
+    Sub display_wave_header(ByVal wave_stream As MemoryStream)
+        ' code for decoding wave header
+
+    End Sub
 End Module
+
