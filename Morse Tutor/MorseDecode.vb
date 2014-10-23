@@ -307,7 +307,7 @@ Public Module MorseDecode
         End Using
 
     End Sub
-    Function createCharWave(ByVal playStream As MemoryStream, ByVal waveChar As Char)
+    Function createCharWave(ByVal playStream As MemoryStream, ByVal waveChar As Char) As MemoryStream
         waveChar = Char.ToLower(waveChar)
         Dim morseString As String = morsedict.Item(waveChar) 'get dit dah sequence from morsedict
         Dim counter As Int16 = morseString.Length 'set length of dit dah sequence
@@ -331,10 +331,10 @@ Public Module MorseDecode
 
         Next
         'add wave header data to PCM stream
-        playStream = PCM_to_wave(genStream)
+        'playStream = PCM_to_wave(genStream)
         'return completed character wave as stream
-
-        Return playStream
+        'Return playStream
+        createCharWave = playStream
 
     End Function
     Function createWordWave(ByRef playstream As MemoryStream, ByVal wordString As String) As MemoryStream
@@ -355,9 +355,11 @@ Public Module MorseDecode
         wrdSpace.CopyTo(genstream)
         playstream.Seek(0, SeekOrigin.Begin)
         PCM_to_wave(playstream)
+        createWordWave = playstream
+
         'check for playstream corruption here before it gets passed.
         'Problem seems to be with byref/return method that I am using.
-        Return playstream
+        'Return playstream
 
     End Function
     Public Sub Main()
